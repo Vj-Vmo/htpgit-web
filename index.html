@@ -93,8 +93,8 @@
             border-bottom: 1px solid rgba(255,255,255,0.1); padding: 1.2rem 3rem; display: flex; justify-content: space-between; 
             align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 10px 30px rgba(0,0,0,0.3); flex-wrap: wrap; gap: 15px;
         }
-        .logo-wrapper { display: flex; align-items: center; gap: 15px;}
-        .logo { font-size: 2.2rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; display: flex; align-items: center; cursor: pointer;}
+        .logo-wrapper { display: flex; align-items: center; gap: 15px; cursor: pointer;}
+        .logo { font-size: 2.2rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; display: flex; align-items: center;}
         .logo span { color: var(--accent); text-shadow: 0 0 15px rgba(194, 94, 36, 0.6);}
         .logo-subtext { font-family: 'Nunito', sans-serif; font-size: 0.95rem; color: #94a3b8; font-weight: 700; letter-spacing: 1px; margin-left: 20px; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 20px; text-transform: uppercase;}
         
@@ -148,8 +148,7 @@
             box-shadow: none; border: 1px solid rgba(0,0,0,0.1); 
         }
         .complete-btn.completed-state:hover { 
-            background: rgba(239, 68, 68, 0.9); /* Reddish hover to indicate removal */
-            color: white; border-color: transparent; box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+            background: rgba(239, 68, 68, 0.9); color: white; border-color: transparent; box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
         }
 
         .pulse-btn { animation: pulse-glow 2.5s infinite; }
@@ -204,32 +203,34 @@
         .transparency-icon { font-size: 1.5rem; }
         .transparency-text { margin: 0; line-height: 1.6; font-size: 0.95rem; color: var(--text-muted); font-weight: 600;}
 
-        /* --- SIDEBAR (PURE HTML LAYOUT FROM VJ_030 RESTORED) --- */
+        /* --- SIDEBAR (PURE HTML LAYOUT RESTORED) --- */
         .side-column { display: flex; flex-direction: column; gap: 20px; }
         .side-column::-webkit-scrollbar { width: 6px; }
         .side-column::-webkit-scrollbar-track { background: transparent; }
         .side-column::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 10px; }
         .side-column::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.4); }
 
-        /* THE TRUE FIX FOR THE WHITE SQUARES: Only curve the top corners of the header! */
+        /* Proper White Square Fix: Curve only the top corners of the header */
         .curriculum-header { 
             background: rgba(255,255,255,0.7); padding: 18px 25px; font-weight: 700; color: var(--text-dark); 
             border-bottom: 1px solid var(--border-light); font-size: 1.15rem; letter-spacing: 0.5px;
-            border-radius: 23px 23px 0 0; /* PERFECT CURVE FIX without breaking overflow */
+            border-radius: 23px 23px 0 0; 
         }
         
         .lesson-link { 
             padding: 16px 25px; cursor: pointer; border-bottom: 1px solid rgba(0,0,0,0.06); 
-            display: flex; align-items: center; gap: 18px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            display: flex; align-items: center; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
             font-size: 1.05rem; font-weight: 700; color: var(--text-muted); position: relative;
         }
         
         .curriculum-card .lesson-link:last-child { 
             border-bottom: none; 
-            border-radius: 0 0 23px 23px; /* Bottom curve fix */
+            border-radius: 0 0 23px 23px; 
         }
         
-        /* The magical pseudo-element checkmark (No extra HTML needed) */
+        .lesson-link-left { display: flex; align-items: center; gap: 18px; flex: 1; }
+        
+        /* The gamification completion pseudo-element checkmark */
         .lesson-link.completed::after {
             content: '✓'; position: absolute; right: 25px; color: #eab308; font-size: 1.2rem; font-weight: 900;
         }
@@ -258,7 +259,6 @@
         .dev-signature {
             font-family: 'Lora', serif; font-size: 1.3rem; color: #cbd5e1; letter-spacing: 0.5px;
         }
-        /* Fixed visibility: High contrast Gold, bold, non-italicized */
         .dev-name {
             color: #fbbf24; font-weight: 800; font-size: 1.6rem; 
             text-shadow: 0 0 15px rgba(251, 191, 36, 0.5); 
@@ -371,61 +371,61 @@
 
     </div>
 
-    <!-- Scrollable Sidebar Area (PURE HTML LAYOUT) -->
+    <!-- Scrollable Sidebar Area -->
     <div class="side-column">
         <div class="curriculum-card">
             <div class="curriculum-header">Step 01: Core Foundations</div>
-            <div class="lesson-link active" onclick="loadLesson('0')" id="link-0"><div class="lesson-number">0</div><div class="lesson-text">Learning Roadmap</div></div>
-            <div class="lesson-link" onclick="loadLesson('14')" id="link-14"><div class="lesson-number">🪑</div><div class="lesson-text">Posture & Grip</div></div>
-            <div class="lesson-link" onclick="loadLesson('9')" id="link-9"><div class="lesson-number">📖</div><div class="lesson-text">Read Diagrams</div></div>
-            <div class="lesson-link" onclick="loadLesson('15')" id="link-15"><div class="lesson-number">🎵</div><div class="lesson-text">Read TAB</div></div>
-            <div class="lesson-link" onclick="loadLesson('search')" id="link-search"><div class="lesson-number">🌐</div><div class="lesson-text">AI Song Search</div></div>
-            <div class="lesson-link" onclick="loadLesson('1')" id="link-1"><div class="lesson-number">1</div><div class="lesson-text">Tuning Tool</div></div>
+            <div class="lesson-link active" onclick="loadLesson('0')" id="link-0"><div class="lesson-link-left"><div class="lesson-number">0</div><div class="lesson-text">Learning Roadmap</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('14')" id="link-14"><div class="lesson-link-left"><div class="lesson-number">🪑</div><div class="lesson-text">Posture & Grip</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('9')" id="link-9"><div class="lesson-link-left"><div class="lesson-number">📖</div><div class="lesson-text">Read Diagrams</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('15')" id="link-15"><div class="lesson-link-left"><div class="lesson-number">🎵</div><div class="lesson-text">Read TAB</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('search')" id="link-search"><div class="lesson-link-left"><div class="lesson-number">🌐</div><div class="lesson-text">AI Song Search</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('1')" id="link-1"><div class="lesson-link-left"><div class="lesson-number">1</div><div class="lesson-text">Tuning Tool</div></div></div>
         </div>
         
         <div class="curriculum-card">
             <div class="curriculum-header">Step 02: Must-Learn Open Chords</div>
-            <div class="lesson-link" onclick="loadLesson('3')" id="link-3"><div class="lesson-number">🗺️</div><div class="lesson-text">Chords Roadmap</div></div>
-            <div class="lesson-link" onclick="loadLesson('2')" id="link-2"><div class="lesson-number">G</div><div class="lesson-text">G Major</div></div>
-            <div class="lesson-link" onclick="loadLesson('4')" id="link-4"><div class="lesson-number">C</div><div class="lesson-text">C Major</div></div>
-            <div class="lesson-link" onclick="loadLesson('5')" id="link-5"><div class="lesson-number">D</div><div class="lesson-text">D Major</div></div>
-            <div class="lesson-link" onclick="loadLesson('20')" id="link-20"><div class="lesson-number">A</div><div class="lesson-text">A Major</div></div>
-            <div class="lesson-link" onclick="loadLesson('21')" id="link-21"><div class="lesson-number">E</div><div class="lesson-text">E Major</div></div>
-            <div class="lesson-link" onclick="loadLesson('6')" id="link-6"><div class="lesson-number">Em</div><div class="lesson-text">E Minor</div></div>
-            <div class="lesson-link" onclick="loadLesson('22')" id="link-22"><div class="lesson-number">Am</div><div class="lesson-text">A Minor</div></div>
-            <div class="lesson-link" onclick="loadLesson('23')" id="link-23"><div class="lesson-number">Dm</div><div class="lesson-text">D Minor</div></div>
+            <div class="lesson-link" onclick="loadLesson('3')" id="link-3"><div class="lesson-link-left"><div class="lesson-number">🗺️</div><div class="lesson-text">Chords Roadmap</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('2')" id="link-2"><div class="lesson-link-left"><div class="lesson-number">G</div><div class="lesson-text">G Major</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('4')" id="link-4"><div class="lesson-link-left"><div class="lesson-number">C</div><div class="lesson-text">C Major</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('5')" id="link-5"><div class="lesson-link-left"><div class="lesson-number">D</div><div class="lesson-text">D Major</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('20')" id="link-20"><div class="lesson-link-left"><div class="lesson-number">A</div><div class="lesson-text">A Major</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('21')" id="link-21"><div class="lesson-link-left"><div class="lesson-number">E</div><div class="lesson-text">E Major</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('6')" id="link-6"><div class="lesson-link-left"><div class="lesson-number">Em</div><div class="lesson-text">E Minor</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('22')" id="link-22"><div class="lesson-link-left"><div class="lesson-number">Am</div><div class="lesson-text">A Minor</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('23')" id="link-23"><div class="lesson-link-left"><div class="lesson-number">Dm</div><div class="lesson-text">D Minor</div></div></div>
         </div>
 
         <div class="curriculum-card">
             <div class="curriculum-header">Step 03: Rhythm & Strumming</div>
-            <div class="lesson-link" onclick="loadLesson('12')" id="link-12"><div class="lesson-number">🥁</div><div class="lesson-text">Basic Strumming</div></div>
+            <div class="lesson-link" onclick="loadLesson('12')" id="link-12"><div class="lesson-link-left"><div class="lesson-number">🥁</div><div class="lesson-text">Basic Strumming</div></div></div>
         </div>
 
         <div class="curriculum-card">
             <div class="curriculum-header">Step 04: 7ths</div>
-            <div class="lesson-link" onclick="loadLesson('30')" id="link-30"><div class="lesson-number">A7</div><div class="lesson-text">A7 Dominant</div></div>
-            <div class="lesson-link" onclick="loadLesson('31')" id="link-31"><div class="lesson-number">D7</div><div class="lesson-text">D7 Dominant</div></div>
-            <div class="lesson-link" onclick="loadLesson('32')" id="link-32"><div class="lesson-number">E7</div><div class="lesson-text">E7 Dominant</div></div>
+            <div class="lesson-link" onclick="loadLesson('30')" id="link-30"><div class="lesson-link-left"><div class="lesson-number">A7</div><div class="lesson-text">A7 Dominant</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('31')" id="link-31"><div class="lesson-link-left"><div class="lesson-number">D7</div><div class="lesson-text">D7 Dominant</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('32')" id="link-32"><div class="lesson-link-left"><div class="lesson-number">E7</div><div class="lesson-text">E7 Dominant</div></div></div>
         </div>
         
         <div class="curriculum-card">
             <div class="curriculum-header">Step 05: Barre Chords</div>
-            <div class="lesson-link" onclick="loadLesson('40')" id="link-40"><div class="lesson-number">F</div><div class="lesson-text">F Major (Barre)</div></div>
-            <div class="lesson-link" onclick="loadLesson('41')" id="link-41"><div class="lesson-number">Bm</div><div class="lesson-text">B Minor (Barre)</div></div>
+            <div class="lesson-link" onclick="loadLesson('40')" id="link-40"><div class="lesson-link-left"><div class="lesson-number">F</div><div class="lesson-text">F Major (Barre)</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('41')" id="link-41"><div class="lesson-link-left"><div class="lesson-number">Bm</div><div class="lesson-text">B Minor (Barre)</div></div></div>
         </div>
         
         <div class="curriculum-card">
             <div class="curriculum-header">Step 06: Mastery & Routine</div>
-            <div class="lesson-link" onclick="loadLesson('7')" id="link-7"><div class="lesson-number">7</div><div class="lesson-text">Transitions</div></div>
-            <div class="lesson-link" onclick="loadLesson('13')" id="link-13"><div class="lesson-number">🔧</div><div class="lesson-text">Using a Capo</div></div>
-            <div class="lesson-link" onclick="loadLesson('16')" id="link-16"><div class="lesson-number">⏱️</div><div class="lesson-text">15-Min Routine</div></div>
-            <div class="lesson-link" onclick="loadLesson('8')" id="link-8"><div class="lesson-number">★</div><div class="lesson-text">Mix Test</div></div>
+            <div class="lesson-link" onclick="loadLesson('7')" id="link-7"><div class="lesson-link-left"><div class="lesson-number">7</div><div class="lesson-text">Transitions</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('13')" id="link-13"><div class="lesson-link-left"><div class="lesson-number">🔧</div><div class="lesson-text">Using a Capo</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('16')" id="link-16"><div class="lesson-link-left"><div class="lesson-number">⏱️</div><div class="lesson-text">15-Min Routine</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('8')" id="link-8"><div class="lesson-link-left"><div class="lesson-number">★</div><div class="lesson-text">Mix Test</div></div></div>
         </div>
         
         <div class="curriculum-card">
             <div class="curriculum-header">Buyer's Guide</div>
-            <div class="lesson-link" onclick="loadLesson('10')" id="link-10"><div class="lesson-number">🎸</div><div class="lesson-text">Top 5 Guitars</div></div>
-            <div class="lesson-link" onclick="loadLesson('11')" id="link-11"><div class="lesson-number">🎒</div><div class="lesson-text">Must-Have Gear</div></div>
+            <div class="lesson-link" onclick="loadLesson('10')" id="link-10"><div class="lesson-link-left"><div class="lesson-number">🎸</div><div class="lesson-text">Top 5 Guitars</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('11')" id="link-11"><div class="lesson-link-left"><div class="lesson-number">🎒</div><div class="lesson-text">Must-Have Gear</div></div></div>
         </div>
     </div>
 </div>
@@ -497,29 +497,45 @@
         </div>
     `;
 
+    // THE FULLY RESTORED BUYER'S GUIDE IS INCLUDED HERE
     const courseData = {
         '0': {
             title: "Learning Roadmap",
             notes: `
-                <h3>Stage 1: Foundations</h3>
+                <h3>Stage 1: Core Foundations</h3>
                 <ul>
-                    <li>Learn how to hold the guitar and pick/strum properly.</li>
-                    <li>Memorize string names (E–A–D–G–B–E).</li>
-                    <li>Practice basic open chords (C, G, D, E, A, Em, Am).</li>
+                    <li>Learn posture, pick grip, and how to read tabs/diagrams.</li>
+                    <li>Master the built-in digital tuner.</li>
                 </ul>
                 <hr>
-                <h3>Stage 2: Rhythm & Strumming</h3>
+                <h3>Stage 2: Must-Learn Open Chords</h3>
                 <ul>
-                    <li>Simple downstroke strumming → progress to mixed up/down patterns.</li>
-                    <li>Play along with easy 2–3 chord songs (folk, pop classics).</li>
-                    <li>Work on switching chords smoothly without pausing.</li>
+                    <li>Memorize the essential major (C, G, D, A, E) and minor (Am, Em, Dm) shapes.</li>
+                    <li>Focus on clean, buzz-free fretting.</li>
                 </ul>
                 <hr>
-                <h3>Stage 3: Technique & Dexterity</h3>
+                <h3>Stage 3: Rhythm & Strumming</h3>
                 <ul>
-                    <li>Practice finger exercises (chromatic runs, spider walk).</li>
-                    <li>Learn power chords for rock songs.</li>
-                    <li>Start using a metronome to keep time.</li>
+                    <li>Master the "Old Faithful" strumming pattern.</li>
+                    <li>Learn to keep time and syncopate your strums.</li>
+                </ul>
+                <hr>
+                <h3>Stage 4: 7th Chords</h3>
+                <ul>
+                    <li>Add flavor to your playing with A7, D7, and E7 dominant chords.</li>
+                    <li>Understand how they create musical tension.</li>
+                </ul>
+                <hr>
+                <h3>Stage 5: Barre Chords</h3>
+                <ul>
+                    <li>Conquer the F Major and B Minor shapes.</li>
+                    <li>Build index finger strength for full fretboard mastery.</li>
+                </ul>
+                <hr>
+                <h3>Stage 6: Mastery & Routine</h3>
+                <ul>
+                    <li>Combine everything into a daily 15-minute practice routine.</li>
+                    <li>Learn to use a capo to change keys dynamically.</li>
                 </ul>`
         },
         '14': {
@@ -718,6 +734,24 @@ E|-3-----------------|
                             <a href="#" class="store-badge bajaao">Bajaao</a>
                         </div>
                     </li>
+                    <li class="product-card">
+                        <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">4. Epiphone DR-100</strong><br> 
+                        <span style="font-size: 1.05rem;">A budget-friendly classic with a great look.</span>
+                        <div class="link-stickers">
+                            <span class="link-label">Product link:</span>
+                            <a href="#" class="store-badge amazon">Amazon</a>
+                            <a href="#" class="store-badge bajaao">Bajaao</a>
+                        </div>
+                    </li>
+                    <li class="product-card">
+                        <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">5. Gretsch G9500 Jim Dandy</strong><br> 
+                        <span style="font-size: 1.05rem;">Compact and comfortable parlor guitar, perfect for casual practice.</span>
+                        <div class="link-stickers">
+                            <span class="link-label">Product link:</span>
+                            <a href="#" class="store-badge amazon">Amazon</a>
+                            <a href="#" class="store-badge bajaao">Bajaao</a>
+                        </div>
+                    </li>
                 </ul>
                 ${transparencyNote}`
         },
@@ -737,6 +771,33 @@ E|-3-----------------|
                     <li class="product-card">
                         <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">Capo</strong><br> 
                         <span style="font-size: 1.05rem;">To change keys instantly without relearning chord shapes.</span>
+                        <div class="link-stickers">
+                            <span class="link-label">Product link:</span>
+                            <a href="#" class="store-badge amazon">Amazon</a>
+                            <a href="#" class="store-badge bajaao">Bajaao</a>
+                        </div>
+                    </li>
+                    <li class="product-card">
+                        <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">Guitar Picks</strong><br> 
+                        <span style="font-size: 1.05rem;">Start with medium (0.73mm) thickness.</span>
+                        <div class="link-stickers">
+                            <span class="link-label">Product link:</span>
+                            <a href="#" class="store-badge amazon">Amazon</a>
+                            <a href="#" class="store-badge bajaao">Bajaao</a>
+                        </div>
+                    </li>
+                    <li class="product-card">
+                        <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">Gig Bag</strong><br> 
+                        <span style="font-size: 1.05rem;">To keep your guitar safe from dust and humidity.</span>
+                        <div class="link-stickers">
+                            <span class="link-label">Product link:</span>
+                            <a href="#" class="store-badge amazon">Amazon</a>
+                            <a href="#" class="store-badge bajaao">Bajaao</a>
+                        </div>
+                    </li>
+                    <li class="product-card">
+                        <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">String Winder</strong><br> 
+                        <span style="font-size: 1.05rem;">Makes changing strings 10x faster.</span>
                         <div class="link-stickers">
                             <span class="link-label">Product link:</span>
                             <a href="#" class="store-badge amazon">Amazon</a>
@@ -961,6 +1022,7 @@ E|-3-----------------|
             combo.value = targetLanguage;
             combo.dispatchEvent(new Event('change', { 'bubbles': true, 'cancelable': true }));
         } else {
+            // Fallback: If Google's combo box isn't rendered, use the cookie method and reload
             document.cookie = `googtrans=/en/${targetLanguage}; path=/;`;
             document.cookie = `googtrans=/en/${targetLanguage}; domain=.${location.hostname}; path=/;`;
             window.location.reload();
@@ -1050,6 +1112,7 @@ E|-3-----------------|
         initLanguageDetector();
         loadUserState();
         
+        // Initial setup for default lesson without triggering audio warning
         currentLessonId = '0';
         document.getElementById('link-0').classList.add('active');
         updateCompleteButton();
