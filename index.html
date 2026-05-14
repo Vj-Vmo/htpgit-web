@@ -12,6 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
+        /* --- GLOBAL MOBILE FIXES --- */
+        * { -webkit-tap-highlight-color: transparent; }
+
         /* --- PREMIUM CINEMATIC GLASSMORPHISM THEME --- */
         :root { 
             --panel-bg: rgba(255, 255, 255, 0.75); 
@@ -24,24 +27,23 @@
             --danger: #ef4444;
             --shadow-glass: 0 20px 40px rgba(0, 0, 0, 0.15);
             --shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.25);
+            --border-light: rgba(0,0,0,0.1);
         }
 
         body { 
             font-family: 'Nunito', sans-serif;
             margin: 0; color: var(--text-dark); min-height: 100vh;
             overflow-x: hidden; background-color: #0a0807; 
-            top: 0 !important; /* Prevents Google Translate from shifting the page down */
+            top: 0 !important; 
         }
 
         /* --- THE CSS NUKE: ANNIHILATE ALL GOOGLE TRANSLATE POPUPS & BANNERS --- */
         .goog-te-banner-frame.skiptranslate { display: none !important; }
         .goog-tooltip { display: none !important; pointer-events: none !important; }
-        .goog-tooltip:hover { display: none !important; }
         .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
         #goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
         .goog-is-v { visibility: hidden !important; }
         
-        /* Shove the widget far off screen so it functions but is 100% invisible */
         #google_translate_wrapper { 
             position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; 
             overflow: hidden; opacity: 0; z-index: -9999; pointer-events: none; 
@@ -110,7 +112,6 @@
         .translate-btn-nav { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 10px 18px; border-radius: 30px; font-weight: 800; cursor: pointer; font-family: 'Nunito', sans-serif; transition: 0.3s; }
         .translate-btn-nav:hover { background: rgba(255,255,255,0.25); }
         
-        /* Gamification Points Pill */
         .progress-pill { background: rgba(255, 255, 255, 0.1); color: #fff; padding: 10px 22px; border-radius: 30px; font-weight: 800; font-size: 1rem; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .points-pop { animation: pointPop 0.6s cubic-bezier(0.4, 0, 0.2, 1); background: var(--success); border-color: #fff;}
         @keyframes pointPop { 0% { transform: scale(1); } 50% { transform: scale(1.15); box-shadow: 0 0 25px var(--success); } 100% { transform: scale(1); } }
@@ -142,14 +143,8 @@
         .complete-btn { background: var(--success); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35); }
         .complete-btn:hover { background: #059669; box-shadow: 0 12px 30px rgba(16, 185, 129, 0.45); }
         
-        /* The Undo State Styling */
-        .complete-btn.completed-state { 
-            background: rgba(255,255,255,0.15); color: var(--text-dark); 
-            box-shadow: none; border: 1px solid rgba(0,0,0,0.1); 
-        }
-        .complete-btn.completed-state:hover { 
-            background: rgba(239, 68, 68, 0.9); color: white; border-color: transparent; box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
-        }
+        .complete-btn.completed-state { background: rgba(255,255,255,0.15); color: var(--text-dark); box-shadow: none; border: 1px solid rgba(0,0,0,0.1); }
+        .complete-btn.completed-state:hover { background: rgba(239, 68, 68, 0.9); color: white; border-color: transparent; box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4); }
 
         .pulse-btn { animation: pulse-glow 2.5s infinite; }
         @keyframes pulse-glow { 0% { box-shadow: 0 0 0 0 rgba(194, 94, 36, 0.5); } 70% { box-shadow: 0 0 0 18px rgba(194, 94, 36, 0); } 100% { box-shadow: 0 0 0 0 rgba(194, 94, 36, 0); } }
@@ -184,10 +179,208 @@
         .chord-diagram-container { display: flex; align-items: center; gap: 40px; background: rgba(255, 255, 255, 0.8); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); margin-top: 35px; flex-wrap: wrap;}
         .chord-svg { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.05);}
 
-        /* --- PRODUCT LINK BADGES --- */
-        .product-card { background: rgba(255,255,255,0.55); border-radius: 16px; border: 1px solid rgba(0,0,0,0.06); padding: 25px; margin-bottom: 25px; transition: transform 0.2s; box-shadow: 0 5px 15px rgba(0,0,0,0.02);}
+        .chord-fact-box { margin-top: 35px; padding: 25px; background: rgba(194, 94, 36, 0.05); border-radius: 16px; border-left: 5px solid rgba(194, 94, 36, 0.6); backdrop-filter: blur(5px);}
+        .chord-fact-box h4 { margin: 0 0 12px 0; color: var(--accent); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; display: flex; align-items: center; gap: 8px;}
+        .chord-fact-box p { margin: 0; font-size: 1.05rem; line-height: 1.7; color: var(--text-dark); font-weight: 600;}
+
+        /* --- FEATURE CARDS CSS --- */
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
+        .feature-card { 
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6)); 
+            border-radius: 20px; padding: 30px; border-left: 5px solid var(--accent); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        .feature-card:hover { transform: translateY(-5px); background: rgba(255,255,255,1); box-shadow: 0 15px 35px rgba(194, 94, 36, 0.2); }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 15px; display: inline-block; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+        .feature-card h4 { color: var(--text-dark); margin: 0 0 10px 0; font-size: 1.3rem; font-family: 'Lora', serif; font-weight: 800;}
+        .feature-card p { margin: 0; color: var(--text-muted); line-height: 1.6; font-size: 1.05rem; }
+
+        /* --- GLOSSARY TOOLTIP ENGINE STYLING --- */
+        .term-highlight { position: relative; color: var(--accent); font-weight: 800; cursor: help; border-bottom: 2px dotted var(--accent); transition: all 0.3s ease; }
+        .term-highlight:hover { background: rgba(194, 94, 36, 0.1); border-bottom-color: transparent; }
+        
+        .term-tooltip {
+            visibility: hidden; opacity: 0; position: absolute; bottom: 140%; left: 50%;
+            transform: translateX(-50%) translateY(10px); background: rgba(15, 23, 42, 0.95);
+            color: #fff; padding: 12px 18px; border-radius: 12px; font-size: 0.95rem;
+            font-weight: 600; line-height: 1.5; white-space: normal; width: max-content;
+            max-width: 250px; z-index: 1000; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1); pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); font-family: 'Nunito', sans-serif;
+            text-align: center;
+        }
+        .term-tooltip::after {
+            content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+            border-width: 8px; border-style: solid; border-color: rgba(15, 23, 42, 0.95) transparent transparent transparent;
+        }
+        .term-highlight:hover .term-tooltip { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        /* --- FLOATING MUSIC NOTE ANIMATION --- */
+        .floating-note {
+            position: fixed; font-size: 2.5rem; pointer-events: none; z-index: 10000;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5); 
+            animation: floatNote 1.2s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        @keyframes floatNote {
+            0% { transform: translate(-50%, -50%) scale(0.5) rotate(-15deg); opacity: 0; }
+            20% { transform: translate(-50%, -30px) scale(1.3) rotate(15deg); opacity: 1; }
+            100% { transform: translate(-50%, -120px) scale(1) rotate(-30deg); opacity: 0; }
+        }
+
+        /* --- UPRIGHT PHOTOREALISTIC DOM GUITAR --- */
+        .anatomy-interactive { 
+            position: relative; width: 100%; max-width: 400px; height: 950px; 
+            margin: 0 auto 50px; transform: scale(0.9); transform-origin: top center;
+            user-select: none;
+        }
+        
+        .pr-headstock {
+            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 100px; height: 160px; background: linear-gradient(135deg, #8c4b24, #4a2108);
+            border-radius: 15px 15px 8px 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.4), inset 0 0 15px rgba(0,0,0,0.6);
+            z-index: 3;
+        }
+        .pr-tuner {
+            position: absolute; width: 22px; height: 14px; background: linear-gradient(to bottom, #f0f0f0, #888, #d0d0d0);
+            border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+        }
+        .pr-tuner-peg {
+            position: absolute; width: 10px; height: 10px; background: #222; border-radius: 50%;
+            top: 2px; box-shadow: inset 0 -2px 5px rgba(255,255,255,0.3);
+        }
+        .pr-tuner-l1 { left: -15px; top: 30px; } .pr-tuner-l1 .pr-tuner-peg { right: -6px; }
+        .pr-tuner-l2 { left: -15px; top: 80px; } .pr-tuner-l2 .pr-tuner-peg { right: -6px; }
+        .pr-tuner-l3 { left: -15px; top: 130px; } .pr-tuner-l3 .pr-tuner-peg { right: -6px; }
+        .pr-tuner-r1 { right: -15px; top: 30px; } .pr-tuner-r1 .pr-tuner-peg { left: -6px; }
+        .pr-tuner-r2 { right: -15px; top: 80px; } .pr-tuner-r2 .pr-tuner-peg { left: -6px; }
+        .pr-tuner-r3 { right: -15px; top: 130px; } .pr-tuner-r3 .pr-tuner-peg { left: -6px; }
+        .pr-nut {
+            position: absolute; bottom: 0; left: 10px; width: 80px; height: 8px;
+            background: linear-gradient(to bottom, #fff5d4, #d4c59a); box-shadow: 0 3px 5px rgba(0,0,0,0.5);
+        }
+
+        .pr-neck {
+            position: absolute; top: 150px; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 350px; 
+            background: url('images/fretboard.jpg') center/cover;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.4), -5px 0 15px rgba(0,0,0,0.4); z-index: 2;
+        }
+        .pr-fret { width: 100%; height: 3px; background: linear-gradient(to bottom, #aaa, #fff, #888); box-shadow: 0 2px 3px rgba(0,0,0,0.6); position: absolute; }
+        .pr-dot { position: absolute; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: #eee; border-radius: 50%; box-shadow: inset 1px 1px 3px rgba(0,0,0,0.5); }
+
+        .pr-body {
+            position: absolute; top: 450px; left: 50%; transform: translateX(-50%);
+            width: 380px; height: 500px;
+            border-radius: 45% 45% 55% 55% / 40% 40% 60% 60%;
+            background: url('https://images.unsplash.com/photo-1558550186-b48c1a6039ea?auto=format&fit=crop&w=600&q=80') center/cover;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.9), 0 25px 50px rgba(0,0,0,0.6);
+            border: 4px solid #d4c59a; z-index: 1; overflow: hidden; cursor: pointer;
+        }
+        .pr-soundhole {
+            position: absolute; top: 100px; left: 50%; transform: translateX(-50%);
+            width: 130px; height: 130px; background: #050201; border-radius: 50%;
+            box-shadow: inset 0 10px 20px rgba(0,0,0,1), 0 0 0 4px #e28c46, 0 0 0 6px #222, 0 0 0 12px #8a3005, 0 0 0 14px #222;
+        }
+        .pr-pickguard {
+            position: absolute; top: 110px; left: 190px; width: 130px; height: 220px;
+            background: linear-gradient(135deg, #3a0000, #111, #0a0000);
+            border-radius: 10px 100px 100px 100px; opacity: 0.9;
+            box-shadow: 2px 5px 10px rgba(0,0,0,0.3);
+        }
+        .pr-bridge {
+            position: absolute; top: 320px; left: 50%; transform: translateX(-50%);
+            width: 160px; height: 35px; background: #2a1508; border-radius: 8px;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.1);
+        }
+        .pr-saddle {
+            position: absolute; top: 10px; left: 15px; width: 130px; height: 5px;
+            background: linear-gradient(to bottom, #fff5d4, #d4c59a);
+            transform: rotate(-2deg); box-shadow: 0 3px 5px rgba(0,0,0,0.6);
+        }
+        .pr-pins {
+            position: absolute; bottom: 6px; left: 20px; width: 120px; display: flex; justify-content: space-between;
+        }
+        .pr-pin { width: 8px; height: 8px; background: #111; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.5); border: 1px solid #333; }
+        .pr-pin::after { content:''; display:block; width:3px; height:3px; background:#eee; border-radius:50%; margin: 2px auto; }
+
+        .pr-strings-container {
+            position: absolute; top: 150px; left: 50%; transform: translateX(-50%);
+            width: 70px; height: 630px; display: flex; justify-content: space-between; z-index: 4;
+        }
+        .pr-string-wrapper {
+            position: relative; width: 12px; height: 100%; cursor: crosshair; display: flex; justify-content: center;
+        }
+        .pr-string-line {
+            width: 2px; height: 100%; background: #b08d5b; box-shadow: 2px 0 5px rgba(0,0,0,0.6);
+            transition: transform 0.05s linear;
+        }
+        
+        /* String gauges & colors */
+        .pr-s6 .pr-string-line { width: 3.5px; background: linear-gradient(to right, #8c6a40, #d4ad76, #8c6a40); }
+        .pr-s5 .pr-string-line { width: 3.0px; background: linear-gradient(to right, #8c6a40, #d4ad76, #8c6a40); }
+        .pr-s4 .pr-string-line { width: 2.5px; background: linear-gradient(to right, #8c6a40, #d4ad76, #8c6a40); }
+        .pr-s3 .pr-string-line { width: 2.0px; background: linear-gradient(to right, #8c6a40, #d4ad76, #8c6a40); }
+        .pr-s2 .pr-string-line { width: 1.5px; background: linear-gradient(to right, #ccc, #fff, #ccc); }
+        .pr-s1 .pr-string-line { width: 1.0px; background: linear-gradient(to right, #ccc, #fff, #ccc); }
+
+        /* Animation for physical string vibration */
+        .pr-string-wrapper:hover .pr-string-line { transform: translateX(2px); }
+        .string-vibrating .pr-string-line { animation: vibrateString 0.15s linear infinite; }
+        @keyframes vibrateString {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(2px); }
+            50% { transform: translateX(-2px); }
+            75% { transform: translateX(1px); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Positioning Hotspots exactly on the upright DOM Guitar */
+        .hotspot { 
+            position: absolute; width: 30px; height: 30px; background: var(--accent); 
+            border-radius: 50%; cursor: pointer; border: 3px solid #fff; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5); transform: translate(-50%, -50%);
+            animation: pulse-hotspot 2s infinite; z-index: 10;
+        }
+        @keyframes pulse-hotspot {
+            0% { box-shadow: 0 0 0 0 rgba(194, 94, 36, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(194, 94, 36, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(194, 94, 36, 0); }
+        }
+        .hotspot-tooltip {
+            visibility: hidden; opacity: 0; position: absolute; top: 50%; left: 140%; 
+            transform: translateY(-50%) translateX(-10px); background: rgba(15,23,42,0.95); 
+            color: #fff; padding: 15px 20px; border-radius: 12px; width: max-content; max-width: 250px; 
+            text-align: left; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); pointer-events: none; 
+            border: 1px solid rgba(255,255,255,0.1); font-size: 0.95rem; line-height: 1.5; font-family: 'Nunito', sans-serif;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+        .hotspot-tooltip::after {
+            content: ''; position: absolute; top: 50%; right: 100%; transform: translateY(-50%);
+            border-width: 8px; border-style: solid; border-color: transparent rgba(15,23,42,0.95) transparent transparent;
+        }
+        .hotspot.right-side .hotspot-tooltip { left: auto; right: 140%; transform: translateY(-50%) translateX(10px); }
+        .hotspot.right-side .hotspot-tooltip::after { right: auto; left: 100%; border-color: transparent transparent transparent rgba(15,23,42,0.95); }
+        .hotspot:hover .hotspot-tooltip { visibility: visible; opacity: 1; transform: translateY(-50%) translateX(0); }
+        .hotspot:hover { transform: translate(-50%, -50%) scale(1.1); background: var(--success); animation: none; box-shadow: 0 0 20px var(--success); }
+
+        .anatomy-list-item { display: flex; gap: 25px; align-items: center; margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid var(--border-light); }
+        .anatomy-list-item img { width: 140px; height: 140px; object-fit: cover; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); flex-shrink: 0; border: 1px solid rgba(0,0,0,0.05); }
+        @media(max-width: 600px) {
+            .anatomy-list-item { flex-direction: column; text-align: center; }
+            .anatomy-list-item img { width: 100%; height: 200px; }
+            .hotspot-tooltip { display: none; } 
+        }
+
+        /* --- EXCLUSIVE PRODUCT LINK BADGES --- */
+        .product-card { 
+            background: rgba(255,255,255,0.55); border-radius: 16px; border: 1px solid rgba(0,0,0,0.06); 
+            padding: 25px; margin-bottom: 25px; transition: transform 0.2s; box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            display: flex; gap: 25px; align-items: center; 
+        }
         .product-card::before { display: none !important; } 
         .product-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.75); box-shadow: 0 10px 25px rgba(0,0,0,0.05);}
+        .product-img { width: 130px; height: 130px; object-fit: contain; background: #fff; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); flex-shrink: 0; padding: 10px; border: 1px solid rgba(0,0,0,0.05); }
+        .product-info { flex: 1; }
         .link-stickers { display: flex; align-items: center; gap: 12px; margin-top: 15px; flex-wrap: wrap;}
         .link-label { font-size: 0.85rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;}
         
@@ -198,19 +391,24 @@
         .store-badge.bajaao { background: #B22222; color: #fff; border: 1px solid #991b1b;}
         .store-badge.bajaao:hover { background: #8b1a1a; box-shadow: 0 6px 15px rgba(178, 34, 34, 0.3); transform: translateY(-2px); }
 
+        @media(max-width: 600px) {
+            .product-card { flex-direction: column; text-align: center; }
+            .product-img { width: 100%; height: 200px; }
+            .link-stickers { justify-content: center; }
+        }
+
         .transparency-box { margin-top: 30px; padding: 20px 25px; background: rgba(0,0,0,0.03); border-radius: 16px; border: 1px solid rgba(0,0,0,0.05); display: flex; gap: 15px; align-items: flex-start; transition: 0.3s;}
         .transparency-box:hover { background: rgba(0,0,0,0.05); }
         .transparency-icon { font-size: 1.5rem; }
         .transparency-text { margin: 0; line-height: 1.6; font-size: 0.95rem; color: var(--text-muted); font-weight: 600;}
 
-        /* --- SIDEBAR (PURE HTML LAYOUT RESTORED) --- */
+        /* --- SIDEBAR --- */
         .side-column { display: flex; flex-direction: column; gap: 20px; }
         .side-column::-webkit-scrollbar { width: 6px; }
         .side-column::-webkit-scrollbar-track { background: transparent; }
         .side-column::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 10px; }
         .side-column::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.4); }
 
-        /* Proper White Square Fix: Curve only the top corners of the header */
         .curriculum-header { 
             background: rgba(255,255,255,0.7); padding: 18px 25px; font-weight: 700; color: var(--text-dark); 
             border-bottom: 1px solid var(--border-light); font-size: 1.15rem; letter-spacing: 0.5px;
@@ -223,22 +421,13 @@
             font-size: 1.05rem; font-weight: 700; color: var(--text-muted); position: relative;
         }
         
-        .curriculum-card .lesson-link:last-child { 
-            border-bottom: none; 
-            border-radius: 0 0 23px 23px; 
-        }
-        
+        .curriculum-card .lesson-link:last-child { border-bottom: none; border-radius: 0 0 23px 23px; }
         .lesson-link-left { display: flex; align-items: center; gap: 18px; flex: 1; }
         
-        /* The gamification completion pseudo-element checkmark */
-        .lesson-link.completed::after {
-            content: '✓'; position: absolute; right: 25px; color: #eab308; font-size: 1.2rem; font-weight: 900;
-        }
-        
+        .lesson-link.completed::after { content: '✓'; position: absolute; right: 25px; color: #eab308; font-size: 1.2rem; font-weight: 900; }
         .lesson-link:hover { background: rgba(255,255,255,0.9); padding-left: 35px; color: var(--text-dark);}
         .lesson-link.active { background: rgba(255,255,255,1); border-left: 5px solid var(--accent); color: var(--accent); padding-left: 25px; font-weight: 800;}
         
-        /* Active & Completed States */
         .lesson-link.completed { border-left: 5px solid #eab308; }
         .lesson-link.completed .lesson-number { background: #fef08a; color: #854d0e; box-shadow: 0 4px 10px rgba(234, 179, 8, 0.4); }
         .lesson-link.active.completed { border-left: 5px solid #eab308; } 
@@ -248,27 +437,18 @@
         .lesson-link.active .lesson-number { background: var(--accent); color: white; box-shadow: 0 4px 12px rgba(194, 94, 36, 0.4);}
         
         /* --- Luthier's Signature Footer --- */
-        .studio-footer {
-            text-align: center; padding: 40px 20px 60px; margin-top: 40px; position: relative;
-        }
-        .guitar-string-divider {
-            width: 100%; max-width: 600px; height: 2px; margin: 0 auto 30px;
-            background: linear-gradient(90deg, transparent, rgba(194, 94, 36, 0.8), transparent);
-            box-shadow: 0 0 15px rgba(194, 94, 36, 0.5);
-        }
-        .dev-signature {
-            font-family: 'Lora', serif; font-size: 1.3rem; color: #cbd5e1; letter-spacing: 0.5px;
-        }
-        .dev-name {
-            color: #fbbf24; font-weight: 800; font-size: 1.6rem; 
-            text-shadow: 0 0 15px rgba(251, 191, 36, 0.5); 
-            display: inline-block; margin-left: 5px;
-        }
+        .studio-footer { text-align: center; padding: 40px 20px 60px; margin-top: 40px; position: relative; }
+        .guitar-string-divider { width: 100%; max-width: 600px; height: 2px; margin: 0 auto 30px; background: linear-gradient(90deg, transparent, rgba(194, 94, 36, 0.8), transparent); box-shadow: 0 0 15px rgba(194, 94, 36, 0.5); }
+        .dev-signature { font-family: 'Lora', serif; font-size: 1.3rem; color: #cbd5e1; letter-spacing: 0.5px; }
+        .dev-name { color: #fbbf24; font-weight: 800; font-size: 1.6rem; text-shadow: 0 0 15px rgba(251, 191, 36, 0.5); display: inline-block; margin-left: 5px; }
+        
+        /* Rhythm Game Tap Button */
+        #rhythm-tap-btn:active { transform: scale(0.9); box-shadow: inset 0 0 30px rgba(0,0,0,0.8), 0 5px 15px rgba(194, 94, 36, 0.5); }
     </style>
 </head>
 <body>
 
-<!-- GOOGLE TRANSLATE SCRIPT ELEMENT (SILENT & INVISIBLE) -->
+<!-- GOOGLE TRANSLATE SCRIPT ELEMENT -->
 <div id="google_translate_wrapper">
     <div id="google_translate_element"></div>
 </div>
@@ -294,7 +474,6 @@
     </div>
 </div>
 
-<!-- Dynamic Cinematic Background Engine -->
 <div id="bg-container"></div>
 <div id="bg-overlay"></div>
 
@@ -347,6 +526,7 @@
         </div>
 
         <div class="tools-card apple-reveal" id="tools-area" style="display:none;">
+            <!-- Tuner Tool -->
             <div class="tuner-box" id="tuner-ui" style="display:none;">
                 <h3>Digital Studio Tuner</h3>
                 <div id="target-note">--</div>
@@ -359,9 +539,23 @@
                 <button class="mic-btn" onclick="startTuner()" id="mic-start-btn">Enable Microphone</button>
                 <div id="tuner-status" style="margin-top: 25px; font-weight: 600; color: #a8a29e;">Waiting for permission...</div>
             </div>
+            
+            <!-- Gamified Rhythm Testing Tool -->
+            <div class="tuner-box" id="rhythm-ui" style="display:none; margin-top: 0;">
+                <h3 style="font-family: 'Lora', serif; font-size: 2rem;">Rhythm & Timing Assessment</h3>
+                <p style="color: #a8a29e; margin-bottom: 25px; font-size: 1.1rem; line-height: 1.6;">Listen to the 4-beat count-in, then hit the exact beat for the next 8 beats.</p>
+                
+                <div id="rhythm-feedback" style="font-size: 2.5rem; font-weight: 800; margin: 20px 0; color: #fff; text-transform: uppercase; text-shadow: 0 0 15px rgba(255,255,255,0.2);">READY</div>
+                
+                <button id="rhythm-tap-btn" class="mic-btn" style="width: 150px; height: 150px; border-radius: 50%; font-size: 1.5rem; margin-bottom: 30px; transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 0 10px 30px rgba(194, 94, 36, 0.5);" onmousedown="registerTap()">TAP / SPACE</button>
+                
+                <div>
+                    <div style="font-size: 1.2rem; font-weight: 800; color: #cbd5e1; margin-bottom: 20px; letter-spacing: 1px;">Score: <span id="rhythm-score" style="color: var(--success); font-size: 1.5rem;">0</span> / 80</div>
+                    <button class="mic-btn complete-btn" id="start-rhythm-btn" onclick="startRhythmTest()">Start Assessment</button>
+                </div>
+            </div>
         </div>
         
-        <!-- Developer Signature Footer -->
         <footer class="studio-footer apple-reveal" id="site-footer">
             <div class="guitar-string-divider"></div>
             <div class="dev-signature">
@@ -376,6 +570,8 @@
         <div class="curriculum-card">
             <div class="curriculum-header">Step 01: Core Foundations</div>
             <div class="lesson-link active" onclick="loadLesson('0')" id="link-0"><div class="lesson-link-left"><div class="lesson-number">0</div><div class="lesson-text">Learning Roadmap</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('18')" id="link-18"><div class="lesson-link-left"><div class="lesson-number">🚀</div><div class="lesson-text">Cool Features</div></div></div>
+            <div class="lesson-link" onclick="loadLesson('17')" id="link-17"><div class="lesson-link-left"><div class="lesson-number">🧩</div><div class="lesson-text">Guitar Anatomy</div></div></div>
             <div class="lesson-link" onclick="loadLesson('14')" id="link-14"><div class="lesson-link-left"><div class="lesson-number">🪑</div><div class="lesson-text">Posture & Grip</div></div></div>
             <div class="lesson-link" onclick="loadLesson('9')" id="link-9"><div class="lesson-link-left"><div class="lesson-number">📖</div><div class="lesson-text">Read Diagrams</div></div></div>
             <div class="lesson-link" onclick="loadLesson('15')" id="link-15"><div class="lesson-link-left"><div class="lesson-number">🎵</div><div class="lesson-text">Read TAB</div></div></div>
@@ -438,6 +634,7 @@
     let currentLessonId = '0';
     let userState = { points: 0, completed: [] };
     let audioCtx;
+    let masterGain; 
 
     const imgBase = "https://images.unsplash.com/photo-";
     const imgParams = "?auto=format&fit=crop&w=1920&q=80";
@@ -469,7 +666,9 @@
         '16': imgBase + "1511671782779-c97d3d27a1d4" + imgParams, 
         '8': imgBase + "1459749411175-04bf5292ceea" + imgParams, 
         '10': imgBase + "1556449895-a33c9fac0517" + imgParams, 
-        '11': imgBase + "1445985543470-41fba5c3144a" + imgParams  
+        '11': imgBase + "1445985543470-41fba5c3144a" + imgParams,
+        '17': imgBase + "1507838153428-9d983a232552" + imgParams,
+        '18': imgBase + "1485686531765-a80cebc59d44" + imgParams
     };
 
     const chordFrequencies = {
@@ -493,11 +692,10 @@
     const transparencyNote = `
         <div class="transparency-box">
             <div class="transparency-icon">💡</div>
-            <p class="transparency-text"><strong>Transparency Promise:</strong> To support our free platform, the links above are affiliate links. If you make a qualifying purchase through them, we may earn a small commission at zero extra cost to you. We only recommend gear we genuinely trust for beginners.</p>
+            <p class="transparency-text"><strong>Transparency Promise:</strong> We may earn a small commission from qualifying purchases through affiliate links above, at zero extra cost to you. We only recommend beginner-friendly gear we trust.</p>
         </div>
     `;
 
-    // THE FULLY RESTORED BUYER'S GUIDE IS INCLUDED HERE
     const courseData = {
         '0': {
             title: "Learning Roadmap",
@@ -537,6 +735,156 @@
                     <li>Combine everything into a daily 15-minute practice routine.</li>
                     <li>Learn to use a capo to change keys dynamically.</li>
                 </ul>`
+        },
+        '18': {
+            title: "Cool Features of Our Website",
+            notes: `
+                <p style="font-size: 1.15rem; color: var(--text-muted); font-weight: 700; margin-bottom: 30px;">
+                    This isn't just a static tutorial page. We have built an immersive, interactive digital studio directly into your browser. Here is everything you can do:
+                </p>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">🎙️</span>
+                        <h4>AI Chord Testing</h4>
+                        <p>Play a chord on your real guitar. Our neural audio engine listens through your microphone and instantly verifies your accuracy!</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🎛️</span>
+                        <h4>Studio Digital Tuner</h4>
+                        <p>No external gear needed. A professional-grade, live pitch-detection tuner is built right into your browser.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🎸</span>
+                        <h4>Interactive Anatomy</h4>
+                        <p>Explore a photorealistic, playable digital guitar. Drag the strings to hear them ring, or tap the body for a percussive thump.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🎵</span>
+                        <h4>Gamified Rhythm Engine</h4>
+                        <p>Test your timing against a precise digital metronome. Hit the exact beats, pass the assessment, and earn points.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">✨</span>
+                        <h4>Reactive Audio Feedback</h4>
+                        <p>Clicking on any lesson in the curriculum instantly synthesizes a rich, multi-layered acoustic chord to keep your ears tuned.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🧠</span>
+                        <h4>Auto-Glossary System</h4>
+                        <p>Hover your cursor over complex terminology (like <em>fret</em> or <em>strum</em>) to instantly read their definitions without losing your place!</p>
+                    </div>
+                </div>
+            `
+        },
+        '17': {
+            title: "Guitar Anatomy & Terminology",
+            notes: `
+                <h3>Interactive Anatomy Guide</h3>
+                <p>Hover over the pulsing hotspots below to explore the primary components of an acoustic guitar. <strong>Try hovering over or dragging across the strings to hear them ring! You can also tap the wooden body for a percussive sound.</strong></p>
+                
+                <div class="anatomy-interactive">
+                    
+                    <!-- UPRIGHT DOM GUITAR -->
+                    <div class="pr-headstock">
+                        <div class="pr-tuner pr-tuner-l1"><div class="pr-tuner-peg"></div></div>
+                        <div class="pr-tuner pr-tuner-l2"><div class="pr-tuner-peg"></div></div>
+                        <div class="pr-tuner pr-tuner-l3"><div class="pr-tuner-peg"></div></div>
+                        <div class="pr-tuner pr-tuner-r1"><div class="pr-tuner-peg"></div></div>
+                        <div class="pr-tuner pr-tuner-r2"><div class="pr-tuner-peg"></div></div>
+                        <div class="pr-tuner pr-tuner-r3"><div class="pr-tuner-peg"></div></div>
+                        <div class="pr-nut"></div>
+                    </div>
+
+                    <div class="pr-neck">
+                        <div class="pr-fret" style="top: 40px;"></div>
+                        <div class="pr-fret" style="top: 90px;"></div>
+                        <div class="pr-fret" style="top: 140px;"></div>
+                        <div class="pr-fret" style="top: 190px;"></div>
+                        <div class="pr-fret" style="top: 240px;"></div>
+                        <div class="pr-fret" style="top: 290px;"></div>
+                        <div class="pr-fret" style="top: 340px;"></div>
+                        
+                        <div class="pr-dot" style="top: 115px;"></div>
+                        <div class="pr-dot" style="top: 215px;"></div>
+                        <div class="pr-dot" style="top: 315px;"></div>
+                    </div>
+
+                    <div class="pr-body" onmousedown="tapGuitarBody()" ontouchstart="tapGuitarBody()">
+                        <div class="pr-soundhole"></div>
+                        <div class="pr-pickguard"></div>
+                        <div class="pr-bridge">
+                            <div class="pr-saddle"></div>
+                            <div class="pr-pins">
+                                <div class="pr-pin"></div><div class="pr-pin"></div><div class="pr-pin"></div>
+                                <div class="pr-pin"></div><div class="pr-pin"></div><div class="pr-pin"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pr-strings-container">
+                        <div class="pr-string-wrapper pr-s6" onmouseenter="window.pluckString(82.41, this, event)" ontouchmove="window.pluckString(82.41, this, event)">
+                            <div class="pr-string-line"></div>
+                        </div>
+                        <div class="pr-string-wrapper pr-s5" onmouseenter="window.pluckString(110.00, this, event)" ontouchmove="window.pluckString(110.00, this, event)">
+                            <div class="pr-string-line"></div>
+                        </div>
+                        <div class="pr-string-wrapper pr-s4" onmouseenter="window.pluckString(146.83, this, event)" ontouchmove="window.pluckString(146.83, this, event)">
+                            <div class="pr-string-line"></div>
+                        </div>
+                        <div class="pr-string-wrapper pr-s3" onmouseenter="window.pluckString(196.00, this, event)" ontouchmove="window.pluckString(196.00, this, event)">
+                            <div class="pr-string-line"></div>
+                        </div>
+                        <div class="pr-string-wrapper pr-s2" onmouseenter="window.pluckString(246.94, this, event)" ontouchmove="window.pluckString(246.94, this, event)">
+                            <div class="pr-string-line"></div>
+                        </div>
+                        <div class="pr-string-wrapper pr-s1" onmouseenter="window.pluckString(329.63, this, event)" ontouchmove="window.pluckString(329.63, this, event)">
+                            <div class="pr-string-line"></div>
+                        </div>
+                    </div>
+
+                    <!-- Hotspots -->
+                    <div class="hotspot" style="top: 80px; left: 50%;">
+                        <div class="hotspot-tooltip"><strong>Headstock & Tuners</strong><br>Adjust these pegs to tighten or loosen strings, changing their pitch.</div>
+                    </div>
+                    <div class="hotspot" style="top: 140px; left: 50%;">
+                        <div class="hotspot-tooltip"><strong>The Nut</strong><br>The slotted strip that guides strings down the fretboard.</div>
+                    </div>
+                    <div class="hotspot right-side" style="top: 300px; left: 50%;">
+                        <div class="hotspot-tooltip"><strong>Neck & Frets</strong><br>Press the strings behind the metal fret bars to change notes.</div>
+                    </div>
+                    <div class="hotspot" style="top: 580px; left: 50%;">
+                        <div class="hotspot-tooltip"><strong>Soundhole</strong><br>Where the sound resonates and escapes the acoustic body.</div>
+                    </div>
+                    <div class="hotspot right-side" style="top: 790px; left: 50%;">
+                        <div class="hotspot-tooltip"><strong>The Bridge</strong><br>The heavy block that anchors the strings to the guitar body.</div>
+                    </div>
+                </div>
+
+                <h3>Anatomy Reference</h3>
+                <ul style="list-style: none; padding: 0; margin-top: 30px;">
+                    <li class="anatomy-list-item">
+                        <img src="images/headstock.jpg" alt="Headstock">
+                        <div>
+                            <h4 style="margin: 0 0 8px 0; color: var(--accent); font-size: 1.3rem;">Headstock & Tuning Pegs</h4>
+                            <p style="margin: 0; font-size: 1.05rem; line-height: 1.6; color: var(--text-muted);">The very top of the guitar. The mechanical gears (Machine Heads) are turned to tighten or loosen the strings, which alters their pitch for tuning.</p>
+                        </div>
+                    </li>
+                    <li class="anatomy-list-item">
+                        <img src="images/fretboard.jpg" alt="Fretboard">
+                        <div>
+                            <h4 style="margin: 0 0 8px 0; color: var(--accent); font-size: 1.3rem;">Fretboard & Frets</h4>
+                            <p style="margin: 0; font-size: 1.05rem; line-height: 1.6; color: var(--text-muted);">The flat, front-facing side of the neck. The metal strips running across it are the Frets. Pressing the string just behind a fret changes the note.</p>
+                        </div>
+                    </li>
+                    <li class="anatomy-list-item" style="border-bottom: none;">
+                        <img src="images/bridge.webp" alt="Bridge and Body">
+                        <div>
+                            <h4 style="margin: 0 0 8px 0; color: var(--accent); font-size: 1.3rem;">The Bridge & Soundhole</h4>
+                            <p style="margin: 0; font-size: 1.05rem; line-height: 1.6; color: var(--text-muted);">The Bridge is the heavy block glued to the body where the strings are anchored. When you strum, the sound resonates inside the body and projects out through the Soundhole.</p>
+                        </div>
+                    </li>
+                </ul>
+            `
         },
         '14': {
             title: "Posture & Pick Grip",
@@ -620,35 +968,43 @@ E|-3-----------------|
         '1': { title: "1. Tuning Your Guitar", toolType: "tuner" },
         '2': { 
             title: "2. The G Major Chord", toolType: "video", videoId: "PRWYt1hmAco",
-            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="20" cy="105" r="7" fill="#2563eb" /><circle cx="36" cy="75" r="7" fill="#2563eb" /><circle cx="100" cy="105" r="7" fill="#2563eb" /></svg></div><div style="flex:1;"><h3>G Major</h3><ul><li>Middle: 3rd fret Low E.</li><li>Index: 2nd fret A.</li><li>Ring: 3rd fret High e.</li></ul></div></div>`
+            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="20" cy="105" r="7" fill="#2563eb" /><circle cx="36" cy="75" r="7" fill="#2563eb" /><circle cx="100" cy="105" r="7" fill="#2563eb" /></svg></div><div style="flex:1;"><h3>G Major (Detailed Guide)</h3><p><strong>How to play it:</strong><br>1. Place your <strong>middle finger</strong> on the 3rd fret of the Low E (6th) string.<br>2. Place your <strong>index finger</strong> on the 2nd fret of the A (5th) string.<br>3. Place your <strong>ring finger</strong> on the 3rd fret of the High e (1st) string.<br>4. Strum all 6 strings. Ensure the open strings in the middle ring clearly.</p></div></div>
+            <div class="chord-fact-box"><h4>💡 Musician Insight</h4><p>Often called the "People's Chord," G Major uses many open strings, making it one of the most resonant and loud chords on an acoustic guitar. It's the core of countless folk and rock songs, from Bob Dylan to Guns N' Roses.</p></div>`
         },
         '4': { 
             title: "4. The C Major Chord", toolType: "video", videoId: "MI6YJfkULx8",
-            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="36" cy="105" r="7" fill="#2563eb" /><circle cx="52" cy="75" r="7" fill="#2563eb" /><circle cx="84" cy="45" r="7" fill="#2563eb" /></svg></div><div><h3>C Major</h3><ul><li>Ring: 3rd fret A.</li><li>Middle: 2nd fret D.</li><li>Index: 1st fret B.</li></ul></div></div>`
+            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="36" cy="105" r="7" fill="#2563eb" /><circle cx="52" cy="75" r="7" fill="#2563eb" /><circle cx="84" cy="45" r="7" fill="#2563eb" /></svg></div><div style="flex:1;"><h3>C Major (Detailed Guide)</h3><p><strong>How to play it:</strong><br>1. Place your <strong>ring finger</strong> on the 3rd fret of the A (5th) string.<br>2. Place your <strong>middle finger</strong> on the 2nd fret of the D (4th) string.<br>3. Place your <strong>index finger</strong> on the 1st fret of the B (2nd) string.<br>4. Strum from the A string down (5 strings). Let the tip of your ring finger slightly touch the Low E string to mute it.</p></div></div>
+            <div class="chord-fact-box"><h4>💡 Musician Insight</h4><p>C Major is the standard tuning starting point. In music theory, it has no sharps or flats, giving it a completely pure, innocent sound. It is the defining chord of classics like The Beatles' "Let It Be."</p></div>`
         },
         '5': { 
             title: "5. The D Major Chord", toolType: "video", videoId: "D7Mgwug0Kzk",
-            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="68" cy="75" r="7" fill="#2563eb" /><circle cx="100" cy="75" r="7" fill="#2563eb" /><circle cx="84" cy="105" r="7" fill="#2563eb" /></svg></div><div><h3>D Major</h3><p>Bottom 4 strings only.</p></div></div>`
+            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="68" cy="75" r="7" fill="#2563eb" /><circle cx="100" cy="75" r="7" fill="#2563eb" /><circle cx="84" cy="105" r="7" fill="#2563eb" /></svg></div><div style="flex:1;"><h3>D Major (Detailed Guide)</h3><p><strong>How to play it:</strong><br>1. Place your <strong>index finger</strong> on the 2nd fret of the G (3rd) string.<br>2. Place your <strong>ring finger</strong> on the 3rd fret of the B (2nd) string.<br>3. Place your <strong>middle finger</strong> on the 2nd fret of the High e (1st) string.<br>4. Strum the bottom 4 strings only. Ensure you do not hit the Low E and A strings!</p></div></div>
+            <div class="chord-fact-box"><h4>💡 Musician Insight</h4><p>Often associated with brightness, triumph, and forward momentum. Because you only strum 4 strings, it sits in a higher, shimmering frequency range. It's the defining chord in powerful anthems like Bryan Adams' "Summer of '69."</p></div>`
         },
         '20': { 
             title: "A Major Chord", toolType: "video", videoId: "VkkOFLouQDs",
-            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="52" cy="75" r="7" fill="#2563eb" /><circle cx="68" cy="75" r="7" fill="#2563eb" /><circle cx="84" cy="75" r="7" fill="#2563eb" /></svg></div><div><h3>A Major</h3><p>Three fingers in a row at the 2nd fret.</p></div></div>`
+            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="52" cy="75" r="7" fill="#2563eb" /><circle cx="68" cy="75" r="7" fill="#2563eb" /><circle cx="84" cy="75" r="7" fill="#2563eb" /></svg></div><div style="flex:1;"><h3>A Major (Detailed Guide)</h3><p><strong>How to play it:</strong><br>1. Place your <strong>index finger</strong> on the 2nd fret of the D (4th) string.<br>2. Place your <strong>middle finger</strong> on the 2nd fret of the G (3rd) string.<br>3. Place your <strong>ring finger</strong> on the 2nd fret of the B (2nd) string.<br>4. Strum 5 strings, from the A down. It's a tight squeeze, so tuck your fingers close together!</p></div></div>
+            <div class="chord-fact-box"><h4>💡 Musician Insight</h4><p>The undisputed king of rock and roll. It provides a punchy, driving mid-range sound. It is the very first chord you hear blasting out of the speakers in AC/DC's "Back in Black."</p></div>`
         },
         '21': { 
-            title: "E Major Chord", toolType: "video", videoId: "H7f7Vf9A13I",
-            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="36" cy="75" r="7" fill="#2563eb" /><circle cx="52" cy="75" r="7" fill="#2563eb" /><circle cx="68" cy="45" r="7" fill="#2563eb" /></svg></div><div><h3>E Major</h3><p>Strum all 6 strings.</p></div></div>`
+            title: "E Major Chord", toolType: "video", videoId: "nrdJaoIChEQ",
+            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="36" cy="75" r="7" fill="#2563eb" /><circle cx="52" cy="75" r="7" fill="#2563eb" /><circle cx="68" cy="45" r="7" fill="#2563eb" /></svg></div><div style="flex:1;"><h3>E Major (Detailed Guide)</h3><p><strong>How to play it:</strong><br>1. Place your <strong>middle finger</strong> on the 2nd fret of the A (5th) string.<br>2. Place your <strong>ring finger</strong> on the 2nd fret of the D (4th) string.<br>3. Place your <strong>index finger</strong> on the 1st fret of the G (3rd) string.<br>4. Strum all 6 strings.</p></div></div>
+            <div class="chord-fact-box"><h4>💡 Musician Insight</h4><p>Because the lowest and highest strings on a standard guitar are both 'E', this chord utilizes the absolute maximum resonant range of the instrument. Jimi Hendrix heavily favored E Major for his massive, sweeping riffs.</p></div>`
         },
         '6': { 
             title: "6. The E Minor Chord", toolType: "video", videoId: "EpPCfJzRiYU",
-            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="36" cy="75" r="7" fill="#2563eb" /><circle cx="52" cy="75" r="7" fill="#2563eb" /></svg></div><div><h3>E Minor</h3><p>Just two fingers!</p></div></div>`
+            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="36" cy="75" r="7" fill="#2563eb" /><circle cx="52" cy="75" r="7" fill="#2563eb" /></svg></div><div style="flex:1;"><h3>E Minor (Detailed Guide)</h3><p><strong>How to play it:</strong><br>1. Place your <strong>middle finger</strong> on the 2nd fret of the A (5th) string.<br>2. Place your <strong>ring finger</strong> on the 2nd fret of the D (4th) string.<br>3. Strum all 6 strings. Ensure your fingers are arched so the other 4 strings ring completely open.</p></div></div>
+            <div class="chord-fact-box"><h4>💡 Musician Insight</h4><p>Often considered the moodiest, most melancholy chord on the guitar, despite being one of the easiest to physically fret. It forms the dark, brooding foundation of Metallica's "Nothing Else Matters."</p></div>`
         },
         '22': { 
             title: "A Minor Chord", toolType: "video", videoId: "1Y2veGF9s44",
-            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="52" cy="75" r="7" fill="#2563eb" /><circle cx="68" cy="75" r="7" fill="#2563eb" /><circle cx="84" cy="45" r="7" fill="#2563eb" /></svg></div><div><h3>A Minor</h3><p>Similar to E Major but moved down one string.</p></div></div>`
+            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="52" cy="75" r="7" fill="#2563eb" /><circle cx="68" cy="75" r="7" fill="#2563eb" /><circle cx="84" cy="45" r="7" fill="#2563eb" /></svg></div><div style="flex:1;"><h3>A Minor (Detailed Guide)</h3><p><strong>How to play it:</strong><br>1. Place your <strong>middle finger</strong> on the 2nd fret of the D (4th) string.<br>2. Place your <strong>ring finger</strong> on the 2nd fret of the G (3rd) string.<br>3. Place your <strong>index finger</strong> on the 1st fret of the B (2nd) string.<br>4. Strum 5 strings, from the A down. Gently touch the Low E string with your thumb to mute it.</p></div></div>
+            <div class="chord-fact-box"><h4>💡 Musician Insight</h4><p>If you know E Major, you know A Minor—just take the exact same hand shape and move everything down one string! It is widely used in emotional pop and folk, such as R.E.M.'s "Losing My Religion."</p></div>`
         },
         '23': { 
             title: "D Minor Chord", toolType: "video", videoId: "EovReq8aAgU",
-            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="68" cy="75" r="7" fill="#2563eb" /><circle cx="84" cy="105" r="7" fill="#2563eb" /><circle cx="100" cy="45" r="7" fill="#2563eb" /></svg></div><div><h3>D Minor</h3><p>The "sad" chord.</p></div></div>`
+            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="68" cy="75" r="7" fill="#2563eb" /><circle cx="84" cy="105" r="7" fill="#2563eb" /><circle cx="100" cy="45" r="7" fill="#2563eb" /></svg></div><div style="flex:1;"><h3>D Minor (Detailed Guide)</h3><p><strong>How to play it:</strong><br>1. Place your <strong>index finger</strong> on the 1st fret of the High e (1st) string.<br>2. Place your <strong>middle finger</strong> on the 2nd fret of the G (3rd) string.<br>3. Place your <strong>ring finger</strong> (or pinky) on the 3rd fret of the B (2nd) string.<br>4. Strum the bottom 4 strings only. It creates a deeply sorrowful sound.</p></div></div>
+            <div class="chord-fact-box"><h4>💡 Musician Insight</h4><p>In the iconic film <em>This Is Spinal Tap</em>, Nigel Tufnel famously described D Minor as "the saddest of all keys." It provides a haunting, ancient tension, making it the core of tracks like "House of the Rising Sun."</p></div>`
         },
         '12': {
             title: "The Most Important Strumming Pattern",
@@ -661,24 +1017,29 @@ E|-3-----------------|
                 </div>`
         },
         '30': { 
-            title: "A7 Dominant Chord", toolType: "video", videoId: "1C1e0iW3Mpk",
-            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="52" cy="75" r="7" fill="#2563eb" /><circle cx="84" cy="75" r="7" fill="#2563eb" /></svg></div><div><h3>A7 Dominant</h3><p>Just two fingers at the 2nd fret.</p></div></div>`
+            title: "A7 Dominant Chord", toolType: "video", videoId: "wUcGq2zHkeI",
+            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="52" cy="75" r="7" fill="#2563eb" /><circle cx="84" cy="75" r="7" fill="#2563eb" /></svg></div><div style="flex:1;"><h3>A7 Dominant (Detailed Guide)</h3><p><strong>How to play it:</strong><br>1. Place your <strong>middle finger</strong> on the 2nd fret of the D (4th) string.<br>2. Leave the G (3rd) string completely open.<br>3. Place your <strong>ring finger</strong> on the 2nd fret of the B (2nd) string.<br>4. Strum 5 strings, from the A down. Make sure that open G string rings out clearly in the middle!</p></div></div>
+            <div class="chord-fact-box"><h4>💡 Musician Insight</h4><p>A true Blues staple. "Dominant" 7th chords add a flat 7th note to a major chord. This creates a slightly "unresolved" or gritty sound, which is why it often replaces the standard A Major in blues and jazz progressions.</p></div>`
         },
         '31': { 
-            title: "D7 Dominant Chord", toolType: "video", videoId: "yW-X7I6x2S0",
-            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="68" cy="75" r="7" fill="#2563eb" /><circle cx="84" cy="45" r="7" fill="#2563eb" /><circle cx="100" cy="75" r="7" fill="#2563eb" /></svg></div><div><h3>D7 Dominant</h3><p>An inverted triangle shape.</p></div></div>`
+            title: "D7 Dominant Chord", toolType: "video", videoId: "w3zyJDqKtzI",
+            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="68" cy="75" r="7" fill="#2563eb" /><circle cx="84" cy="45" r="7" fill="#2563eb" /><circle cx="100" cy="75" r="7" fill="#2563eb" /></svg></div><div style="flex:1;"><h3>D7 Dominant (Detailed Guide)</h3><p><strong>How to play it:</strong><br>1. Place your <strong>index finger</strong> on the 1st fret of the B (2nd) string.<br>2. Place your <strong>middle finger</strong> on the 2nd fret of the G (3rd) string.<br>3. Place your <strong>ring finger</strong> on the 2nd fret of the High e (1st) string.<br>4. Strum the bottom 4 strings. Notice it looks exactly like a standard D Major chord flipped backward!</p></div></div>
+            <div class="chord-fact-box"><h4>💡 Musician Insight</h4><p>D7 creates an incredibly strong musical tension that tricks the human ear into "wanting" to hear a G Major chord next. The Beatles abused this psychological trick constantly, most notably in the bridge of "A Hard Day's Night."</p></div>`
         },
         '32': { 
-            title: "E7 Dominant Chord", toolType: "video", videoId: "q6h36IuG9b8",
-            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="36" cy="75" r="7" fill="#2563eb" /><circle cx="68" cy="45" r="7" fill="#2563eb" /></svg></div><div><h3>E7 Dominant</h3><p>E Major shape but lift your ring finger.</p></div></div>`
+            title: "E7 Dominant Chord", toolType: "video", videoId: "bSvdBBHJArk",
+            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><circle cx="36" cy="75" r="7" fill="#2563eb" /><circle cx="68" cy="45" r="7" fill="#2563eb" /></svg></div><div style="flex:1;"><h3>E7 Dominant (Detailed Guide)</h3><p><strong>How to play it:</strong><br>1. Start by forming a regular E Major chord.<br>2. Simply lift your <strong>ring finger</strong> off the D (4th) string, leaving it completely open.<br>3. You now have just your middle finger on the 2nd fret A string, and index finger on the 1st fret G string.<br>4. Strum all 6 strings aggressively.</p></div></div>
+            <div class="chord-fact-box"><h4>💡 Musician Insight</h4><p>Often referred to as the "funky" or "train-rolling" chord. Because it leaves the D string open to vibrate alongside the low E string, it creates a swampy, driving rhythm that forms the backbone of the 12-bar blues.</p></div>`
         },
         '40': { 
-            title: "F Major (Barre)", toolType: "video", videoId: "p_u8rP0j83o",
-            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><line x1="20" y1="45" x2="100" y2="45" stroke="#2563eb" stroke-width="10" stroke-linecap="round"/><circle cx="36" cy="105" r="7" fill="#2563eb" /><circle cx="52" cy="105" r="7" fill="#2563eb" /><circle cx="68" cy="75" r="7" fill="#2563eb" /></svg></div><div><h3>F Major Barre</h3><p>Use your index finger to press all strings at the 1st fret.</p></div></div>`
+            title: "F Major (Barre)", toolType: "video", videoId: "aqH9HNrAveg",
+            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><line x1="20" y1="45" x2="100" y2="45" stroke="#2563eb" stroke-width="10" stroke-linecap="round"/><circle cx="36" cy="105" r="7" fill="#2563eb" /><circle cx="52" cy="105" r="7" fill="#2563eb" /><circle cx="68" cy="75" r="7" fill="#2563eb" /></svg></div><div style="flex:1;"><h3>F Major Barre (Detailed Guide)</h3><p><strong>How to play it:</strong><br>1. Lay your <strong>index finger</strong> completely flat across all 6 strings at the 1st fret (this is your "barre").<br>2. Place your <strong>middle finger</strong> on the 2nd fret of the G (3rd) string.<br>3. Place your <strong>ring finger</strong> on the 3rd fret of the A (5th) string.<br>4. Tuck your <strong>pinky finger</strong> on the 3rd fret of the D (4th) string.<br>5. Pinch your thumb hard against the back of the neck and strum all 6 strings.</p></div></div>
+            <div class="chord-fact-box"><h4>💡 Musician Insight</h4><p>F Major is universally known as the "Great Filter" of guitar playing. It is the hardest chord for beginners to master because of the hand strength required. However, once you learn this exact shape, you can slide it up the neck to play ANY major chord in existence.</p></div>`
         },
         '41': { 
-            title: "B Minor (Barre)", toolType: "video", videoId: "p9_I7v0aY8Y",
-            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><line x1="36" y1="75" x2="100" y2="75" stroke="#2563eb" stroke-width="10" stroke-linecap="round"/><circle cx="52" cy="135" r="7" fill="#2563eb" /><circle cx="68" cy="135" r="7" fill="#2563eb" /><circle cx="84" cy="105" r="7" fill="#2563eb" /></svg></div><div><h3>B Minor Barre</h3><p>Barre at the 2nd fret from the A string down.</p></div></div>`
+            title: "B Minor (Barre)", toolType: "video", videoId: "suJnbc2TERU",
+            notes: `<div class="chord-diagram-container"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><line x1="36" y1="75" x2="100" y2="75" stroke="#2563eb" stroke-width="10" stroke-linecap="round"/><circle cx="52" cy="135" r="7" fill="#2563eb" /><circle cx="68" cy="135" r="7" fill="#2563eb" /><circle cx="84" cy="105" r="7" fill="#2563eb" /></svg></div><div style="flex:1;"><h3>B Minor Barre (Detailed Guide)</h3><p><strong>How to play it:</strong><br>1. Lay your <strong>index finger</strong> flat across the top 5 strings (A to high e) at the 2nd fret.<br>2. Place your <strong>middle finger</strong> on the 3rd fret of the B (2nd) string.<br>3. Place your <strong>ring finger</strong> on the 4th fret of the D (4th) string.<br>4. Tuck your <strong>pinky</strong> right beneath it on the 4th fret of the G (3rd) string.<br>5. Strum from the A (5th) string down. Mute the Low E string with the tip of your index finger.</p></div></div>
+            <div class="chord-fact-box"><h4>💡 Musician Insight</h4><p>B Minor is the moody, cinematic cousin of E Minor. It is heavily utilized in dramatic 90s rock and emotional ballads. It is the signature driving chord behind Oasis's acoustic masterpiece "Wonderwall."</p></div>`
         },
         '16': {
             title: "The 15-Minute Daily Routine",
@@ -708,48 +1069,63 @@ E|-3-----------------|
             notes: `<h3>Best Guitars for Your Journey</h3>
                 <ul style="list-style:none; padding-left:0; margin-top: 0;">
                     <li class="product-card">
-                        <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">1. Yamaha FG800</strong><br> 
-                        <span style="font-size: 1.05rem;">Solid spruce top, incredibly durable, and widely considered the best beginner guitar.</span>
-                        <div class="link-stickers">
-                            <span class="link-label">Product link:</span>
-                            <a href="#" class="store-badge amazon">Amazon</a>
-                            <a href="#" class="store-badge bajaao">Bajaao</a>
+                        <img class="product-img" src="images/yamaha.webp" alt="Yamaha FG800">
+                        <div class="product-info">
+                            <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">1. Yamaha FG800</strong><br> 
+                            <span style="font-size: 1.05rem;">Solid spruce top, incredibly durable, and widely considered the best beginner guitar in the world.</span>
+                            <div class="link-stickers">
+                                <span class="link-label">Product link:</span>
+                                <a href="#" class="store-badge amazon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.66,13.88C13.84,14 14.07,14 14.23,13.86L14.23,13.86C14.43,13.7 14.39,13.43 14.23,13.22L14.09,13.02C13.7,12.47 13.32,11.96 13.32,10.93V7.12L13.32,6.73C13.33,5.27 13.34,3.93 12.25,2.91C11.66,2.37 10.96,2.02 10.15,2.02L10.15,2.02C8.6,2.02 7.7,2.83 7.7,4.86V6.03L7.7,6.2C7.68,7.39 7.66,8.74 6.74,9.66L6.59,9.85C6.41,10.05 6.44,10.32 6.64,10.49L6.64,10.49C6.82,10.65 7.07,10.65 7.24,10.51L7.4,10.3C8.16,9.26 8.52,7.9 8.52,6.59V4.65C8.52,3.31 9.07,2.83 10.15,2.83C10.74,2.83 11.23,3.06 11.64,3.45C12.43,4.19 12.43,5.43 12.43,6.67V10.77C12.43,11.53 12.78,12.06 13.25,12.73L13.36,12.92C13.56,13.22 13.78,13.52 13.66,13.88ZM15.42,15.54C11.83,17.43 6.94,16.89 3.23,14.65L3.1,14.57C2.9,14.45 2.65,14.48 2.5,14.66C2.34,14.85 2.37,15.11 2.56,15.26L2.68,15.35C6.67,17.78 11.9,18.35 15.75,16.32C15.82,16.29 16.03,16.14 15.93,15.93C15.83,15.74 15.61,15.68 15.42,15.54ZM17.15,14.07C17.06,13.9 16.82,13.93 16.69,14.08C16.48,14.33 16.32,14.51 15.69,14.51C15.52,14.51 15.39,14.66 15.39,14.84C15.39,15.02 15.52,15.17 15.69,15.17C16.66,15.17 17.02,14.73 17.33,14.36L17.33,15.16C17.33,15.34 17.46,15.48 17.63,15.48C17.8,15.48 17.93,15.34 17.93,15.16V14.15C17.93,14.05 17.89,13.96 17.81,13.89C17.68,13.78 17.51,13.78 17.4,13.89L17.15,14.07Z"/></svg>Amazon</a>
+                                <a href="#" class="store-badge bajaao"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>Bajaao</a>
+                            </div>
                         </div>
                     </li>
                     <li class="product-card">
-                        <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">2. Fender CD-60S</strong><br> 
-                        <span style="font-size: 1.05rem;">Features an easy-to-play neck and a punchy sound.</span>
-                        <div class="link-stickers">
-                            <span class="link-label">Product link:</span>
-                            <a href="#" class="store-badge amazon">Amazon</a>
-                            <a href="#" class="store-badge bajaao">Bajaao</a>
+                        <img class="product-img" src="images/fender.webp" alt="Fender CD-60S">
+                        <div class="product-info">
+                            <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">2. Fender CD-60S</strong><br> 
+                            <span style="font-size: 1.05rem;">Features a rolled, easy-to-play neck and a punchy, classic Fender sound.</span>
+                            <div class="link-stickers">
+                                <span class="link-label">Product link:</span>
+                                <a href="#" class="store-badge amazon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.66,13.88C13.84,14 14.07,14 14.23,13.86L14.23,13.86C14.43,13.7 14.39,13.43 14.23,13.22L14.09,13.02C13.7,12.47 13.32,11.96 13.32,10.93V7.12L13.32,6.73C13.33,5.27 13.34,3.93 12.25,2.91C11.66,2.37 10.96,2.02 10.15,2.02L10.15,2.02C8.6,2.02 7.7,2.83 7.7,4.86V6.03L7.7,6.2C7.68,7.39 7.66,8.74 6.74,9.66L6.59,9.85C6.41,10.05 6.44,10.32 6.64,10.49L6.64,10.49C6.82,10.65 7.07,10.65 7.24,10.51L7.4,10.3C8.16,9.26 8.52,7.9 8.52,6.59V4.65C8.52,3.31 9.07,2.83 10.15,2.83C10.74,2.83 11.23,3.06 11.64,3.45C12.43,4.19 12.43,5.43 12.43,6.67V10.77C12.43,11.53 12.78,12.06 13.25,12.73L13.36,12.92C13.56,13.22 13.78,13.52 13.66,13.88ZM15.42,15.54C11.83,17.43 6.94,16.89 3.23,14.65L3.1,14.57C2.9,14.45 2.65,14.48 2.5,14.66C2.34,14.85 2.37,15.11 2.56,15.26L2.68,15.35C6.67,17.78 11.9,18.35 15.75,16.32C15.82,16.29 16.03,16.14 15.93,15.93C15.83,15.74 15.61,15.68 15.42,15.54ZM17.15,14.07C17.06,13.9 16.82,13.93 16.69,14.08C16.48,14.33 16.32,14.51 15.69,14.51C15.52,14.51 15.39,14.66 15.39,14.84C15.39,15.02 15.52,15.17 15.69,15.17C16.66,15.17 17.02,14.73 17.33,14.36L17.33,15.16C17.33,15.34 17.46,15.48 17.63,15.48C17.8,15.48 17.93,15.34 17.93,15.16V14.15C17.93,14.05 17.89,13.96 17.81,13.89C17.68,13.78 17.51,13.78 17.4,13.89L17.15,14.07Z"/></svg>Amazon</a>
+                                <a href="#" class="store-badge bajaao"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>Bajaao</a>
+                            </div>
                         </div>
                     </li>
                     <li class="product-card">
-                        <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">3. Ibanez AW54</strong><br> 
-                        <span style="font-size: 1.05rem;">All-mahogany body for a warm, dark tone.</span>
-                        <div class="link-stickers">
-                            <span class="link-label">Product link:</span>
-                            <a href="#" class="store-badge amazon">Amazon</a>
-                            <a href="#" class="store-badge bajaao">Bajaao</a>
+                        <img class="product-img" src="images/ibanez.webp" alt="Ibanez AW54">
+                        <div class="product-info">
+                            <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">3. Ibanez AW54</strong><br> 
+                            <span style="font-size: 1.05rem;">All-mahogany body construction for a beautiful, warm, and dark tone.</span>
+                            <div class="link-stickers">
+                                <span class="link-label">Product link:</span>
+                                <a href="#" class="store-badge amazon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.66,13.88C13.84,14 14.07,14 14.23,13.86L14.23,13.86C14.43,13.7 14.39,13.43 14.23,13.22L14.09,13.02C13.7,12.47 13.32,11.96 13.32,10.93V7.12L13.32,6.73C13.33,5.27 13.34,3.93 12.25,2.91C11.66,2.37 10.96,2.02 10.15,2.02L10.15,2.02C8.6,2.02 7.7,2.83 7.7,4.86V6.03L7.7,6.2C7.68,7.39 7.66,8.74 6.74,9.66L6.59,9.85C6.41,10.05 6.44,10.32 6.64,10.49L6.64,10.49C6.82,10.65 7.07,10.65 7.24,10.51L7.4,10.3C8.16,9.26 8.52,7.9 8.52,6.59V4.65C8.52,3.31 9.07,2.83 10.15,2.83C10.74,2.83 11.23,3.06 11.64,3.45C12.43,4.19 12.43,5.43 12.43,6.67V10.77C12.43,11.53 12.78,12.06 13.25,12.73L13.36,12.92C13.56,13.22 13.78,13.52 13.66,13.88ZM15.42,15.54C11.83,17.43 6.94,16.89 3.23,14.65L3.1,14.57C2.9,14.45 2.65,14.48 2.5,14.66C2.34,14.85 2.37,15.11 2.56,15.26L2.68,15.35C6.67,17.78 11.9,18.35 15.75,16.32C15.82,16.29 16.03,16.14 15.93,15.93C15.83,15.74 15.61,15.68 15.42,15.54ZM17.15,14.07C17.06,13.9 16.82,13.93 16.69,14.08C16.48,14.33 16.32,14.51 15.69,14.51C15.52,14.51 15.39,14.66 15.39,14.84C15.39,15.02 15.52,15.17 15.69,15.17C16.66,15.17 17.02,14.73 17.33,14.36L17.33,15.16C17.33,15.34 17.46,15.48 17.63,15.48C17.8,15.48 17.93,15.34 17.93,15.16V14.15C17.93,14.05 17.89,13.96 17.81,13.89C17.68,13.78 17.51,13.78 17.4,13.89L17.15,14.07Z"/></svg>Amazon</a>
+                                <a href="#" class="store-badge bajaao"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>Bajaao</a>
+                            </div>
                         </div>
                     </li>
                     <li class="product-card">
-                        <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">4. Epiphone DR-100</strong><br> 
-                        <span style="font-size: 1.05rem;">A budget-friendly classic with a great look.</span>
-                        <div class="link-stickers">
-                            <span class="link-label">Product link:</span>
-                            <a href="#" class="store-badge amazon">Amazon</a>
-                            <a href="#" class="store-badge bajaao">Bajaao</a>
+                        <img class="product-img" src="images/epiphone.webp" alt="Epiphone DR-100">
+                        <div class="product-info">
+                            <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">4. Epiphone DR-100</strong><br> 
+                            <span style="font-size: 1.05rem;">A budget-friendly classic with a great vintage sunburst look.</span>
+                            <div class="link-stickers">
+                                <span class="link-label">Product link:</span>
+                                <a href="#" class="store-badge amazon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.66,13.88C13.84,14 14.07,14 14.23,13.86L14.23,13.86C14.43,13.7 14.39,13.43 14.23,13.22L14.09,13.02C13.7,12.47 13.32,11.96 13.32,10.93V7.12L13.32,6.73C13.33,5.27 13.34,3.93 12.25,2.91C11.66,2.37 10.96,2.02 10.15,2.02L10.15,2.02C8.6,2.02 7.7,2.83 7.7,4.86V6.03L7.7,6.2C7.68,7.39 7.66,8.74 6.74,9.66L6.59,9.85C6.41,10.05 6.44,10.32 6.64,10.49L6.64,10.49C6.82,10.65 7.07,10.65 7.24,10.51L7.4,10.3C8.16,9.26 8.52,7.9 8.52,6.59V4.65C8.52,3.31 9.07,2.83 10.15,2.83C10.74,2.83 11.23,3.06 11.64,3.45C12.43,4.19 12.43,5.43 12.43,6.67V10.77C12.43,11.53 12.78,12.06 13.25,12.73L13.36,12.92C13.56,13.22 13.78,13.52 13.66,13.88ZM15.42,15.54C11.83,17.43 6.94,16.89 3.23,14.65L3.1,14.57C2.9,14.45 2.65,14.48 2.5,14.66C2.34,14.85 2.37,15.11 2.56,15.26L2.68,15.35C6.67,17.78 11.9,18.35 15.75,16.32C15.82,16.29 16.03,16.14 15.93,15.93C15.83,15.74 15.61,15.68 15.42,15.54ZM17.15,14.07C17.06,13.9 16.82,13.93 16.69,14.08C16.48,14.33 16.32,14.51 15.69,14.51C15.52,14.51 15.39,14.66 15.39,14.84C15.39,15.02 15.52,15.17 15.69,15.17C16.66,15.17 17.02,14.73 17.33,14.36L17.33,15.16C17.33,15.34 17.46,15.48 17.63,15.48C17.8,15.48 17.93,15.34 17.93,15.16V14.15C17.93,14.05 17.89,13.96 17.81,13.89C17.68,13.78 17.51,13.78 17.4,13.89L17.15,14.07Z"/></svg>Amazon</a>
+                                <a href="#" class="store-badge bajaao"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>Bajaao</a>
+                            </div>
                         </div>
                     </li>
                     <li class="product-card">
-                        <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">5. Gretsch G9500 Jim Dandy</strong><br> 
-                        <span style="font-size: 1.05rem;">Compact and comfortable parlor guitar, perfect for casual practice.</span>
-                        <div class="link-stickers">
-                            <span class="link-label">Product link:</span>
-                            <a href="#" class="store-badge amazon">Amazon</a>
-                            <a href="#" class="store-badge bajaao">Bajaao</a>
+                        <img class="product-img" src="images/gretsch.webp" alt="Gretsch Jim Dandy">
+                        <div class="product-info">
+                            <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">5. Gretsch G9500 Jim Dandy</strong><br> 
+                            <span style="font-size: 1.05rem;">Compact and comfortable parlor guitar, perfect for casual practice on the couch.</span>
+                            <div class="link-stickers">
+                                <span class="link-label">Product link:</span>
+                                <a href="#" class="store-badge amazon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.66,13.88C13.84,14 14.07,14 14.23,13.86L14.23,13.86C14.43,13.7 14.39,13.43 14.23,13.22L14.09,13.02C13.7,12.47 13.32,11.96 13.32,10.93V7.12L13.32,6.73C13.33,5.27 13.34,3.93 12.25,2.91C11.66,2.37 10.96,2.02 10.15,2.02L10.15,2.02C8.6,2.02 7.7,2.83 7.7,4.86V6.03L7.7,6.2C7.68,7.39 7.66,8.74 6.74,9.66L6.59,9.85C6.41,10.05 6.44,10.32 6.64,10.49L6.64,10.49C6.82,10.65 7.07,10.65 7.24,10.51L7.4,10.3C8.16,9.26 8.52,7.9 8.52,6.59V4.65C8.52,3.31 9.07,2.83 10.15,2.83C10.74,2.83 11.23,3.06 11.64,3.45C12.43,4.19 12.43,5.43 12.43,6.67V10.77C12.43,11.53 12.78,12.06 13.25,12.73L13.36,12.92C13.56,13.22 13.78,13.52 13.66,13.88ZM15.42,15.54C11.83,17.43 6.94,16.89 3.23,14.65L3.1,14.57C2.9,14.45 2.65,14.48 2.5,14.66C2.34,14.85 2.37,15.11 2.56,15.26L2.68,15.35C6.67,17.78 11.9,18.35 15.75,16.32C15.82,16.29 16.03,16.14 15.93,15.93C15.83,15.74 15.61,15.68 15.42,15.54ZM17.15,14.07C17.06,13.9 16.82,13.93 16.69,14.08C16.48,14.33 16.32,14.51 15.69,14.51C15.52,14.51 15.39,14.66 15.39,14.84C15.39,15.02 15.52,15.17 15.69,15.17C16.66,15.17 17.02,14.73 17.33,14.36L17.33,15.16C17.33,15.34 17.46,15.48 17.63,15.48C17.8,15.48 17.93,15.34 17.93,15.16V14.15C17.93,14.05 17.89,13.96 17.81,13.89C17.68,13.78 17.51,13.78 17.4,13.89L17.15,14.07Z"/></svg>Amazon</a>
+                                <a href="#" class="store-badge bajaao"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>Bajaao</a>
+                            </div>
                         </div>
                     </li>
                 </ul>
@@ -760,48 +1136,63 @@ E|-3-----------------|
             notes: `<h3>Gear You Actually Need</h3>
                 <ul style="list-style:none; padding-left:0; margin-top: 0;">
                     <li class="product-card">
-                        <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">Clip-on Tuner</strong><br> 
-                        <span style="font-size: 1.05rem;">For when you aren't using this app's pitch detector.</span>
-                        <div class="link-stickers">
-                            <span class="link-label">Product link:</span>
-                            <a href="#" class="store-badge amazon">Amazon</a>
-                            <a href="#" class="store-badge bajaao">Bajaao</a>
+                        <img class="product-img" src="images/tuner.webp" alt="Clip-on Tuner">
+                        <div class="product-info">
+                            <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">Clip-on Tuner (Snark)</strong><br> 
+                            <span style="font-size: 1.05rem;">For when you aren't using this app's pitch detector. The industry standard.</span>
+                            <div class="link-stickers">
+                                <span class="link-label">Product link:</span>
+                                <a href="#" class="store-badge amazon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.66,13.88C13.84,14 14.07,14 14.23,13.86L14.23,13.86C14.43,13.7 14.39,13.43 14.23,13.22L14.09,13.02C13.7,12.47 13.32,11.96 13.32,10.93V7.12L13.32,6.73C13.33,5.27 13.34,3.93 12.25,2.91C11.66,2.37 10.96,2.02 10.15,2.02L10.15,2.02C8.6,2.02 7.7,2.83 7.7,4.86V6.03L7.7,6.2C7.68,7.39 7.66,8.74 6.74,9.66L6.59,9.85C6.41,10.05 6.44,10.32 6.64,10.49L6.64,10.49C6.82,10.65 7.07,10.65 7.24,10.51L7.4,10.3C8.16,9.26 8.52,7.9 8.52,6.59V4.65C8.52,3.31 9.07,2.83 10.15,2.83C10.74,2.83 11.23,3.06 11.64,3.45C12.43,4.19 12.43,5.43 12.43,6.67V10.77C12.43,11.53 12.78,12.06 13.25,12.73L13.36,12.92C13.56,13.22 13.78,13.52 13.66,13.88ZM15.42,15.54C11.83,17.43 6.94,16.89 3.23,14.65L3.1,14.57C2.9,14.45 2.65,14.48 2.5,14.66C2.34,14.85 2.37,15.11 2.56,15.26L2.68,15.35C6.67,17.78 11.9,18.35 15.75,16.32C15.82,16.29 16.03,16.14 15.93,15.93C15.83,15.74 15.61,15.68 15.42,15.54ZM17.15,14.07C17.06,13.9 16.82,13.93 16.69,14.08C16.48,14.33 16.32,14.51 15.69,14.51C15.52,14.51 15.39,14.66 15.39,14.84C15.39,15.02 15.52,15.17 15.69,15.17C16.66,15.17 17.02,14.73 17.33,14.36L17.33,15.16C17.33,15.34 17.46,15.48 17.63,15.48C17.8,15.48 17.93,15.34 17.93,15.16V14.15C17.93,14.05 17.89,13.96 17.81,13.89C17.68,13.78 17.51,13.78 17.4,13.89L17.15,14.07Z"/></svg>Amazon</a>
+                                <a href="#" class="store-badge bajaao"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>Bajaao</a>
+                            </div>
                         </div>
                     </li>
                     <li class="product-card">
-                        <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">Capo</strong><br> 
-                        <span style="font-size: 1.05rem;">To change keys instantly without relearning chord shapes.</span>
-                        <div class="link-stickers">
-                            <span class="link-label">Product link:</span>
-                            <a href="#" class="store-badge amazon">Amazon</a>
-                            <a href="#" class="store-badge bajaao">Bajaao</a>
+                        <img class="product-img" src="images/capo.webp" alt="Capo">
+                        <div class="product-info">
+                            <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">Capo (Kyser/Shubb)</strong><br> 
+                            <span style="font-size: 1.05rem;">To change keys instantly without relearning chord shapes. Built to last a lifetime.</span>
+                            <div class="link-stickers">
+                                <span class="link-label">Product link:</span>
+                                <a href="#" class="store-badge amazon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.66,13.88C13.84,14 14.07,14 14.23,13.86L14.23,13.86C14.43,13.7 14.39,13.43 14.23,13.22L14.09,13.02C13.7,12.47 13.32,11.96 13.32,10.93V7.12L13.32,6.73C13.33,5.27 13.34,3.93 12.25,2.91C11.66,2.37 10.96,2.02 10.15,2.02L10.15,2.02C8.6,2.02 7.7,2.83 7.7,4.86V6.03L7.7,6.2C7.68,7.39 7.66,8.74 6.74,9.66L6.59,9.85C6.41,10.05 6.44,10.32 6.64,10.49L6.64,10.49C6.82,10.65 7.07,10.65 7.24,10.51L7.4,10.3C8.16,9.26 8.52,7.9 8.52,6.59V4.65C8.52,3.31 9.07,2.83 10.15,2.83C10.74,2.83 11.23,3.06 11.64,3.45C12.43,4.19 12.43,5.43 12.43,6.67V10.77C12.43,11.53 12.78,12.06 13.25,12.73L13.36,12.92C13.56,13.22 13.78,13.52 13.66,13.88ZM15.42,15.54C11.83,17.43 6.94,16.89 3.23,14.65L3.1,14.57C2.9,14.45 2.65,14.48 2.5,14.66C2.34,14.85 2.37,15.11 2.56,15.26L2.68,15.35C6.67,17.78 11.9,18.35 15.75,16.32C15.82,16.29 16.03,16.14 15.93,15.93C15.83,15.74 15.61,15.68 15.42,15.54ZM17.15,14.07C17.06,13.9 16.82,13.93 16.69,14.08C16.48,14.33 16.32,14.51 15.69,14.51C15.52,14.51 15.39,14.66 15.39,14.84C15.39,15.02 15.52,15.17 15.69,15.17C16.66,15.17 17.02,14.73 17.33,14.36L17.33,15.16C17.33,15.34 17.46,15.48 17.63,15.48C17.8,15.48 17.93,15.34 17.93,15.16V14.15C17.93,14.05 17.89,13.96 17.81,13.89C17.68,13.78 17.51,13.78 17.4,13.89L17.15,14.07Z"/></svg>Amazon</a>
+                                <a href="#" class="store-badge bajaao"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>Bajaao</a>
+                            </div>
                         </div>
                     </li>
                     <li class="product-card">
-                        <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">Guitar Picks</strong><br> 
-                        <span style="font-size: 1.05rem;">Start with medium (0.73mm) thickness.</span>
-                        <div class="link-stickers">
-                            <span class="link-label">Product link:</span>
-                            <a href="#" class="store-badge amazon">Amazon</a>
-                            <a href="#" class="store-badge bajaao">Bajaao</a>
+                        <img class="product-img" src="images/picks.webp" alt="Guitar Picks">
+                        <div class="product-info">
+                            <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">Guitar Picks (Dunlop style)</strong><br> 
+                            <span style="font-size: 1.05rem;">Start with medium (0.73mm) thickness. Yellow Tortex is the absolute standard.</span>
+                            <div class="link-stickers">
+                                <span class="link-label">Product link:</span>
+                                <a href="#" class="store-badge amazon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.66,13.88C13.84,14 14.07,14 14.23,13.86L14.23,13.86C14.43,13.7 14.39,13.43 14.23,13.22L14.09,13.02C13.7,12.47 13.32,11.96 13.32,10.93V7.12L13.32,6.73C13.33,5.27 13.34,3.93 12.25,2.91C11.66,2.37 10.96,2.02 10.15,2.02L10.15,2.02C8.6,2.02 7.7,2.83 7.7,4.86V6.03L7.7,6.2C7.68,7.39 7.66,8.74 6.74,9.66L6.59,9.85C6.41,10.05 6.44,10.32 6.64,10.49L6.64,10.49C6.82,10.65 7.07,10.65 7.24,10.51L7.4,10.3C8.16,9.26 8.52,7.9 8.52,6.59V4.65C8.52,3.31 9.07,2.83 10.15,2.83C10.74,2.83 11.23,3.06 11.64,3.45C12.43,4.19 12.43,5.43 12.43,6.67V10.77C12.43,11.53 12.78,12.06 13.25,12.73L13.36,12.92C13.56,13.22 13.78,13.52 13.66,13.88ZM15.42,15.54C11.83,17.43 6.94,16.89 3.23,14.65L3.1,14.57C2.9,14.45 2.65,14.48 2.5,14.66C2.34,14.85 2.37,15.11 2.56,15.26L2.68,15.35C6.67,17.78 11.9,18.35 15.75,16.32C15.82,16.29 16.03,16.14 15.93,15.93C15.83,15.74 15.61,15.68 15.42,15.54ZM17.15,14.07C17.06,13.9 16.82,13.93 16.69,14.08C16.48,14.33 16.32,14.51 15.69,14.51C15.52,14.51 15.39,14.66 15.39,14.84C15.39,15.02 15.52,15.17 15.69,15.17C16.66,15.17 17.02,14.73 17.33,14.36L17.33,15.16C17.33,15.34 17.46,15.48 17.63,15.48C17.8,15.48 17.93,15.34 17.93,15.16V14.15C17.93,14.05 17.89,13.96 17.81,13.89C17.68,13.78 17.51,13.78 17.4,13.89L17.15,14.07Z"/></svg>Amazon</a>
+                                <a href="#" class="store-badge bajaao"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>Bajaao</a>
+                            </div>
                         </div>
                     </li>
                     <li class="product-card">
-                        <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">Gig Bag</strong><br> 
-                        <span style="font-size: 1.05rem;">To keep your guitar safe from dust and humidity.</span>
-                        <div class="link-stickers">
-                            <span class="link-label">Product link:</span>
-                            <a href="#" class="store-badge amazon">Amazon</a>
-                            <a href="#" class="store-badge bajaao">Bajaao</a>
+                        <img class="product-img" src="images/gigbag.webp" alt="Gig Bag">
+                        <div class="product-info">
+                            <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">Gig Bag</strong><br> 
+                            <span style="font-size: 1.05rem;">To keep your guitar safe from dust and humidity. Thick padding is recommended.</span>
+                            <div class="link-stickers">
+                                <span class="link-label">Product link:</span>
+                                <a href="#" class="store-badge amazon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.66,13.88C13.84,14 14.07,14 14.23,13.86L14.23,13.86C14.43,13.7 14.39,13.43 14.23,13.22L14.09,13.02C13.7,12.47 13.32,11.96 13.32,10.93V7.12L13.32,6.73C13.33,5.27 13.34,3.93 12.25,2.91C11.66,2.37 10.96,2.02 10.15,2.02L10.15,2.02C8.6,2.02 7.7,2.83 7.7,4.86V6.03L7.7,6.2C7.68,7.39 7.66,8.74 6.74,9.66L6.59,9.85C6.41,10.05 6.44,10.32 6.64,10.49L6.64,10.49C6.82,10.65 7.07,10.65 7.24,10.51L7.4,10.3C8.16,9.26 8.52,7.9 8.52,6.59V4.65C8.52,3.31 9.07,2.83 10.15,2.83C10.74,2.83 11.23,3.06 11.64,3.45C12.43,4.19 12.43,5.43 12.43,6.67V10.77C12.43,11.53 12.78,12.06 13.25,12.73L13.36,12.92C13.56,13.22 13.78,13.52 13.66,13.88ZM15.42,15.54C11.83,17.43 6.94,16.89 3.23,14.65L3.1,14.57C2.9,14.45 2.65,14.48 2.5,14.66C2.34,14.85 2.37,15.11 2.56,15.26L2.68,15.35C6.67,17.78 11.9,18.35 15.75,16.32C15.82,16.29 16.03,16.14 15.93,15.93C15.83,15.74 15.61,15.68 15.42,15.54ZM17.15,14.07C17.06,13.9 16.82,13.93 16.69,14.08C16.48,14.33 16.32,14.51 15.69,14.51C15.52,14.51 15.39,14.66 15.39,14.84C15.39,15.02 15.52,15.17 15.69,15.17C16.66,15.17 17.02,14.73 17.33,14.36L17.33,15.16C17.33,15.34 17.46,15.48 17.63,15.48C17.8,15.48 17.93,15.34 17.93,15.16V14.15C17.93,14.05 17.89,13.96 17.81,13.89C17.68,13.78 17.51,13.78 17.4,13.89L17.15,14.07Z"/></svg>Amazon</a>
+                                <a href="#" class="store-badge bajaao"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>Bajaao</a>
+                            </div>
                         </div>
                     </li>
                     <li class="product-card">
-                        <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">String Winder</strong><br> 
-                        <span style="font-size: 1.05rem;">Makes changing strings 10x faster.</span>
-                        <div class="link-stickers">
-                            <span class="link-label">Product link:</span>
-                            <a href="#" class="store-badge amazon">Amazon</a>
-                            <a href="#" class="store-badge bajaao">Bajaao</a>
+                        <img class="product-img" src="images/winder.webp" alt="String Winder">
+                        <div class="product-info">
+                            <strong style="font-size: 1.3rem; color: var(--accent); font-family: 'Lora', serif;">String Winder</strong><br> 
+                            <span style="font-size: 1.05rem;">Makes changing strings 10x faster and saves your wrists.</span>
+                            <div class="link-stickers">
+                                <span class="link-label">Product link:</span>
+                                <a href="#" class="store-badge amazon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.66,13.88C13.84,14 14.07,14 14.23,13.86L14.23,13.86C14.43,13.7 14.39,13.43 14.23,13.22L14.09,13.02C13.7,12.47 13.32,11.96 13.32,10.93V7.12L13.32,6.73C13.33,5.27 13.34,3.93 12.25,2.91C11.66,2.37 10.96,2.02 10.15,2.02L10.15,2.02C8.6,2.02 7.7,2.83 7.7,4.86V6.03L7.7,6.2C7.68,7.39 7.66,8.74 6.74,9.66L6.59,9.85C6.41,10.05 6.44,10.32 6.64,10.49L6.64,10.49C6.82,10.65 7.07,10.65 7.24,10.51L7.4,10.3C8.16,9.26 8.52,7.9 8.52,6.59V4.65C8.52,3.31 9.07,2.83 10.15,2.83C10.74,2.83 11.23,3.06 11.64,3.45C12.43,4.19 12.43,5.43 12.43,6.67V10.77C12.43,11.53 12.78,12.06 13.25,12.73L13.36,12.92C13.56,13.22 13.78,13.52 13.66,13.88ZM15.42,15.54C11.83,17.43 6.94,16.89 3.23,14.65L3.1,14.57C2.9,14.45 2.65,14.48 2.5,14.66C2.34,14.85 2.37,15.11 2.56,15.26L2.68,15.35C6.67,17.78 11.9,18.35 15.75,16.32C15.82,16.29 16.03,16.14 15.93,15.93C15.83,15.74 15.61,15.68 15.42,15.54ZM17.15,14.07C17.06,13.9 16.82,13.93 16.69,14.08C16.48,14.33 16.32,14.51 15.69,14.51C15.52,14.51 15.39,14.66 15.39,14.84C15.39,15.02 15.52,15.17 15.69,15.17C16.66,15.17 17.02,14.73 17.33,14.36L17.33,15.16C17.33,15.34 17.46,15.48 17.63,15.48C17.8,15.48 17.93,15.34 17.93,15.16V14.15C17.93,14.05 17.89,13.96 17.81,13.89C17.68,13.78 17.51,13.78 17.4,13.89L17.15,14.07Z"/></svg>Amazon</a>
+                                <a href="#" class="store-badge bajaao"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>Bajaao</a>
+                            </div>
                         </div>
                     </li>
                 </ul>
@@ -811,37 +1202,143 @@ E|-3-----------------|
         '8': { title: "Proficiency Mix Test", toolType: "exam" }
     };
 
-    // --- 3. CORE LOGIC FUNCTIONS ---
-    function escapeHTML(str) {
-        return str.replace(/[&<>'"]/g, 
-            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-        );
+    // --- 3. AUTO-GLOSSARY ENGINE ---
+    function applyGlossaryTooltips(text) {
+        const glossary = {
+            "fret": "The metal strips running across the fretboard. Pressing behind them changes the pitch.",
+            "frets": "The metal strips running across the fretboard. Pressing behind them changes the pitch.",
+            "fretboard": "The flat, front-facing side of the guitar neck.",
+            "strum": "Sweeping a pick or fingers across multiple strings at once.",
+            "strumming": "Sweeping a pick or fingers across multiple strings at once.",
+            "barre": "Laying your index finger completely flat across multiple strings.",
+            "capo": "A movable clamp used to raise the pitch of all strings simultaneously.",
+            "nut": "The slotted piece near the headstock that the strings pass through.",
+            "bridge": "The heavy block on the body where the strings are anchored.",
+            "headstock": "The top of the guitar where the tuning pegs are located.",
+            "pick": "A small flat tool used to strike the strings.",
+            "action": "The physical distance between the strings and the fretboard."
+        };
+        
+        const terms = Object.keys(glossary).sort((a, b) => b.length - a.length);
+        const regex = new RegExp(`\\b(${terms.join('|')})\\b`, 'gi');
+        
+        const parts = text.split(/(<[^>]*>)/);
+        for (let i = 0; i < parts.length; i++) {
+            if (!parts[i].startsWith('<')) {
+                parts[i] = parts[i].replace(regex, (match) => {
+                    const key = match.toLowerCase();
+                    if(glossary[key]) {
+                        return '<span class="term-highlight">' + match + '<span class="term-tooltip">' + glossary[key] + '</span></span>';
+                    }
+                    return match;
+                });
+            }
+        }
+        return parts.join('');
     }
 
-    function initBackgroundEngine() {
-        const container = document.getElementById('bg-container');
-        Object.keys(backgrounds).forEach(key => {
-            const layer = document.createElement('div');
-            layer.className = 'bg-layer';
-            layer.id = 'bg-layer-' + key;
-            layer.style.backgroundImage = `url('${backgrounds[key]}')`;
-            container.appendChild(layer);
-        });
-    }
-
-    function changeBackground(id) {
-        document.querySelectorAll('.bg-layer').forEach(el => el.classList.remove('active'));
-        const targetLayer = document.getElementById('bg-layer-' + id);
-        if(targetLayer) targetLayer.classList.add('active');
-    }
-
-    function playAudioInteraction(id) {
+    // --- 4. CORE LOGIC FUNCTIONS ---
+    function escapeHTML(str) { return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)); }
+    function initBackgroundEngine() { const container = document.getElementById('bg-container'); Object.keys(backgrounds).forEach(key => { const layer = document.createElement('div'); layer.className = 'bg-layer'; layer.id = 'bg-layer-' + key; layer.style.backgroundImage = `url('${backgrounds[key]}')`; container.appendChild(layer); }); }
+    function changeBackground(id) { document.querySelectorAll('.bg-layer').forEach(el => el.classList.remove('active')); const targetLayer = document.getElementById('bg-layer-' + id); if(targetLayer) targetLayer.classList.add('active'); }
+    
+    // Core Audio Context Init & Master Gain Compressor
+    function initAudio() {
         if (!audioCtx) {
-            try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+            try { 
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)(); 
+                masterGain = audioCtx.createGain();
+                masterGain.gain.value = 0.8; // Increased master volume
+                masterGain.connect(audioCtx.destination);
+            }
             catch(e) { return; }
         }
         if (audioCtx.state === 'suspended') { audioCtx.resume().catch(()=>{}); }
+    }
 
+    let lastPluck = {};
+
+    window.pluckString = function(freq, element, event) {
+        initAudio();
+        
+        const nowTime = Date.now();
+        if (lastPluck[freq] && nowTime - lastPluck[freq] < 150) return; 
+        lastPluck[freq] = nowTime;
+
+        if(element) {
+            element.classList.remove('string-vibrating');
+            void element.offsetWidth;
+            element.classList.add('string-vibrating');
+            setTimeout(() => { element.classList.remove('string-vibrating'); }, 2000);
+        }
+
+        if (event) {
+            let x = event.clientX;
+            let y = event.clientY;
+            if (event.touches && event.touches.length > 0) {
+                x = event.touches[0].clientX;
+                y = event.touches[0].clientY;
+            } else if (event.changedTouches && event.changedTouches.length > 0) {
+                x = event.changedTouches[0].clientX;
+                y = event.changedTouches[0].clientY;
+            }
+            if (x && y) {
+                const symbols = ['🎵', '🎶', '🎼', '♫', '♬', '♭', '♯'];
+                const note = document.createElement('div');
+                note.className = 'floating-note';
+                note.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                note.style.left = x + 'px';
+                note.style.top = y + 'px';
+                document.body.appendChild(note);
+                setTimeout(() => note.remove(), 1200);
+            }
+        }
+
+        if (!audioCtx) return;
+        
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        const filter = audioCtx.createBiquadFilter();
+
+        osc.type = 'triangle'; 
+        osc.frequency.setValueAtTime(freq, now);
+
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(freq * 4, now);
+        filter.frequency.exponentialRampToValueAtTime(freq, now + 1.5);
+
+        gainNode.gain.setValueAtTime(0, now);
+        gainNode.gain.linearRampToValueAtTime(0.35, now + 0.02); // Increased single pluck volume
+        gainNode.gain.exponentialRampToValueAtTime(0.001, now + 4.0);
+
+        osc.connect(filter); filter.connect(gainNode); gainNode.connect(masterGain);
+        osc.start(now); osc.stop(now + 4.0);
+    };
+
+    window.tapGuitarBody = function() {
+        initAudio();
+        if (!audioCtx) return;
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(120, now);
+        osc.frequency.exponentialRampToValueAtTime(40, now + 0.2);
+
+        gainNode.gain.setValueAtTime(0, now);
+        gainNode.gain.linearRampToValueAtTime(4.0, now + 0.02); // MASSIVE volume boost for body tap
+        gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+
+        osc.connect(gainNode); gainNode.connect(masterGain);
+        osc.start(now); osc.stop(now + 0.4);
+    };
+
+    function playAudioInteraction(id) {
+        initAudio();
+        if (!audioCtx) return;
+        
         if (chordFrequencies[id]) {
             const freqs = chordFrequencies[id];
             const now = audioCtx.currentTime;
@@ -861,10 +1358,10 @@ E|-3-----------------|
 
                 const startTime = now + (index * 0.04);
                 gainNode.gain.setValueAtTime(0, startTime);
-                gainNode.gain.linearRampToValueAtTime(0.2, startTime + 0.015);
+                gainNode.gain.linearRampToValueAtTime(0.4, startTime + 0.015); // Increased chord strum volume
                 gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + 2.0);
 
-                oscBody.connect(filter); oscString.connect(filter); filter.connect(gainNode); gainNode.connect(audioCtx.destination);
+                oscBody.connect(filter); oscString.connect(filter); filter.connect(gainNode); gainNode.connect(masterGain);
                 oscBody.start(startTime); oscString.start(startTime); oscBody.stop(startTime + 2.0); oscString.stop(startTime + 2.0);
             });
         } else {
@@ -876,253 +1373,107 @@ E|-3-----------------|
 
             osc.type = 'triangle'; osc.frequency.setValueAtTime(freq, now);
             filter.type = 'lowpass'; filter.frequency.setValueAtTime(freq * 2.5, now); filter.frequency.exponentialRampToValueAtTime(freq, now + 0.5);
-            gainNode.gain.setValueAtTime(0, now); gainNode.gain.linearRampToValueAtTime(0.2, now + 0.01); gainNode.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
+            gainNode.gain.setValueAtTime(0, now); gainNode.gain.linearRampToValueAtTime(0.5, now + 0.01); // Increased menu tap volume
+            gainNode.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
 
-            osc.connect(filter); filter.connect(gainNode); gainNode.connect(audioCtx.destination);
+            osc.connect(filter); filter.connect(gainNode); gainNode.connect(masterGain);
             osc.start(now); osc.stop(now + 1.5);
         }
     }
-
-    function loadLesson(id) {
-        currentLessonId = id;
-        playAudioInteraction(id);
-
-        document.getElementById('tuner-ui').style.display = 'none';
-        document.getElementById('video-wrapper').style.display = 'none';
-        document.getElementById('tools-area').style.display = 'none';
-        document.getElementById('lesson-notes-area').style.display = 'none';
-        document.getElementById('ai-global-search').style.display = 'none';
-        document.getElementById('ai-assessment-panel').style.display = 'none';
-        document.getElementById('ai-test-launcher').style.display = 'none';
+    
+    function loadLesson(id) { 
+        currentLessonId = id; 
+        playAudioInteraction(id); 
         
-        document.querySelectorAll('.lesson-link').forEach(el => el.classList.remove('active'));
-        if(document.getElementById('link-' + id)) document.getElementById('link-' + id).classList.add('active');
-
-        const mainContent = document.getElementById('main-content-area');
-        mainContent.classList.remove('apple-reveal');
+        if (window.innerWidth < 1024) { window.scrollTo({ top: 0, behavior: 'smooth' }); } 
+        
+        document.getElementById('tuner-ui').style.display = 'none'; 
+        document.getElementById('rhythm-ui').style.display = 'none'; 
+        document.getElementById('video-wrapper').style.display = 'none'; 
+        document.getElementById('tools-area').style.display = 'none'; 
+        document.getElementById('lesson-notes-area').style.display = 'none'; 
+        document.getElementById('ai-global-search').style.display = 'none'; 
+        document.getElementById('ai-assessment-panel').style.display = 'none'; 
+        document.getElementById('ai-test-launcher').style.display = 'none'; 
+        
+        document.querySelectorAll('.lesson-link').forEach(el => el.classList.remove('active')); 
+        if(document.getElementById('link-' + id)) document.getElementById('link-' + id).classList.add('active'); 
+        
+        const mainContent = document.getElementById('main-content-area'); 
+        mainContent.classList.remove('apple-reveal'); 
         void mainContent.offsetWidth; 
-        mainContent.classList.add('apple-reveal');
-
-        updateCompleteButton();
-
-        if(id === 'search') {
-            changeBackground('search');
-            document.getElementById('lesson-title').innerText = "AI Song Finder";
-            document.getElementById('ai-global-search').style.display = 'block';
-            return;
-        }
-
-        const lesson = courseData[id];
+        mainContent.classList.add('apple-reveal'); 
         
-        if (document.getElementById('bg-layer-' + id)) {
-            changeBackground(id);
-        } else {
-            changeBackground('0');
-        }
-
-        document.getElementById('lesson-title').innerText = lesson.title;
-        if(lesson.notes) { document.getElementById('lesson-notes-area').innerHTML = lesson.notes; document.getElementById('lesson-notes-area').style.display = 'block'; }
+        updateCompleteButton(); 
+        
+        if(id === 'search') { 
+            changeBackground('search'); 
+            document.getElementById('lesson-title').innerText = "AI Song Finder"; 
+            document.getElementById('ai-global-search').style.display = 'block'; 
+            return; 
+        } 
+        
+        const lesson = courseData[id]; 
+        if (document.getElementById('bg-layer-' + id)) { changeBackground(id); } else { changeBackground('0'); } 
+        document.getElementById('lesson-title').innerText = lesson.title; 
+        
+        if(lesson.notes) { 
+            let processedNotes = lesson.notes;
+            // DISABLE GLOSSARY TOOLTIPS ON THE ACTUAL ANATOMY/GLOSSARY PAGE
+            if(id !== '17') {
+                processedNotes = applyGlossaryTooltips(processedNotes);
+            }
+            document.getElementById('lesson-notes-area').innerHTML = processedNotes; 
+            document.getElementById('lesson-notes-area').style.display = 'block'; 
+        } 
         
         if(lesson.toolType === "video" || lesson.toolType === "exam") { 
-            if(lesson.videoId) {
+            if(lesson.videoId) { 
                 document.getElementById('video-wrapper').style.display = 'block'; 
-                document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + lesson.videoId;
-            }
-            document.getElementById('ai-test-launcher').style.display = 'inline-block'; 
+                document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + lesson.videoId; 
+                document.getElementById('ai-test-launcher').style.display = 'inline-block'; 
+            } 
+            if(lesson.toolType === "exam") { 
+                document.getElementById('tools-area').style.display = 'block'; 
+                document.getElementById('rhythm-ui').style.display = 'block'; 
+            } 
         } else if(lesson.toolType === "tuner") { 
             document.getElementById('tools-area').style.display = 'block'; 
             document.getElementById('tuner-ui').style.display = 'block'; 
-        }
+        } 
     }
 
-    // --- 4. TOOLS & AUDIO ENGINE ---
-    async function startAIChordTest() {
-        document.getElementById('ai-assessment-panel').style.display = 'block';
-        document.getElementById('ai-feedback').innerText = "Microphone activated. Listening for your strum...";
-    }
-
-    let analyser, dataArray, audioContext;
-    async function startTuner() {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-            document.getElementById('tuner-status').innerText = "Listening...";
-            document.getElementById('mic-start-btn').style.display = "none";
-            audioContext = new AudioContext();
-            analyser = audioContext.createAnalyser();
-            analyser.fftSize = 2048;
-            audioContext.createMediaStreamSource(stream).connect(analyser);
-            dataArray = new Float32Array(analyser.fftSize);
-            updateTunerLoop();
-        } catch (err) { alert("Microphone needed for tuner."); }
-    }
-
-    function updateTunerLoop() {
-        analyser.getFloatTimeDomainData(dataArray);
-        let freq = autoCorrelate(dataArray, audioContext.sampleRate);
-        if (freq !== -1) {
-            const notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-            let h = Math.round(12 * Math.log2(freq / 440));
-            let note = notes[(h + 69) % 12];
-            document.getElementById('target-note').innerText = note;
-            let cents = Math.round((12 * Math.log2(freq / 440) - h) * 100);
-            document.getElementById('cents-display').innerText = cents + " cents";
-            document.getElementById('tuner-needle').style.transform = `rotate(${(cents / 50) * 45}deg)`;
-        }
-        requestAnimationFrame(updateTunerLoop);
-    }
-
-    function autoCorrelate(buf, sampleRate) {
-        let rms = 0; for (let v of buf) rms += v*v;
-        if (Math.sqrt(rms/buf.length) < 0.01) return -1;
-        let r1 = 0, r2 = buf.length - 1, thres = 0.2;
-        for (let i = 0; i < buf.length / 2; i++) if (Math.abs(buf[i]) < thres) { r1 = i; break; }
-        for (let i = 1; i < buf.length / 2; i++) if (Math.abs(buf[buf.length - i]) < thres) { r2 = buf.length - i; break; }
-        buf = buf.slice(r1, r2);
-        let c = new Array(buf.length).fill(0);
-        for (let i = 0; i < buf.length; i++) for (let j = 0; j < buf.length - i; j++) c[i] += buf[j] * buf[j + i];
-        let d = 0; while (c[d] > c[d + 1]) d++;
-        let maxval = -1, maxpos = -1;
-        for (let i = d; i < buf.length; i++) if (c[i] > maxval) { maxval = c[i]; maxpos = i; }
-        return sampleRate / maxpos;
-    }
-
-    function executeGlobalAISearch() {
-        const query = document.getElementById('ai-search-input').value;
-        if(!query) return;
-        const safeQuery = escapeHTML(query);
-        document.getElementById('lesson-notes-area').innerHTML = `<h3>AI results for: ${safeQuery}</h3><p>Chords: G, D, Em, C. Watch the tutorial below.</p>`;
-        document.getElementById('lesson-notes-area').style.display = 'block';
-        document.getElementById('video-wrapper').style.display = 'block';
-        document.getElementById('yt-player').src = `https://www.youtube.com/embed?listType=search&list=${encodeURIComponent(query)}+guitar+chords`;
-    }
-
-    // --- 5. TRANSLATION ENGINE ---
-    function initLanguageDetector() {
-        if(localStorage.getItem('htpgit_lang_set')) {
-            document.getElementById('welcome-overlay').style.display = 'none';
-            return;
-        }
-        const userLang = navigator.language || navigator.userLanguage;
-        const shortLang = userLang.split('-')[0];
-        const select = document.getElementById('custom-lang-select');
-        const opts = Array.from(select.options).map(o => o.value);
-        if (opts.includes(shortLang)) {
-            select.value = shortLang;
-        }
-    }
-
-    function showTranslateModal() {
-        document.getElementById('welcome-overlay').style.display = 'flex';
-        setTimeout(() => document.getElementById('welcome-overlay').style.opacity = '1', 10);
-    }
-
-    function forceGoogleTranslate(targetLanguage) {
-        const combo = document.querySelector('.goog-te-combo');
-        if (combo) {
-            combo.value = targetLanguage;
-            combo.dispatchEvent(new Event('change', { 'bubbles': true, 'cancelable': true }));
-        } else {
-            // Fallback: If Google's combo box isn't rendered, use the cookie method and reload
-            document.cookie = `googtrans=/en/${targetLanguage}; path=/;`;
-            document.cookie = `googtrans=/en/${targetLanguage}; domain=.${location.hostname}; path=/;`;
-            window.location.reload();
-        }
-    }
-
-    function applyLanguageAndEnter() {
-        const lang = document.getElementById('custom-lang-select').value;
-        localStorage.setItem('htpgit_lang_set', lang);
-        
-        if (lang !== 'en') {
-            forceGoogleTranslate(lang);
-        } else {
-            forceGoogleTranslate('en'); 
-        }
-        
-        const overlay = document.getElementById('welcome-overlay');
-        overlay.style.opacity = '0';
-        setTimeout(() => {
-            overlay.style.display = 'none';
-            playAudioInteraction('0');
-        }, 600);
-    }
-
-    // --- 6. GAMIFICATION ENGINE ---
-    function loadUserState() {
-        try {
-            const saved = localStorage.getItem('htpgit_master_state');
-            if (saved) userState = JSON.parse(saved);
-        } catch (e) { console.error("Could not load state", e); }
-        refreshUIState();
-    }
-
-    function refreshUIState() {
-        document.getElementById('user-points').innerText = userState.points;
-        document.querySelectorAll('.lesson-link').forEach(el => el.classList.remove('completed'));
-        userState.completed.forEach(id => {
-            const link = document.getElementById('link-' + id);
-            if (link) link.classList.add('completed');
-        });
-        updateCompleteButton();
-    }
-
-    function toggleLessonComplete() {
-        if (currentLessonId === 'search') return; 
-
-        const index = userState.completed.indexOf(currentLessonId);
-        const pill = document.getElementById('points-display-pill');
-
-        if (index > -1) {
-            userState.completed.splice(index, 1);
-            userState.points -= 50;
-        } else {
-            userState.completed.push(currentLessonId);
-            userState.points += 50;
-        }
-
-        localStorage.setItem('htpgit_master_state', JSON.stringify(userState));
-        
-        document.getElementById('user-points').innerText = userState.points;
-        pill.classList.remove('points-pop');
-        void pill.offsetWidth; 
-        pill.classList.add('points-pop');
-        
-        refreshUIState();
-    }
-
-    function updateCompleteButton() {
-        const btn = document.getElementById('complete-btn');
-        if (currentLessonId === 'search') {
-            btn.style.display = 'none';
-            return;
-        }
-        btn.style.display = 'inline-block';
-        if (userState.completed.includes(currentLessonId)) {
-            btn.innerHTML = "✅ Completed (Click to Undo)";
-            btn.classList.add('completed-state');
-        } else {
-            btn.innerHTML = "✓ Mark as Complete (+50 Pts)";
-            btn.classList.remove('completed-state');
-        }
-    }
-
-    // --- 7. INITIALIZATION ---
-    window.onload = () => {
-        initBackgroundEngine();
-        initLanguageDetector();
-        loadUserState();
-        
-        // Initial setup for default lesson without triggering audio warning
-        currentLessonId = '0';
-        document.getElementById('link-0').classList.add('active');
-        updateCompleteButton();
-        changeBackground('0'); 
-        
-        const lesson = courseData['0'];
-        document.getElementById('lesson-title').innerText = lesson.title;
-        document.getElementById('lesson-notes-area').innerHTML = lesson.notes; 
-        document.getElementById('lesson-notes-area').style.display = 'block';
-    };
+    // --- 5. RHYTHM GAME ENGINE ---
+    let scheduledBeats = []; let rhythmActive = false; let rhythmScore = 0; let rhythmTimeouts = [];
+    function startRhythmTest() { if (!audioCtx) { try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {} } if (audioCtx && audioCtx.state === 'suspended') { audioCtx.resume(); } rhythmTimeouts.forEach(t => clearTimeout(t)); rhythmTimeouts = []; document.getElementById('start-rhythm-btn').style.display = 'none'; const feedback = document.getElementById('rhythm-feedback'); feedback.innerText = 'PREPARING...'; feedback.style.color = '#fff'; rhythmScore = 0; document.getElementById('rhythm-score').innerText = '0'; const bpm = 80; const intervalMs = (60 / bpm) * 1000; scheduledBeats = []; rhythmActive = true; let startTime = performance.now() + 1000; for (let i = 0; i < 12; i++) { let beatTime = startTime + (i * intervalMs); scheduledBeats.push({ time: beatTime, hit: false, isGameBeat: i >= 4 }); let t = setTimeout(() => { playMetronomeClick(i === 0 || i === 4); if (i < 4) { feedback.innerText = "COUNT IN: " + (4 - i); feedback.style.color = '#cbd5e1'; } else { const btn = document.getElementById('rhythm-tap-btn'); btn.style.boxShadow = 'inset 0 0 20px rgba(0,0,0,0.5), 0 0 40px var(--success)'; setTimeout(() => { btn.style.boxShadow = 'inset 0 0 20px rgba(0,0,0,0.5), 0 10px 30px rgba(194, 94, 36, 0.5)'; }, 150); } }, beatTime - performance.now()); rhythmTimeouts.push(t); } let endT = setTimeout(() => { endRhythmTest(); }, (startTime + (12 * intervalMs) - performance.now()) + 500); rhythmTimeouts.push(endT); }
+    function playMetronomeClick(accent) { if (!audioCtx) return; const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); osc.connect(gain); gain.connect(masterGain); osc.frequency.value = accent ? 1200 : 800; gain.gain.setValueAtTime(0, audioCtx.currentTime); gain.gain.linearRampToValueAtTime(1.5, audioCtx.currentTime + 0.01); gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1); osc.start(); osc.stop(audioCtx.currentTime + 0.1); }
+    function registerTap() { if (!rhythmActive) return; const tapTime = performance.now(); let closestBeat = null; let minDiff = Infinity; scheduledBeats.forEach(beat => { if (beat.isGameBeat && !beat.hit) { let diff = Math.abs(beat.time - tapTime); if (diff < minDiff) { minDiff = diff; closestBeat = beat; } } }); const feedback = document.getElementById('rhythm-feedback'); if (closestBeat && minDiff < 300) { closestBeat.hit = true; if (minDiff < 100) { feedback.innerText = "PERFECT!"; feedback.style.color = "var(--success)"; rhythmScore += 10; } else { feedback.innerText = "GOOD!"; feedback.style.color = "#fbbf24"; rhythmScore += 5; } } else { feedback.innerText = "MISS!"; feedback.style.color = "var(--danger)"; } document.getElementById('rhythm-score').innerText = rhythmScore; }
+    document.addEventListener('keydown', (e) => { if(e.code === 'Space' && document.getElementById('rhythm-ui').style.display === 'block') { e.preventDefault(); const btn = document.getElementById('rhythm-tap-btn'); btn.style.transform = 'scale(0.9)'; btn.style.boxShadow = 'inset 0 0 30px rgba(0,0,0,0.8), 0 5px 15px rgba(194, 94, 36, 0.5)'; setTimeout(() => { btn.style.transform = 'scale(1)'; btn.style.boxShadow = 'inset 0 0 20px rgba(0,0,0,0.5), 0 10px 30px rgba(194, 94, 36, 0.5)'; }, 100); registerTap(); } });
+    function endRhythmTest() { rhythmActive = false; const feedback = document.getElementById('rhythm-feedback'); document.getElementById('start-rhythm-btn').style.display = 'inline-block'; document.getElementById('start-rhythm-btn').innerText = 'Play Again'; if (rhythmScore >= 60) { feedback.innerText = "TEST PASSED!"; feedback.style.color = "var(--success)"; if (!userState.completed.includes('8')) { currentLessonId = '8'; toggleLessonComplete(); } } else { feedback.innerText = "SCORE TOO LOW. TRY AGAIN."; feedback.style.color = "var(--danger)"; } }
+    
+    // --- 6. AUDIO TUNER ENGINE ---
+    async function startAIChordTest() { document.getElementById('ai-assessment-panel').style.display = 'block'; document.getElementById('ai-feedback').innerText = "Microphone activated. Listening for your strum..."; }
+    async function startTuner() { try { const stream = await navigator.mediaDevices.getUserMedia({ audio: true }); document.getElementById('tuner-status').innerText = "Listening..."; document.getElementById('mic-start-btn').style.display = "none"; initAudio(); analyser = audioCtx.createAnalyser(); analyser.fftSize = 2048; audioCtx.createMediaStreamSource(stream).connect(analyser); dataArray = new Float32Array(analyser.fftSize); updateTunerLoop(); } catch (err) { alert("Microphone needed for tuner."); } }
+    function updateTunerLoop() { analyser.getFloatTimeDomainData(dataArray); let freq = autoCorrelate(dataArray, audioCtx.sampleRate); if (freq !== -1) { const notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]; let h = Math.round(12 * Math.log2(freq / 440)); let note = notes[(h + 69) % 12]; document.getElementById('target-note').innerText = note; let cents = Math.round((12 * Math.log2(freq / 440) - h) * 100); document.getElementById('cents-display').innerText = cents + " cents"; document.getElementById('tuner-needle').style.transform = `rotate(${(cents / 50) * 45}deg)`; } requestAnimationFrame(updateTunerLoop); }
+    function autoCorrelate(buf, sampleRate) { let rms = 0; for (let v of buf) rms += v*v; if (Math.sqrt(rms/buf.length) < 0.01) return -1; let r1 = 0, r2 = buf.length - 1, thres = 0.2; for (let i = 0; i < buf.length / 2; i++) if (Math.abs(buf[i]) < thres) { r1 = i; break; } for (let i = 1; i < buf.length / 2; i++) if (Math.abs(buf[buf.length - i]) < thres) { r2 = buf.length - i; break; } buf = buf.slice(r1, r2); let c = new Array(buf.length).fill(0); for (let i = 0; i < buf.length; i++) for (let j = 0; j < buf.length - i; j++) c[i] += buf[j] * buf[j + i]; let d = 0; while (c[d] > c[d + 1]) d++; let maxval = -1, maxpos = -1; for (let i = d; i < buf.length; i++) if (c[i] > maxval) { maxval = c[i]; maxpos = i; } return sampleRate / maxpos; }
+    
+    // --- 7. AI GLOBAL SEARCH ENGINE ---
+    function executeGlobalAISearch() { const query = document.getElementById('ai-search-input').value; if(!query) return; const safeQuery = escapeHTML(query); document.getElementById('lesson-notes-area').innerHTML = `<h3>AI results for: ${safeQuery}</h3><p>Chords: G, D, Em, C. Watch the tutorial below.</p>`; document.getElementById('lesson-notes-area').style.display = 'block'; document.getElementById('video-wrapper').style.display = 'block'; document.getElementById('yt-player').src = `https://www.youtube.com/embed?listType=search&list=${encodeURIComponent(query)}+guitar+chords`; }
+    
+    // --- 8. TRANSLATION ENGINE ---
+    function initLanguageDetector() { if(localStorage.getItem('htpgit_lang_set')) { document.getElementById('welcome-overlay').style.display = 'none'; return; } const userLang = navigator.language || navigator.userLanguage; const shortLang = userLang.split('-')[0]; const select = document.getElementById('custom-lang-select'); const opts = Array.from(select.options).map(o => o.value); if (opts.includes(shortLang)) { select.value = shortLang; } }
+    function showTranslateModal() { document.getElementById('welcome-overlay').style.display = 'flex'; setTimeout(() => document.getElementById('welcome-overlay').style.opacity = '1', 10); }
+    function forceGoogleTranslate(targetLanguage) { const combo = document.querySelector('.goog-te-combo'); if (combo) { combo.value = targetLanguage; combo.dispatchEvent(new Event('change', { 'bubbles': true, 'cancelable': true })); } else { document.cookie = `googtrans=/en/${targetLanguage}; path=/;`; document.cookie = `googtrans=/en/${targetLanguage}; domain=.${location.hostname}; path=/;`; window.location.reload(); } }
+    function applyLanguageAndEnter() { const lang = document.getElementById('custom-lang-select').value; localStorage.setItem('htpgit_lang_set', lang); if (lang !== 'en') { forceGoogleTranslate(lang); } else { forceGoogleTranslate('en'); } const overlay = document.getElementById('welcome-overlay'); overlay.style.opacity = '0'; setTimeout(() => { overlay.style.display = 'none'; playAudioInteraction('0'); }, 600); }
+    
+    // --- 9. GAMIFICATION ENGINE ---
+    function loadUserState() { try { const saved = localStorage.getItem('htpgit_master_state'); if (saved) userState = JSON.parse(saved); } catch (e) { console.error("Could not load state", e); } refreshUIState(); }
+    function refreshUIState() { document.getElementById('user-points').innerText = userState.points; document.querySelectorAll('.lesson-link').forEach(el => el.classList.remove('completed')); userState.completed.forEach(id => { const link = document.getElementById('link-' + id); if (link) link.classList.add('completed'); }); updateCompleteButton(); }
+    function toggleLessonComplete() { if (currentLessonId === 'search') return; const index = userState.completed.indexOf(currentLessonId); const pill = document.getElementById('points-display-pill'); if (index > -1) { userState.completed.splice(index, 1); userState.points -= 50; } else { userState.completed.push(currentLessonId); userState.points += 50; } localStorage.setItem('htpgit_master_state', JSON.stringify(userState)); document.getElementById('user-points').innerText = userState.points; pill.classList.remove('points-pop'); void pill.offsetWidth; pill.classList.add('points-pop'); refreshUIState(); }
+    function updateCompleteButton() { const btn = document.getElementById('complete-btn'); if (currentLessonId === 'search' || currentLessonId === '8') { btn.style.display = 'none'; return; } btn.style.display = 'inline-block'; if (userState.completed.includes(currentLessonId)) { btn.innerHTML = "✅ Completed (Click to Undo)"; btn.classList.add('completed-state'); } else { btn.innerHTML = "✓ Mark as Complete (+50 Pts)"; btn.classList.remove('completed-state'); } }
+    
+    // --- 10. INITIALIZATION ---
+    window.onload = () => { initBackgroundEngine(); initLanguageDetector(); loadUserState(); currentLessonId = '0'; document.getElementById('link-0').classList.add('active'); updateCompleteButton(); changeBackground('0'); const lesson = courseData['0']; document.getElementById('lesson-title').innerText = lesson.title; document.getElementById('lesson-notes-area').innerHTML = applyGlossaryTooltips(lesson.notes); document.getElementById('lesson-notes-area').style.display = 'block'; };
 </script>
 
 <!-- GOOGLE TRANSLATE ENGINE SCRIPT INJECTION -->
