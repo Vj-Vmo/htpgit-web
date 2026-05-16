@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' *; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src * data: blob:; frame-src https://www.youtube.com; media-src 'self' blob:; connect-src 'self' https://script.google.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' *; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src * data: blob:; frame-src https://www.youtube.com; media-src 'self' blob:; connect-src 'self' https://script.google.com https://api.counterapi.dev;">
     
     <title>HTPGit | Global Cinematic Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -55,7 +55,7 @@
 
         /* GLOBAL GATEKEEPER MODAL */
         #welcome-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(10, 8, 7, 0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
             z-index: 9999; display: flex; justify-content: center; align-items: center;
             transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -78,10 +78,19 @@
         .enter-btn:hover { background: #059669; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(16, 185, 129, 0.5); }
 
         /* BG ENGINE */
-        #bg-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; background-color: #0a0807; transition: 0.5s ease; }
+        #bg-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -2; background-color: #0a0807; transition: 0.5s ease; }
         .bg-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 0.8s ease-in-out; filter: contrast(1.1) saturate(1.1); will-change: opacity; }
         .bg-layer.active { opacity: 1; z-index: -1; }
-        #bg-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; background: var(--app-bg-gradient); pointer-events: none; transition: background 0.8s ease; }
+        #bg-overlay { 
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1; pointer-events: none;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.85) 100%); 
+        }
+        #bg-overlay::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at top right, #0f172a 0%, #020617 100%);
+            opacity: 0; transition: opacity 0.8s ease;
+        }
+        body.night-mode #bg-overlay::after { opacity: 1; }
         body.night-mode .bg-layer { opacity: 0.15 !important; filter: grayscale(1); }
 
         h1, h2, h3 { font-family: 'Lora', serif; }
@@ -212,8 +221,8 @@
         .term-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border-width: 8px; border-style: solid; border-color: rgba(15, 23, 42, 0.95) transparent transparent transparent; }
         .term-highlight:hover .term-tooltip { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
 
-        /* FIXED FLOATING NOTE ANIMATION */
-        .floating-note { position: fixed; font-size: 2.5rem; pointer-events: none; z-index: 10000; text-shadow: 0 0 15px rgba(255, 255, 255, 0.5); animation: floatNote 1.2s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        /* FLOATING NOTE ANIMATION */
+        .floating-note { position: fixed; font-size: 2.5rem; pointer-events: none; z-index: 10000; text-shadow: 0 0 15px rgba(255, 255, 255, 0.5); animation: floatNote 1.2s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94); color: var(--accent); }
         @keyframes floatNote { 0% { transform: translate(-50%, -50%) scale(0.5) rotate(-15deg); opacity: 0; } 20% { transform: translate(-50%, -30px) scale(1.3) rotate(15deg); opacity: 1; } 100% { transform: translate(-50%, -120px) scale(1) rotate(-30deg); opacity: 0; } }
 
         /* FIX: touch-action: none prevents mobile swipe-to-scroll from killing the pluck event */
@@ -235,8 +244,6 @@
         .pr-pins { position: absolute; bottom: 6px; left: 20px; width: 120px; display: flex; justify-content: space-between; }
         .pr-pin { width: 8px; height: 8px; background: #111; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.5); border: 1px solid #333; }
         .pr-pin::after { content:''; display:block; width:3px; height:3px; background:#eee; border-radius:50%; margin: 2px auto; }
-        
-        /* FIX: touch-action: none prevents mobile swipe-to-scroll from killing the pluck event */
         .pr-strings-container { position: absolute; top: 150px; left: 50%; transform: translateX(-50%); width: 70px; height: 630px; display: flex; justify-content: space-between; z-index: 4; touch-action: none; }
         
         .pr-string-wrapper { position: relative; width: 12px; height: 100%; cursor: crosshair; display: flex; justify-content: center; }
@@ -562,15 +569,16 @@
 </div>
 
 <script>
+    // 1. STATE & GLOBALS
     let currentLessonId = '0';
     let userState = { points: 0, completed: [] };
-    let isNightMode = false;
+    let isNightMode = true; 
     let selectedRating = '';
     
-    let audioCtx;
-    let masterGain, guitarGain, uiGain;
-    let compressor;
-
+    let audioCtx, masterGain, guitarGain, uiGain, compressor;
+    let analyser, dataArray;
+    
+    // 2. DATA CONSTANTS
     const imgBase = "https://images.unsplash.com/photo-";
     const imgParams = "?auto=format&fit=crop&w=1920&q=80";
 
@@ -613,6 +621,7 @@
         '22': [110.00, 164.81, 220.00, 261.63, 329.63], '23': [146.83, 220.00, 293.66, 349.23], '30': [110.00, 164.81, 196.00, 277.18, 329.63],       
         '31': [146.83, 220.00, 261.63, 369.99], '32': [82.41, 123.47, 146.83, 207.65, 246.94, 329.63], '40': [87.31, 130.81, 174.61, 220.00, 261.63, 349.23], '41': [123.47, 185.00, 246.94, 293.66, 369.99]        
     };
+    
     const pentatonicScale = [82.41, 98.00, 110.00, 123.47, 146.83, 164.81, 196.00, 220.00, 246.94, 293.66, 329.63, 392.00, 440.00, 493.88, 587.33];
 
     const transparencyNote = `<div class="transparency-box"><div class="transparency-icon">💡</div><p class="transparency-text"><strong>Transparency Promise:</strong> We may earn a small commission from qualifying purchases through affiliate links above, at zero extra cost to you. We only recommend beginner-friendly gear we trust.</p></div>`;
@@ -620,7 +629,7 @@
     const courseData = {
         '0': { title: "Learning Roadmap", notes: `<h3>Stage 1: Core Foundations</h3><ul><li>Learn posture, pick grip, and how to read tabs/diagrams.</li><li>Master the built-in digital tuner.</li></ul><hr><h3>Stage 2: Must-Learn Open Chords</h3><ul><li>Memorize the essential major (C, G, D, A, E) and minor (Am, Em, Dm) shapes.</li><li>Focus on clean, buzz-free fretting.</li></ul><hr><h3>Stage 3: Rhythm & Strumming</h3><ul><li>Master the "Old Faithful" strumming pattern.</li><li>Learn to keep time and syncopate your strums.</li></ul><hr><h3>Stage 4: 7th Chords</h3><ul><li>Add flavor to your playing with A7, D7, and E7 dominant chords.</li><li>Understand how they create musical tension.</li></ul><hr><h3>Stage 5: Barre Chords</h3><ul><li>Conquer the F Major and B Minor shapes.</li><li>Build index finger strength for full fretboard mastery.</li></ul><hr><h3>Stage 6: Mastery & Routine</h3><ul><li>Combine everything into a daily 15-minute practice routine.</li><li>Learn to use a capo to change keys dynamically.</li></ul>` },
         '18': { title: "Cool Features of Our Website", notes: `<p style="font-size: 1.15rem; color: var(--text-muted); font-weight: 700; margin-bottom: 30px;">This isn't just a static tutorial page. We have built an immersive, interactive digital studio directly into your browser. Here is everything you can do:</p><div class="feature-grid"><div class="feature-card"><span class="feature-icon">🎙️</span><h4>AI Chord Testing</h4><p>Play a chord on your real guitar. Our neural audio engine listens through your microphone and instantly verifies your accuracy!</p></div><div class="feature-card"><span class="feature-icon">🎛️</span><h4>Studio Digital Tuner</h4><p>No external gear needed. A professional-grade, live pitch-detection tuner is built right into your browser.</p></div><div class="feature-card"><span class="feature-icon">🎸</span><h4>Interactive Anatomy</h4><p>Explore a photorealistic, playable digital guitar. Drag the strings to hear them ring, or tap the body for a percussive thump.</p></div><div class="feature-card"><span class="feature-icon">🎵</span><h4>Gamified Rhythm Engine</h4><p>Test your timing against a precise digital metronome. Hit the exact beats, pass the assessment, and earn points.</p></div><div class="feature-card"><span class="feature-icon">✨</span><h4>Reactive Audio Feedback</h4><p>Clicking on any lesson in the curriculum instantly synthesizes a rich, multi-layered acoustic chord to keep your ears tuned.</p></div><div class="feature-card"><span class="feature-icon">🧠</span><h4>Auto-Glossary System</h4><p>Hover your cursor over complex terminology (like <em>fret</em> or <em>strum</em>) to instantly read their definitions without losing your place!</p></div></div>` },
-        '17': { title: "Guitar Anatomy & Terminology", notes: `<h3>Interactive Anatomy Guide</h3><p>Hover over the pulsing hotspots below to explore the primary components of an acoustic guitar. <strong>Try swiping across the strings to hear them ring! You can also tap the wooden body for a percussive sound.</strong></p><div class="anatomy-interactive"><div class="pr-headstock"><div class="pr-tuner pr-tuner-l1"><div class="pr-tuner-peg"></div></div><div class="pr-tuner pr-tuner-l2"><div class="pr-tuner-peg"></div></div><div class="pr-tuner pr-tuner-l3"><div class="pr-tuner-peg"></div></div><div class="pr-tuner pr-tuner-r1"><div class="pr-tuner-peg"></div></div><div class="pr-tuner pr-tuner-r2"><div class="pr-tuner-peg"></div></div><div class="pr-tuner pr-tuner-r3"><div class="pr-tuner-peg"></div></div><div class="pr-nut"></div></div><div class="pr-neck"><div class="pr-fret" style="top: 40px;"></div><div class="pr-fret" style="top: 90px;"></div><div class="pr-fret" style="top: 140px;"></div><div class="pr-fret" style="top: 190px;"></div><div class="pr-fret" style="top: 240px;"></div><div class="pr-fret" style="top: 290px;"></div><div class="pr-fret" style="top: 340px;"></div><div class="pr-dot" style="top: 115px;"></div><div class="pr-dot" style="top: 215px;"></div><div class="pr-dot" style="top: 315px;"></div></div><div class="pr-body" onmousedown="tapGuitarBody()" ontouchstart="tapGuitarBody()"><div class="pr-soundhole"></div><div class="pr-pickguard"></div><div class="pr-bridge"><div class="pr-saddle"></div><div class="pr-pins"><div class="pr-pin"></div><div class="pr-pin"></div><div class="pr-pin"></div><div class="pr-pin"></div><div class="pr-pin"></div><div class="pr-pin"></div></div></div></div><div class="pr-strings-container" ontouchmove="window.handleStrum(event)" ontouchstart="window.handleStrum(event)"><div class="pr-string-wrapper pr-s6 string-interact" data-freq="82.41" onmouseenter="window.pluckString(82.41, this, event)"><div class="pr-string-line"></div></div><div class="pr-string-wrapper pr-s5 string-interact" data-freq="110.00" onmouseenter="window.pluckString(110.00, this, event)"><div class="pr-string-line"></div></div><div class="pr-string-wrapper pr-s4 string-interact" data-freq="146.83" onmouseenter="window.pluckString(146.83, this, event)"><div class="pr-string-line"></div></div><div class="pr-string-wrapper pr-s3 string-interact" data-freq="196.00" onmouseenter="window.pluckString(196.00, this, event)"><div class="pr-string-line"></div></div><div class="pr-string-wrapper pr-s2 string-interact" data-freq="246.94" onmouseenter="window.pluckString(246.94, this, event)"><div class="pr-string-line"></div></div><div class="pr-string-wrapper pr-s1 string-interact" data-freq="329.63" onmouseenter="window.pluckString(329.63, this, event)"><div class="pr-string-line"></div></div></div><div class="hotspot" style="top: 80px; left: 50%;"><div class="hotspot-tooltip"><strong>Headstock & Tuners</strong><br>Adjust these pegs to tighten or loosen strings, changing their pitch.</div></div><div class="hotspot" style="top: 140px; left: 50%;"><div class="hotspot-tooltip"><strong>The Nut</strong><br>The slotted strip that guides strings down the fretboard.</div></div><div class="hotspot right-side" style="top: 300px; left: 50%;"><div class="hotspot-tooltip"><strong>Neck & Frets</strong><br>Press the strings behind the metal fret bars to change notes.</div></div><div class="hotspot" style="top: 580px; left: 50%;"><div class="hotspot-tooltip"><strong>Soundhole</strong><br>Where the sound resonates and escapes the acoustic body.</div></div><div class="hotspot right-side" style="top: 790px; left: 50%;"><div class="hotspot-tooltip"><strong>The Bridge</strong><br>The heavy block that anchors the strings to the guitar body.</div></div></div><h3>Anatomy Reference</h3><ul style="list-style: none; padding: 0; margin-top: 30px;"><li class="anatomy-list-item"><img src="images/headstock.jpg" alt="Headstock"><div><h4 style="margin: 0 0 8px 0; color: var(--accent); font-size: 1.3rem;">Headstock & Tuning Pegs</h4><p style="margin: 0; font-size: 1.05rem; line-height: 1.6; color: var(--text-muted);">The very top of the guitar. The mechanical gears (Machine Heads) are turned to tighten or loosen the strings, which alters their pitch for tuning.</p></div></li><li class="anatomy-list-item"><img src="images/fretboard.jpg" alt="Fretboard"><div><h4 style="margin: 0 0 8px 0; color: var(--accent); font-size: 1.3rem;">Fretboard & Frets</h4><p style="margin: 0; font-size: 1.05rem; line-height: 1.6; color: var(--text-muted);">The flat, front-facing side of the neck. The metal strips running across it are the Frets. Pressing the string just behind a fret changes the note.</p></div></li><li class="anatomy-list-item" style="border-bottom: none;"><img src="images/bridge.webp" alt="Bridge and Body"><div><h4 style="margin: 0 0 8px 0; color: var(--accent); font-size: 1.3rem;">The Bridge & Soundhole</h4><p style="margin: 0; font-size: 1.05rem; line-height: 1.6; color: var(--text-muted);">The Bridge is the heavy block glued to the body where the strings are anchored. When you strum, the sound resonates inside the body and projects out through the Soundhole.</p></div></li></ul>` },
+        '17': { title: "Guitar Anatomy & Terminology", notes: `<h3>Interactive Anatomy Guide</h3><p>Hover over the pulsing hotspots below to explore the primary components of an acoustic guitar. <strong>Try swiping across the strings to hear them ring! You can also tap the wooden body for a percussive sound.</strong></p><div class="anatomy-interactive"><div class="pr-headstock"><div class="pr-tuner pr-tuner-l1"><div class="pr-tuner-peg"></div></div><div class="pr-tuner pr-tuner-l2"><div class="pr-tuner-peg"></div></div><div class="pr-tuner pr-tuner-l3"><div class="pr-tuner-peg"></div></div><div class="pr-tuner pr-tuner-r1"><div class="pr-tuner-peg"></div></div><div class="pr-tuner pr-tuner-r2"><div class="pr-tuner-peg"></div></div><div class="pr-tuner pr-tuner-r3"><div class="pr-tuner-peg"></div></div><div class="pr-nut"></div></div><div class="pr-neck"><div class="pr-fret" style="top: 40px;"></div><div class="pr-fret" style="top: 90px;"></div><div class="pr-fret" style="top: 140px;"></div><div class="pr-fret" style="top: 190px;"></div><div class="pr-fret" style="top: 240px;"></div><div class="pr-fret" style="top: 290px;"></div><div class="pr-fret" style="top: 340px;"></div><div class="pr-dot" style="top: 115px;"></div><div class="pr-dot" style="top: 215px;"></div><div class="pr-dot" style="top: 315px;"></div></div><div class="pr-body" onmousedown="tapGuitarBody()" ontouchstart="tapGuitarBody()"><div class="pr-soundhole"></div><div class="pr-pickguard"></div><div class="pr-bridge"><div class="pr-saddle"></div><div class="pr-pins"><div class="pr-pin"></div><div class="pr-pin"></div><div class="pr-pin"></div><div class="pr-pin"></div><div class="pr-pin"></div><div class="pr-pin"></div></div></div></div><div class="pr-strings-container" ontouchmove="window.handleStrum(event)" ontouchstart="window.handleStrum(event)"><div class="pr-string-wrapper pr-s6 string-interact" data-freq="82.41" onmouseenter="window.pluckString(82.41, this, event)"> <div class="pr-string-line"></div> </div><div class="pr-string-wrapper pr-s5 string-interact" data-freq="110.00" onmouseenter="window.pluckString(110.00, this, event)"> <div class="pr-string-line"></div> </div><div class="pr-string-wrapper pr-s4 string-interact" data-freq="146.83" onmouseenter="window.pluckString(146.83, this, event)"> <div class="pr-string-line"></div> </div><div class="pr-string-wrapper pr-s3 string-interact" data-freq="196.00" onmouseenter="window.pluckString(196.00, this, event)"> <div class="pr-string-line"></div> </div><div class="pr-string-wrapper pr-s2 string-interact" data-freq="246.94" onmouseenter="window.pluckString(246.94, this, event)"> <div class="pr-string-line"></div> </div><div class="pr-string-wrapper pr-s1 string-interact" data-freq="329.63" onmouseenter="window.pluckString(329.63, this, event)"> <div class="pr-string-line"></div> </div></div><div class="hotspot" style="top: 80px; left: 50%;"><div class="hotspot-tooltip"><strong>Headstock & Tuners</strong><br>Adjust these pegs to tighten or loosen strings, changing their pitch.</div></div><div class="hotspot" style="top: 140px; left: 50%;"><div class="hotspot-tooltip"><strong>The Nut</strong><br>The slotted strip that guides strings down the fretboard.</div></div><div class="hotspot right-side" style="top: 300px; left: 50%;"><div class="hotspot-tooltip"><strong>Neck & Frets</strong><br>Press the strings behind the metal fret bars to change notes.</div></div><div class="hotspot" style="top: 580px; left: 50%;"><div class="hotspot-tooltip"><strong>Soundhole</strong><br>Where the sound resonates and escapes the acoustic body.</div></div><div class="hotspot right-side" style="top: 790px; left: 50%;"><div class="hotspot-tooltip"><strong>The Bridge</strong><br>The heavy block that anchors the strings to the guitar body.</div></div></div><h3>Anatomy Reference</h3><ul style="list-style: none; padding: 0; margin-top: 30px;"><li class="anatomy-list-item"><img src="images/headstock.jpg" alt="Headstock"><div><h4 style="margin: 0 0 8px 0; color: var(--accent); font-size: 1.3rem;">Headstock & Tuning Pegs</h4><p style="margin: 0; font-size: 1.05rem; line-height: 1.6; color: var(--text-muted);">The very top of the guitar. The mechanical gears (Machine Heads) are turned to tighten or loosen the strings, which alters their pitch for tuning.</p></div></li><li class="anatomy-list-item"><img src="images/fretboard.jpg" alt="Fretboard"><div><h4 style="margin: 0 0 8px 0; color: var(--accent); font-size: 1.3rem;">Fretboard & Frets</h4><p style="margin: 0; font-size: 1.05rem; line-height: 1.6; color: var(--text-muted);">The flat, front-facing side of the neck. The metal strips running across it are the Frets. Pressing the string just behind a fret changes the note.</p></div></li><li class="anatomy-list-item" style="border-bottom: none;"><img src="images/bridge.webp" alt="Bridge and Body"><div><h4 style="margin: 0 0 8px 0; color: var(--accent); font-size: 1.3rem;">The Bridge & Soundhole</h4><p style="margin: 0; font-size: 1.05rem; line-height: 1.6; color: var(--text-muted);">The Bridge is the heavy block glued to the body where the strings are anchored. When you strum, the sound resonates inside the body and projects out through the Soundhole.</p></div></li></ul>` },
         '14': { title: "Posture & Pick Grip", notes: `<h3>Setting Up for Success</h3><p>If your hands hurt or you can't reach certain frets, 90% of the time, your posture is wrong. Let's fix it.</p><ul><li><strong>The Guitar Body:</strong> Rest the curve of the acoustic guitar on your right thigh. Keep the guitar flat against your stomach!</li><li><strong>The Fretting Hand (Left Hand):</strong> Drop your wrist. Place the pad of your thumb directly on the middle of the back of the neck. Do not grip it like a baseball bat! This gives your fingers the arch they need to press strings cleanly.</li><li><strong>The Pick Grip:</strong> Place the pick on the side of your curled index finger. Bring your thumb down flat on top of it.</li></ul>` },
         '9': { title: "How to Read a Chord Diagram", notes: `<h3>Decoding the Grid</h3><p>Before you learn a chord, you need to understand the "map" we use to show it to you. A chord diagram is simply a picture of your fretboard standing straight up.</p><ul><li><strong>Vertical Lines:</strong> Represent the 6 strings. The line furthest to the left is the thickest string (Low E). The line on the right is the thinnest string (High e).</li><li><strong>Horizontal Lines:</strong> Represent the metal frets. The top line is the "nut".</li><li><strong>Blue Dots:</strong> Show you exactly where to press your fingertips down.</li></ul><div class="chord-diagram-container" style="background:#fff; border: 2px dashed #b3501b;"><div class="chord-svg"><svg width="120" height="150" viewBox="0 0 120 150"><line x1="20" y1="30" x2="100" y2="30" stroke="#0f172a" stroke-width="5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="2"/><line x1="20" y1="90" x2="100" y2="90" stroke="#64748b" stroke-width="2"/><line x1="20" y1="120" x2="100" y2="120" stroke="#64748b" stroke-width="2"/><line x1="20" y1="30" x2="20" y2="150" stroke="#0f172a" stroke-width="2"/><line x1="100" y1="30" x2="100" y2="150" stroke="#0f172a" stroke-width="1"/><circle cx="36" cy="75" r="7" fill="#2563eb" /><text x="50" y="80" fill="#b3501b" font-weight="bold">← Press Here!</text></svg></div></div>` },
         '15': { title: "How to Read TAB", notes: `<h3>The Universal Language of Guitar</h3><p>Chord diagrams show you shapes, but Tablature (TAB) shows you exactly which notes to play in order for riffs and solos.</p><ul><li>The 6 lines represent your 6 strings. <strong>It is upside down.</strong></li><li>The top line is your thinnest string (high e). The bottom line is your thickest string (Low E).</li><li>The numbers tell you which fret to press. A "0" means play the string open.</li></ul><div style="font-family: monospace; font-size: 1.2rem; background: rgba(255,255,255,0.85); padding: 25px; border-radius: 12px; color: var(--accent); border: 2px solid var(--border-light); letter-spacing: 2px; margin-top: 20px;">e|---------3---------|<br>B|-------0---0-------|<br>G|-----0-------0-----|<br>D|---0-----------0---|<br>A|-------------------|<br>E|-3-----------------|</div>` },
@@ -749,7 +758,7 @@
     function animateOdometer(targetNumber) {
         const display = document.getElementById('live-visitor-count');
         let current = 0;
-        const duration = 2500; 
+        const duration = 2000; 
         const interval = 30; 
         const steps = duration / interval;
         const increment = targetNumber / steps;
@@ -838,12 +847,9 @@
         }
     };
 
-    let lastPluck = {};
     window.pluckString = function(freq, element, event) {
         initAudio();
         const nowTime = Date.now();
-        if (lastPluck[freq] && nowTime - lastPluck[freq] < 150) return; 
-        lastPluck[freq] = nowTime;
 
         if(element) {
             element.classList.remove('string-vibrating');
@@ -852,7 +858,6 @@
             setTimeout(() => { element.classList.remove('string-vibrating'); }, 2000);
         }
 
-        // Guaranteed Note Spawn
         let x = 0; let y = 0;
         if (event) {
             if (event.touches && event.touches.length > 0) {
@@ -917,7 +922,6 @@
     };
 
     function playWelcomeSequence() {
-        initAudio();
         if (!audioCtx) return;
         
         const now = audioCtx.currentTime;
@@ -979,7 +983,6 @@
             }, i * 40);
         }
         
-        // Start the odometer
         animateOdometer(14285);
     }
 
@@ -1233,7 +1236,7 @@
     
     function executeGlobalAISearch() { const query = document.getElementById('ai-search-input').value; if(!query) return; const safeQuery = escapeHTML(query); document.getElementById('lesson-notes-area').innerHTML = `<h3>AI results for: ${safeQuery}</h3><p>Chords: G, D, Em, C. Watch the tutorial below.</p>`; document.getElementById('lesson-notes-area').style.display = 'block'; document.getElementById('video-wrapper').style.display = 'block'; document.getElementById('yt-player').src = `https://www.youtube.com/embed?listType=search&list=${encodeURIComponent(query)}+guitar+chords`; }
     
-    function loadUserState() { try { const saved = localStorage.getItem('htpgit_master_state'); if (saved) userState = JSON.parse(saved); } catch (e) { console.error("Could not load state", e); } refreshUIState(); }
+    function loadUserState() { try { const saved = localStorage.getItem('htpgit_master_state'); if (saved) { const parsed = JSON.parse(saved); if(parsed && typeof parsed.points !== 'undefined') { userState = parsed; } } } catch (e) {} refreshUIState(); }
     function refreshUIState() { document.getElementById('user-points').innerText = userState.points; document.querySelectorAll('.lesson-link').forEach(el => el.classList.remove('completed')); userState.completed.forEach(id => { const link = document.getElementById('link-' + id); if (link) link.classList.add('completed'); }); updateCompleteButton(); }
     
     function toggleLessonComplete(event) { 
@@ -1257,7 +1260,6 @@
     
     function updateCompleteButton() { const btn = document.getElementById('complete-btn'); if (currentLessonId === 'search' || currentLessonId === '8' || currentLessonId === 'feedback') { btn.style.display = 'none'; return; } btn.style.display = 'inline-block'; if (userState.completed.includes(currentLessonId)) { btn.innerHTML = "✅ Completed (Click to Undo)"; btn.classList.add('completed-state'); } else { btn.innerHTML = "✓ Mark as Complete (+50 Pts)"; btn.classList.remove('completed-state'); } }
 
-    // --- FEEDBACK EMOJI ENGINE ---
     function selectFeedback(rating) {
         initAudio();
         selectedRating = rating;
@@ -1289,21 +1291,21 @@
         let sequence = [];
         if (type === 'like') {
             sequence = [
-                { html: "<div style='line-height: 0.5;'>🧢<br>😎</div>", delay: 0 },
-                { html: "<div style='line-height: 0.5;'>🧢<br>😉</div>", delay: 500 },
-                { html: "👍", delay: 1000 }
+                { html: "<div style='line-height: 0.5;'>&#128034;<br>&#128526;</div>", delay: 0 },
+                { html: "<div style='line-height: 0.5;'>&#128034;<br>&#128521;</div>", delay: 500 },
+                { html: "&#128077;", delay: 1000 }
             ];
         } else if (type === 'okay') {
             sequence = [
-                { html: "🤔", delay: 0 },
-                { html: "😐", delay: 500 },
-                { html: "🤌", delay: 1000 }
+                { html: "&#129300;", delay: 0 },
+                { html: "&#128528;", delay: 500 },
+                { html: "&#129292;", delay: 1000 }
             ];
         } else if (type === 'dislike') {
             sequence = [
-                { html: "🤢", delay: 0 },
-                { html: "🤮", delay: 500 },
-                { html: "👎", delay: 1000 }
+                { html: "&#129314;", delay: 0 },
+                { html: "&#129326;", delay: 500 },
+                { html: "&#128078;", delay: 1000 }
             ];
         }
 
@@ -1355,19 +1357,18 @@
         btn.innerText = "Sending to Studio...";
         btn.disabled = true;
 
-        // THE INVISIBLE BRIDGE TO GOOGLE SHEETS
         const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbyJbqPHDck9JWhyrjsoy0vPqPhXXUm3WUW4kQNu377Z4qL4DQWJGw59C3AoQLeApvh5zg/exec"; 
 
         fetch(GOOGLE_SHEET_URL, {
             method: "POST",
-            mode: "no-cors", /* THIS PREVENTS THE FAKE ERROR */
+            mode: "no-cors", 
             body: JSON.stringify({ name: name, rating: selectedRating, thoughts: thoughts }),
             headers: { "Content-Type": "text/plain;charset=utf-8" } 
         })
         .then(response => {
             document.getElementById('feedback-ui').innerHTML = `
                 <div style="text-align:center; padding: 40px; animation: modalRise 0.5s forwards;">
-                    <h2 style="color: var(--success); font-size: 3rem; margin:0;">Rock On! 🎸</h2>
+                    <h2 style="color: var(--success); font-size: 3rem; margin:0;">Rock On! &#127928;</h2>
                     <p style="font-size: 1.2rem; color: var(--text-muted); margin-top:20px;">Thanks for tuning the curriculum, <strong>${escapeHTML(name)}</strong>. Your feedback has been safely recorded.</p>
                 </div>
             `;
@@ -1379,7 +1380,7 @@
         });
     }
     
-    window.onload = () => { initBackgroundEngine(); loadUserState(); currentLessonId = '0'; document.getElementById('link-0').classList.add('active'); updateCompleteButton(); changeBackground('0'); const lesson = courseData['0']; document.getElementById('lesson-title').innerText = lesson.title; document.getElementById('lesson-notes-area').innerHTML = applyGlossaryTooltips(lesson.notes); document.getElementById('lesson-notes-area').style.display = 'block'; };
+    window.onload = () => { initBackgroundEngine(); loadUserState(); currentLessonId = '0'; document.getElementById('link-0').classList.add('active'); updateCompleteButton(); changeBackground('0'); const lesson = courseData['0']; document.getElementById('lesson-title').innerText = lesson.title; document.getElementById('lesson-notes-area').innerHTML = applyGlossaryTooltips(lesson.notes); document.getElementById('lesson-notes-area').style.display = 'block'; console.log("HTPGit Studio Loaded Successfully."); };
 </script>
 
 </body>
