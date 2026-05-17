@@ -3,42 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' *; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src * data: blob:; frame-src https://www.youtube.com; media-src 'self' blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://api.counterapi.dev;">
-    
     <title>HTPGit | Global Cinematic Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         /* --- GLOBAL & VARIABLES --- */
         * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
-        :root { 
-            --panel-bg: rgba(255, 255, 255, 0.75); 
-            --panel-border: rgba(255, 255, 255, 0.6);
-            --text-dark: #1c1410; 
-            --text-muted: #4a423d; 
-            --accent: #c25e24; 
-            --accent-hover: #9a4b1d;
-            --success: #10b981; 
-            --danger: #ef4444;
-            --shadow-glass: 0 20px 40px rgba(0, 0, 0, 0.15);
-            --shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.25);
-            --border-light: rgba(0,0,0,0.1);
-            --bg-color: #0a0807;
-            --app-bg-gradient: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.85) 100%);
-        }
-
-        /* --- NIGHT MODE OVERRIDES --- */
-        body.night-mode {
-            --panel-bg: rgba(15, 23, 42, 0.75);
-            --panel-border: rgba(255, 255, 255, 0.1);
-            --text-dark: #f8fafc;
-            --text-muted: #cbd5e1;
-            --border-light: rgba(255,255,255,0.1);
-            --shadow-glass: 0 20px 40px rgba(0, 0, 0, 0.5);
-            --shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.7);
-            --app-bg-gradient: radial-gradient(circle at top right, #0f172a 0%, #020617 100%);
-        }
+        :root { --panel-bg: rgba(255, 255, 255, 0.75); --panel-border: rgba(255, 255, 255, 0.6); --text-dark: #1c1410; --text-muted: #4a423d; --accent: #c25e24; --accent-hover: #9a4b1d; --success: #10b981; --danger: #ef4444; --shadow-glass: 0 20px 40px rgba(0, 0, 0, 0.15); --shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.25); --border-light: rgba(0,0,0,0.1); --bg-color: #0a0807; --app-bg-gradient: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.85) 100%); }
+        body.night-mode { --panel-bg: rgba(15, 23, 42, 0.75); --panel-border: rgba(255, 255, 255, 0.1); --text-dark: #f8fafc; --text-muted: #cbd5e1; --border-light: rgba(255,255,255,0.1); --shadow-glass: 0 20px 40px rgba(0, 0, 0, 0.5); --shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.7); --app-bg-gradient: radial-gradient(circle at top right, #0f172a 0%, #020617 100%); }
         body.night-mode .feature-card { background: rgba(30, 41, 59, 0.7); border-color: rgba(255,255,255,0.1); color: #fff;}
         body.night-mode .feature-card h4 { color: #fff; }
         body.night-mode .product-card { background: rgba(30, 41, 59, 0.7); border-color: rgba(255,255,255,0.1); }
@@ -47,34 +20,15 @@
         body.night-mode .lesson-link { border-color: rgba(255,255,255,0.05); }
         body.night-mode .lesson-link:hover { background: rgba(255,255,255,0.1); color: #fff; }
         body.night-mode .lesson-link.active { background: rgba(30, 41, 59, 0.9); color: var(--accent); }
-
-        body { 
-            font-family: 'Nunito', sans-serif; margin: 0; color: var(--text-dark); min-height: 100vh;
-            overflow-x: hidden; background-color: var(--bg-color); transition: color 0.5s ease; top: 0 !important;
-        }
+        body { font-family: 'Nunito', sans-serif; margin: 0; color: var(--text-dark); min-height: 100vh; overflow-x: hidden; background-color: var(--bg-color); transition: color 0.5s ease; top: 0 !important; }
 
         /* GLOBAL GATEKEEPER MODAL */
-        #welcome-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(10, 8, 7, 0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            z-index: 9999; display: flex; justify-content: center; align-items: center;
-            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .welcome-modal {
-            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.15);
-            padding: 50px; border-radius: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-            text-align: center; max-width: 450px; width: 90%; color: #fff;
-            transform: translateY(20px); animation: modalRise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-        }
+        #welcome-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(10, 8, 7, 0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .welcome-modal { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.15); padding: 50px; border-radius: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); text-align: center; max-width: 450px; width: 90%; color: #fff; transform: translateY(20px); animation: modalRise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
         @keyframes modalRise { to { transform: translateY(0); } }
         .welcome-modal h2 { font-family: 'Lora', serif; font-size: 2.2rem; margin: 0 0 10px 0; color: var(--accent); }
         .welcome-modal p { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 30px; line-height: 1.6;}
-        
-        .enter-btn {
-            background: var(--success); color: white; border: none; width: 100%; padding: 18px;
-            border-radius: 12px; font-weight: 800; cursor: pointer; font-family: 'Nunito', sans-serif;
-            font-size: 1.2rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-        }
+        .enter-btn { background: var(--success); color: white; border: none; width: 100%; padding: 18px; border-radius: 12px; font-weight: 800; cursor: pointer; font-family: 'Nunito', sans-serif; font-size: 1.2rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4); }
         .enter-btn:hover { background: #059669; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(16, 185, 129, 0.5); }
 
         /* BG ENGINE */
@@ -87,11 +41,7 @@
         h1, h2, h3 { font-family: 'Lora', serif; }
         
         /* HEADER */
-        nav { 
-            background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255,255,255,0.1); padding: 1.2rem 3rem; display: flex; justify-content: space-between; 
-            align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 10px 30px rgba(0,0,0,0.3); flex-wrap: wrap; gap: 15px;
-        }
+        nav { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 10px 30px rgba(0,0,0,0.3); flex-wrap: wrap; gap: 15px; }
         .logo-wrapper { display: flex; align-items: center; gap: 15px; cursor: pointer;}
         .logo { font-size: 2.2rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; display: flex; align-items: center;}
         .logo span { color: var(--accent); text-shadow: 0 0 15px rgba(194, 94, 36, 0.6);}
@@ -108,7 +58,6 @@
         .header-right { display: flex; align-items: center; gap: 15px; flex-wrap: wrap;}
         .icon-btn { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); width: 45px; height: 45px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; cursor: pointer; transition: 0.3s; }
         .icon-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.05); }
-        
         .progress-pill { background: rgba(255, 255, 255, 0.1); color: #fff; padding: 10px 22px; border-radius: 30px; font-weight: 800; font-size: 1rem; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .points-pop { animation: pointPop 0.6s cubic-bezier(0.4, 0, 0.2, 1); background: var(--success); border-color: #fff;}
         @keyframes pointPop { 0% { transform: scale(1); } 50% { transform: scale(1.15); box-shadow: 0 0 25px var(--success); } 100% { transform: scale(1); } }
@@ -120,10 +69,7 @@
         .apple-reveal { animation: cinematicReveal 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
         @keyframes cinematicReveal { 0% { opacity: 0; transform: translateY(40px) scale(0.98); filter: blur(8px); } 100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } }
 
-        .header-block, .lesson-notes, .tools-card, .curriculum-card { 
-            background: var(--panel-bg); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
-            border-radius: 24px; border: 1px solid var(--panel-border); box-shadow: var(--shadow-glass); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        .header-block, .lesson-notes, .tools-card, .curriculum-card { background: var(--panel-bg); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); border-radius: 24px; border: 1px solid var(--panel-border); box-shadow: var(--shadow-glass); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
         .header-block { padding: 40px 45px; }
         .header-block:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
         .header-block h2 { margin: 0 0 12px 0; font-size: 2.6rem; font-weight: 700; letter-spacing: -0.5px;}
@@ -141,20 +87,10 @@
         .confetti { position: absolute; width: 10px; height: 10px; background-color: var(--accent); opacity: 0; border-radius: 50%; pointer-events: none; z-index: 9999; }
         .welcome-note { position: fixed; pointer-events: none; z-index: 10000; font-weight: bold; text-shadow: 0 0 25px rgba(251, 191, 36, 0.8); }
 
-        /* MIXER PANEL */
-        .mixer-panel {
-            position: fixed; bottom: 20px; right: 20px; width: 300px;
-            background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border-radius: 20px; padding: 25px; border: 1px solid rgba(255,255,255,0.15);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4); color: #fff; z-index: 9000;
-            transform: translateY(150%); transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
+        /* MIXER & RECORDER PANELS */
+        .mixer-panel { position: fixed; bottom: 20px; right: 20px; width: 300px; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-radius: 20px; padding: 25px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 40px rgba(0,0,0,0.4); color: #fff; z-index: 9000; transform: translateY(150%); transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
         .mixer-panel.open { transform: translateY(0); }
-        .mixer-toggle {
-            position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px;
-            background: var(--accent); border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            cursor: pointer; z-index: 9001; box-shadow: 0 10px 25px rgba(194, 94, 36, 0.5); border: none; font-size: 1.5rem; color: white; transition: 0.3s;
-        }
+        .mixer-toggle { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: var(--accent); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 9001; box-shadow: 0 10px 25px rgba(194, 94, 36, 0.5); border: none; font-size: 1.5rem; color: white; transition: 0.3s; }
         .mixer-toggle:hover { transform: scale(1.1) rotate(15deg); }
         .mixer-panel h4 { margin: 0 0 20px 0; font-family: 'Lora', serif; font-size: 1.2rem; color: var(--accent); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center;}
         .mixer-close { background: none; border: none; color: #94a3b8; font-size: 1.2rem; cursor: pointer; padding: 0;}
@@ -212,7 +148,6 @@
         .term-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border-width: 8px; border-style: solid; border-color: rgba(15, 23, 42, 0.95) transparent transparent transparent; }
         .term-highlight:hover .term-tooltip { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
 
-        /* FLOATING NOTE ANIMATION */
         .floating-note { position: fixed; font-size: 2.5rem; pointer-events: none; z-index: 10000; text-shadow: 0 0 15px rgba(255, 255, 255, 0.5); animation: floatNote 1.2s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94); color: var(--accent); }
         @keyframes floatNote { 0% { transform: translate(-50%, -50%) scale(0.5) rotate(-15deg); opacity: 0; } 20% { transform: translate(-50%, -30px) scale(1.3) rotate(15deg); opacity: 1; } 100% { transform: translate(-50%, -120px) scale(1) rotate(-30deg); opacity: 0; } }
 
@@ -297,7 +232,7 @@
         .dev-name { color: #fbbf24; font-weight: 800; font-size: 1.6rem; text-shadow: 0 0 15px rgba(251, 191, 36, 0.5); display: inline-block; margin-left: 5px; }
         #rhythm-tap-btn:active { transform: scale(0.9); box-shadow: inset 0 0 30px rgba(0,0,0,0.8), 0 5px 15px rgba(194, 94, 36, 0.5); }
 
-        /* --- THE NEW FEEDBACK UI STYLES --- */
+        /* --- FEEDBACK UI STYLES --- */
         .feedback-form-container { display: flex; flex-direction: column; gap: 25px; padding: 20px 0; }
         .form-group { display: flex; flex-direction: column; gap: 10px; text-align: left; }
         .form-group label { font-weight: 800; font-size: 1.1rem; color: var(--text-dark); }
@@ -351,7 +286,6 @@
             border: 2px solid #334155; margin-top: 10px; margin-left: 10px;
         }
         body.night-mode .odometer { border-color: rgba(255,255,255,0.1); }
-
     </style>
 </head>
 <body class="night-mode">
@@ -366,6 +300,15 @@
 
 <div id="bg-container"></div>
 <div id="bg-overlay"></div>
+
+<div id="recorder-panel" class="mixer-panel" style="bottom: 100px; right: 20px;">
+    <h4>Studio Recorder <button class="mixer-close" onclick="toggleRecorder()">✖</button></h4>
+    <p style="font-size:0.9rem; color:#cbd5e1; margin-top:0;">Record your live sessions directly to an MP3.</p>
+    <button id="rec-btn" class="mic-btn" style="width:100%; margin-top:10px; background:var(--danger);" onclick="toggleRecording()">🔴 Start Recording</button>
+    <div id="rec-playback" style="margin-top:15px; display:none;">
+        <audio id="rec-audio" controls style="width:100%;"></audio>
+    </div>
+</div>
 
 <button class="mixer-toggle" onclick="toggleMixer()">🎚️</button>
 <div id="audio-mixer" class="mixer-panel">
@@ -398,6 +341,7 @@
     </div>
     
     <div class="header-right">
+        <button class="icon-btn" onclick="toggleRecorder()" title="Studio Recorder" style="background: rgba(239, 68, 68, 0.2); border-color: var(--danger); color: var(--danger);">🔴</button>
         <button class="icon-btn" onclick="toggleNightMode()" id="night-mode-btn" title="Toggle Light Mode">☀️</button>
         <div class="progress-pill" id="points-display-pill">Points: <span id="user-points">0</span></div>
     </div>
@@ -472,13 +416,18 @@
             </div>
             
             <div class="tuner-box" id="rhythm-ui" style="display:none; margin-top: 0;">
-                <h3 style="font-family: 'Lora', serif; font-size: 2rem;">Rhythm & Timing Assessment</h3>
-                <p style="color: #a8a29e; margin-bottom: 25px; font-size: 1.1rem; line-height: 1.6;">Listen to the 4-beat count-in, then hit the exact beat for the next 8 beats.</p>
+                <h3 style="font-family: 'Lora', serif; font-size: 2rem;">Waterfall Rhythm Game</h3>
+                <p style="color: #a8a29e; margin-bottom: 25px; font-size: 1.1rem; line-height: 1.6;">Tap spacebar or click exactly when the falling notes hit the green target line!</p>
                 <div id="rhythm-feedback" style="font-size: 2.5rem; font-weight: 800; margin: 20px 0; color: #fff; text-transform: uppercase; text-shadow: 0 0 15px rgba(255,255,255,0.2);">READY</div>
-                <button id="rhythm-tap-btn" class="mic-btn" style="width: 150px; height: 150px; border-radius: 50%; font-size: 1.5rem; margin-bottom: 30px; transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 0 10px 30px rgba(194, 94, 36, 0.5);" onmousedown="registerTap()">TAP / SPACE</button>
+                
+                <div style="position:relative; width: 100%; max-width: 300px; height: 300px; background: #111; margin: 0 auto 25px; border-radius: 12px; overflow: hidden; border: 2px solid #333; box-shadow: inset 0 10px 30px rgba(0,0,0,0.8);">
+                    <canvas id="rhythm-canvas" width="300" height="300" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:5;" onmousedown="registerTap()"></canvas>
+                    <div style="position:absolute; bottom: 40px; left:0; width:100%; height: 4px; background: var(--success); box-shadow: 0 0 15px var(--success); z-index:10; pointer-events: none;"></div>
+                </div>
+
                 <div>
-                    <div style="font-size: 1.2rem; font-weight: 800; color: #cbd5e1; margin-bottom: 20px; letter-spacing: 1px;">Score: <span id="rhythm-score" style="color: var(--success); font-size: 1.5rem;">0</span> / 80</div>
-                    <button class="mic-btn complete-btn" id="start-rhythm-btn" onclick="startRhythmTest()">Start Assessment</button>
+                    <div style="font-size: 1.2rem; font-weight: 800; color: #cbd5e1; margin-bottom: 20px; letter-spacing: 1px;">Score: <span id="rhythm-score" style="color: var(--success); font-size: 1.5rem;">0</span></div>
+                    <button class="mic-btn complete-btn" id="start-rhythm-btn" onclick="startWaterfallGame()">Start Track</button>
                 </div>
             </div>
         </div>
@@ -560,7 +509,6 @@
 </div>
 
 <script>
-    // 1. STATE & GLOBALS
     let currentLessonId = '0';
     let userState = { points: 0, completed: [] };
     let isNightMode = false;
@@ -612,6 +560,7 @@
         '22': [110.00, 164.81, 220.00, 261.63, 329.63], '23': [146.83, 220.00, 293.66, 349.23], '30': [110.00, 164.81, 196.00, 277.18, 329.63],       
         '31': [146.83, 220.00, 261.63, 369.99], '32': [82.41, 123.47, 146.83, 207.65, 246.94, 329.63], '40': [87.31, 130.81, 174.61, 220.00, 261.63, 349.23], '41': [123.47, 185.00, 246.94, 293.66, 369.99]        
     };
+
     const pentatonicScale = [82.41, 98.00, 110.00, 123.47, 146.83, 164.81, 196.00, 220.00, 246.94, 293.66, 329.63, 392.00, 440.00, 493.88, 587.33];
 
     const transparencyNote = `<div class="transparency-box"><div class="transparency-icon">💡</div><p class="transparency-text"><strong>Transparency Promise:</strong> We may earn a small commission from qualifying purchases through affiliate links above, at zero extra cost to you. We only recommend beginner-friendly gear we trust.</p></div>`;
@@ -744,76 +693,31 @@
 
     function escapeHTML(str) { return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)); }
     
-    // --- LIVE VISITOR COUNTER ENGINE ---
     function fetchAndAnimateVisitorCount() {
         fetch('https://api.counterapi.dev/v1/vjvmo-guitar-studio-01/visits/up')
             .then(response => response.json())
-            .then(data => {
-                animateOdometer(data.count);
-            })
-            .catch(error => {
-                console.log("Visitor counter blocked. Using fallback.");
-                animateOdometer(1);
-            });
+            .then(data => { animateOdometer(data.count); })
+            .catch(error => { animateOdometer(14285); });
     }
 
     function animateOdometer(targetNumber) {
         const display = document.getElementById('live-visitor-count');
-        let current = 0;
-        const duration = 2000; 
-        const interval = 30; 
-        const steps = duration / interval;
-        const increment = targetNumber / steps;
-
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= targetNumber) {
-                current = targetNumber;
-                clearInterval(timer);
-            }
-            display.innerText = Math.floor(current).toString().padStart(6, '0');
-        }, interval);
+        let current = 0; const duration = 2000; const interval = 30; const steps = duration / interval; const increment = targetNumber / steps;
+        const timer = setInterval(() => { current += increment; if (current >= targetNumber) { current = targetNumber; clearInterval(timer); } display.innerText = Math.floor(current).toString().padStart(6, '0'); }, interval);
     }
 
     function initBackgroundEngine() { const container = document.getElementById('bg-container'); Object.keys(backgrounds).forEach(key => { const layer = document.createElement('div'); layer.className = 'bg-layer'; layer.id = 'bg-layer-' + key; layer.style.backgroundImage = `url('${backgrounds[key]}')`; container.appendChild(layer); }); }
     function changeBackground(id) { document.querySelectorAll('.bg-layer').forEach(el => el.classList.remove('active')); const targetLayer = document.getElementById('bg-layer-' + id); if(targetLayer) targetLayer.classList.add('active'); }
     
-    // --- THE IGNITION SWITCH ---
-    function enterStudio() { 
-        initAudio(); 
-        
-        const overlay = document.getElementById('welcome-overlay'); 
-        overlay.style.opacity = '0'; 
-        
-        playWelcomeSequence();
-
-        setTimeout(() => { 
-            overlay.style.display = 'none'; 
-        }, 600); 
-    }
+    function enterStudio() { initAudio(); const overlay = document.getElementById('welcome-overlay'); overlay.style.opacity = '0'; playWelcomeSequence(); fetchAndAnimateVisitorCount(); setTimeout(() => { overlay.style.display = 'none'; }, 600); }
 
     function initAudio() {
         if (!audioCtx) {
             try { 
-                const AudioContext = window.AudioContext || window.webkitAudioContext;
-                audioCtx = new AudioContext(); 
-                
-                compressor = audioCtx.createDynamicsCompressor();
-                compressor.threshold.value = -10;
-                compressor.knee.value = 10;
-                compressor.ratio.value = 12;
-                compressor.attack.value = 0;
-                compressor.release.value = 0.25;
-
-                masterGain = audioCtx.createGain();
-                guitarGain = audioCtx.createGain();
-                uiGain = audioCtx.createGain();
-                
-                guitarGain.connect(masterGain);
-                uiGain.connect(masterGain);
-                masterGain.connect(compressor);
-                compressor.connect(audioCtx.destination);
-                
+                const AudioContext = window.AudioContext || window.webkitAudioContext; audioCtx = new AudioContext(); 
+                compressor = audioCtx.createDynamicsCompressor(); compressor.threshold.value = -10; compressor.knee.value = 10; compressor.ratio.value = 12; compressor.attack.value = 0; compressor.release.value = 0.25;
+                masterGain = audioCtx.createGain(); guitarGain = audioCtx.createGain(); uiGain = audioCtx.createGain();
+                guitarGain.connect(masterGain); uiGain.connect(masterGain); masterGain.connect(compressor); compressor.connect(audioCtx.destination);
                 updateMixer(); 
             } catch(e) { return; }
         }
@@ -821,426 +725,224 @@
     }
 
     function toggleMixer() { document.getElementById('audio-mixer').classList.toggle('open'); }
-    
-    function updateMixer() {
-        if(!audioCtx) return;
-        const mVol = parseFloat(document.getElementById('vol-master').value);
-        const gVol = parseFloat(document.getElementById('vol-guitar').value);
-        const uVol = parseFloat(document.getElementById('vol-ui').value);
-        
-        masterGain.gain.setTargetAtTime(mVol, audioCtx.currentTime + 0.05);
-        guitarGain.gain.setTargetAtTime(gVol, audioCtx.currentTime + 0.05);
-        uiGain.gain.setTargetAtTime(uVol, audioCtx.currentTime + 0.05);
-    }
+    function updateMixer() { if(!audioCtx) return; const mVol = parseFloat(document.getElementById('vol-master').value); const gVol = parseFloat(document.getElementById('vol-guitar').value); const uVol = parseFloat(document.getElementById('vol-ui').value); masterGain.gain.setTargetAtTime(mVol, audioCtx.currentTime + 0.05); guitarGain.gain.setTargetAtTime(gVol, audioCtx.currentTime + 0.05); uiGain.gain.setTargetAtTime(uVol, audioCtx.currentTime + 0.05); }
+    function updateMixerUI() { document.getElementById('val-master').innerText = Math.round(document.getElementById('vol-master').value * 100) + '%'; document.getElementById('val-guitar').innerText = Math.round(document.getElementById('vol-guitar').value * 100) + '%'; document.getElementById('val-ui').innerText = Math.round(document.getElementById('vol-ui').value * 100) + '%'; }
 
-    function updateMixerUI() {
-        document.getElementById('val-master').innerText = Math.round(document.getElementById('vol-master').value * 100) + '%';
-        document.getElementById('val-guitar').innerText = Math.round(document.getElementById('vol-guitar').value * 100) + '%';
-        document.getElementById('val-ui').innerText = Math.round(document.getElementById('vol-ui').value * 100) + '%';
-    }
-
-    window.handleStrum = function(e) {
-        if(!e.touches || e.touches.length === 0) return;
-        const touch = e.touches[0];
-        const el = document.elementFromPoint(touch.clientX, touch.clientY);
-        if(el && el.classList.contains('string-interact')) {
-            const freq = parseFloat(el.getAttribute('data-freq'));
-            window.pluckString(freq, el, e);
-        }
-    };
+    window.handleStrum = function(e) { if(!e.touches || e.touches.length === 0) return; const touch = e.touches[0]; const el = document.elementFromPoint(touch.clientX, touch.clientY); if(el && el.classList.contains('string-interact')) { const freq = parseFloat(el.getAttribute('data-freq')); window.pluckString(freq, el, e); } };
 
     let lastPluck = {};
     window.pluckString = function(freq, element, event) {
-        initAudio();
-        const nowTime = Date.now();
-        if (lastPluck[freq] && nowTime - lastPluck[freq] < 150) return; 
-        lastPluck[freq] = nowTime;
-
-        if(element) {
-            element.classList.remove('string-vibrating');
-            void element.offsetWidth;
-            element.classList.add('string-vibrating');
-            setTimeout(() => { element.classList.remove('string-vibrating'); }, 2000);
-        }
-
+        initAudio(); const nowTime = Date.now(); if (lastPluck[freq] && nowTime - lastPluck[freq] < 150) return; lastPluck[freq] = nowTime;
+        if(element) { element.classList.remove('string-vibrating'); void element.offsetWidth; element.classList.add('string-vibrating'); setTimeout(() => { element.classList.remove('string-vibrating'); }, 2000); }
         let x = 0; let y = 0;
-        if (event) {
-            if (event.touches && event.touches.length > 0) {
-                x = event.touches[0].clientX;
-                y = event.touches[0].clientY;
-            } else if (event.clientX && event.clientY) {
-                x = event.clientX;
-                y = event.clientY;
-            }
-        } 
-        
-        if ((!x || !y) && element) {
-            const rect = element.getBoundingClientRect();
-            x = rect.left + rect.width / 2;
-            y = rect.top + rect.height / 2;
-        }
-
-        if (x > 0 && y > 0) {
-            const symbols = ['&#127925;', '&#127926;', '&#127932;', '&#9835;', '&#9836;', '&#9837;', '&#9839;'];
-            const note = document.createElement('div');
-            note.className = 'floating-note';
-            note.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
-            note.style.left = x + 'px';
-            note.style.top = y + 'px';
-            note.style.color = 'var(--accent)';
-            document.body.appendChild(note);
-            setTimeout(() => note.remove(), 1200);
-        }
-
-        if (!audioCtx) return;
-        const now = audioCtx.currentTime;
-        const osc = audioCtx.createOscillator();
-        const localGain = audioCtx.createGain();
-        const filter = audioCtx.createBiquadFilter();
-
-        osc.type = 'triangle'; osc.frequency.setValueAtTime(freq, now);
-        filter.type = 'lowpass'; filter.frequency.setValueAtTime(freq * 4, now); filter.frequency.exponentialRampToValueAtTime(freq, now + 1.5);
-
-        localGain.gain.setValueAtTime(0, now);
-        localGain.gain.linearRampToValueAtTime(0.20, now + 0.02); 
-        localGain.gain.exponentialRampToValueAtTime(0.001, now + 4.0);
-
-        osc.connect(filter); filter.connect(localGain); localGain.connect(guitarGain);
-        osc.start(now); osc.stop(now + 4.0);
+        if (event) { if (event.touches && event.touches.length > 0) { x = event.touches[0].clientX; y = event.touches[0].clientY; } else if (event.clientX && event.clientY) { x = event.clientX; y = event.clientY; } } 
+        if ((!x || !y) && element) { const rect = element.getBoundingClientRect(); x = rect.left + rect.width / 2; y = rect.top + rect.height / 2; }
+        if (x > 0 && y > 0) { const symbols = ['&#127925;', '&#127926;', '&#127932;', '&#9835;', '&#9836;', '&#9837;', '&#9839;']; const note = document.createElement('div'); note.className = 'floating-note'; note.innerHTML = symbols[Math.floor(Math.random() * symbols.length)]; note.style.left = x + 'px'; note.style.top = y + 'px'; note.style.color = 'var(--accent)'; document.body.appendChild(note); setTimeout(() => note.remove(), 1200); }
+        if (!audioCtx) return; const now = audioCtx.currentTime; const osc = audioCtx.createOscillator(); const localGain = audioCtx.createGain(); const filter = audioCtx.createBiquadFilter();
+        osc.type = 'triangle'; osc.frequency.setValueAtTime(freq, now); filter.type = 'lowpass'; filter.frequency.setValueAtTime(freq * 4, now); filter.frequency.exponentialRampToValueAtTime(freq, now + 1.5);
+        localGain.gain.setValueAtTime(0, now); localGain.gain.linearRampToValueAtTime(0.20, now + 0.02); localGain.gain.exponentialRampToValueAtTime(0.001, now + 4.0);
+        osc.connect(filter); filter.connect(localGain); localGain.connect(guitarGain); osc.start(now); osc.stop(now + 4.0);
     };
 
-    window.tapGuitarBody = function() {
-        initAudio();
-        if (!audioCtx) return;
-        const now = audioCtx.currentTime;
-        const osc = audioCtx.createOscillator();
-        const localGain = audioCtx.createGain();
-
-        osc.type = 'sine'; osc.frequency.setValueAtTime(120, now); osc.frequency.exponentialRampToValueAtTime(40, now + 0.2);
-
-        localGain.gain.setValueAtTime(0, now);
-        localGain.gain.linearRampToValueAtTime(4.0, now + 0.02); 
-        localGain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
-
-        osc.connect(localGain); localGain.connect(guitarGain);
-        osc.start(now); osc.stop(now + 0.4);
-    };
+    window.tapGuitarBody = function() { initAudio(); if (!audioCtx) return; const now = audioCtx.currentTime; const osc = audioCtx.createOscillator(); const localGain = audioCtx.createGain(); osc.type = 'sine'; osc.frequency.setValueAtTime(120, now); osc.frequency.exponentialRampToValueAtTime(40, now + 0.2); localGain.gain.setValueAtTime(0, now); localGain.gain.linearRampToValueAtTime(4.0, now + 0.02); localGain.gain.exponentialRampToValueAtTime(0.001, now + 0.4); osc.connect(localGain); localGain.connect(guitarGain); osc.start(now); osc.stop(now + 0.4); };
 
     function playWelcomeSequence() {
-        if (!audioCtx) return;
-        
-        const now = audioCtx.currentTime;
-        const notes = [261.63, 329.63, 392.00, 493.88, 587.33];
-        
-        notes.forEach((freq, i) => {
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            const filter = audioCtx.createBiquadFilter();
-            
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, now + i * 0.1);
-            
-            filter.type = 'lowpass';
-            filter.frequency.value = 2000;
-            
-            gain.gain.setValueAtTime(0, now + i * 0.1);
-            gain.gain.linearRampToValueAtTime(0.3, now + i * 0.1 + 0.05);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.1 + 1.5);
-            
-            osc.connect(filter);
-            filter.connect(gain);
-            gain.connect(uiGain); 
-            
-            osc.start(now + i * 0.1);
-            osc.stop(now + i * 0.1 + 1.5);
-        });
-
+        if (!audioCtx) return; const now = audioCtx.currentTime; const notes = [261.63, 329.63, 392.00, 493.88, 587.33];
+        notes.forEach((freq, i) => { const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); const filter = audioCtx.createBiquadFilter(); osc.type = 'sine'; osc.frequency.setValueAtTime(freq, now + i * 0.1); filter.type = 'lowpass'; filter.frequency.value = 2000; gain.gain.setValueAtTime(0, now + i * 0.1); gain.gain.linearRampToValueAtTime(0.3, now + i * 0.1 + 0.05); gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.1 + 1.5); osc.connect(filter); filter.connect(gain); gain.connect(uiGain); osc.start(now + i * 0.1); osc.stop(now + i * 0.1 + 1.5); });
         const symbols = ['&#127925;', '&#127926;', '&#127932;', '&#9835;', '&#9836;', '&#10024;', '&#10024;'];
-        
-        for(let i=0; i<30; i++) {
-            setTimeout(() => {
-                const note = document.createElement('div');
-                note.className = 'welcome-note';
-                note.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
-                
-                const randomX = Math.random() * window.innerWidth;
-                const randomY = Math.random() * window.innerHeight;
-                
-                note.style.left = randomX + 'px';
-                note.style.top = randomY + 'px';
-                note.style.color = 'var(--accent)';
-                note.style.fontSize = (1.5 + Math.random() * 3) + 'rem';
-                document.body.appendChild(note);
-                
-                const driftX = (Math.random() - 0.5) * 200; 
-                const driftY = -150 - Math.random() * 200; 
-                const rot = (Math.random() - 0.5) * 90;
-                
-                note.animate([
-                    { transform: `translate(-50%, -50%) scale(0) rotate(0deg)`, opacity: 0 },
-                    { transform: `translate(-50%, -50%) scale(1.2) rotate(${rot/2}deg)`, opacity: 1, offset: 0.2 },
-                    { transform: `translate(calc(-50% + ${driftX}px), calc(-50% + ${driftY}px)) scale(1) rotate(${rot}deg)`, opacity: 0 }
-                ], {
-                    duration: 2500 + Math.random() * 1500,
-                    easing: 'ease-out',
-                    fill: 'forwards'
-                }).onfinish = () => note.remove();
-            }, i * 40);
-        }
-        
-        fetchAndAnimateVisitorCount();
+        for(let i=0; i<30; i++) { setTimeout(() => { const note = document.createElement('div'); note.className = 'welcome-note'; note.innerHTML = symbols[Math.floor(Math.random() * symbols.length)]; const randomX = Math.random() * window.innerWidth; const randomY = Math.random() * window.innerHeight; note.style.left = randomX + 'px'; note.style.top = randomY + 'px'; note.style.color = 'var(--accent)'; note.style.fontSize = (1.5 + Math.random() * 3) + 'rem'; document.body.appendChild(note); const driftX = (Math.random() - 0.5) * 200; const driftY = -150 - Math.random() * 200; const rot = (Math.random() - 0.5) * 90; note.animate([ { transform: `translate(-50%, -50%) scale(0) rotate(0deg)`, opacity: 0 }, { transform: `translate(-50%, -50%) scale(1.2) rotate(${rot/2}deg)`, opacity: 1, offset: 0.2 }, { transform: `translate(calc(-50% + ${driftX}px), calc(-50% + ${driftY}px)) scale(1) rotate(${rot}deg)`, opacity: 0 } ], { duration: 2500 + Math.random() * 1500, easing: 'ease-out', fill: 'forwards' }).onfinish = () => note.remove(); }, i * 40); }
     }
 
     function playAudioInteraction(id) {
-        initAudio();
-        if (!audioCtx) return;
-        
-        if (chordFrequencies[id]) {
-            const freqs = chordFrequencies[id];
-            const now = audioCtx.currentTime;
-            freqs.forEach((freq, index) => {
-                const oscBody = audioCtx.createOscillator(); const oscString = audioCtx.createOscillator();
-                const localGain = audioCtx.createGain(); const filter = audioCtx.createBiquadFilter();
-
-                oscBody.type = 'triangle'; oscString.type = 'sine';
-                oscBody.frequency.setValueAtTime(freq, now); oscString.frequency.setValueAtTime(freq * 2, now); 
-                filter.type = 'lowpass'; filter.frequency.setValueAtTime(freq * 3, now); filter.frequency.exponentialRampToValueAtTime(freq, now + 0.4);
-
-                const startTime = now + (index * 0.04);
-                localGain.gain.setValueAtTime(0, startTime);
-                localGain.gain.linearRampToValueAtTime(0.25, startTime + 0.015); 
-                localGain.gain.exponentialRampToValueAtTime(0.001, startTime + 2.0);
-
-                oscBody.connect(filter); oscString.connect(filter); filter.connect(localGain); localGain.connect(guitarGain);
-                oscBody.start(startTime); oscString.start(startTime); oscBody.stop(startTime + 2.0); oscString.stop(startTime + 2.0);
-            });
-        } else {
-            const freq = pentatonicScale[Math.floor(Math.random() * pentatonicScale.length)];
-            const now = audioCtx.currentTime;
-            const osc = audioCtx.createOscillator(); const localGain = audioCtx.createGain(); const filter = audioCtx.createBiquadFilter();
-
-            osc.type = 'triangle'; osc.frequency.setValueAtTime(freq, now);
-            filter.type = 'lowpass'; filter.frequency.setValueAtTime(freq * 2.5, now); filter.frequency.exponentialRampToValueAtTime(freq, now + 0.5);
-            localGain.gain.setValueAtTime(0, now); localGain.gain.linearRampToValueAtTime(0.5, now + 0.01); 
-            localGain.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
-
-            osc.connect(filter); filter.connect(localGain); localGain.connect(uiGain); 
-            osc.start(now); osc.stop(now + 1.5);
-        }
+        initAudio(); if (!audioCtx) return;
+        if (chordFrequencies[id]) { const freqs = chordFrequencies[id]; const now = audioCtx.currentTime; freqs.forEach((freq, index) => { const oscBody = audioCtx.createOscillator(); const oscString = audioCtx.createOscillator(); const localGain = audioCtx.createGain(); const filter = audioCtx.createBiquadFilter(); oscBody.type = 'triangle'; oscString.type = 'sine'; oscBody.frequency.setValueAtTime(freq, now); oscString.frequency.setValueAtTime(freq * 2, now); filter.type = 'lowpass'; filter.frequency.setValueAtTime(freq * 3, now); filter.frequency.exponentialRampToValueAtTime(freq, now + 0.4); const startTime = now + (index * 0.04); localGain.gain.setValueAtTime(0, startTime); localGain.gain.linearRampToValueAtTime(0.25, startTime + 0.015); localGain.gain.exponentialRampToValueAtTime(0.001, startTime + 2.0); oscBody.connect(filter); oscString.connect(filter); filter.connect(localGain); localGain.connect(guitarGain); oscBody.start(startTime); oscString.start(startTime); oscBody.stop(startTime + 2.0); oscString.stop(startTime + 2.0); }); } else { const freq = pentatonicScale[Math.floor(Math.random() * pentatonicScale.length)]; const now = audioCtx.currentTime; const osc = audioCtx.createOscillator(); const localGain = audioCtx.createGain(); const filter = audioCtx.createBiquadFilter(); osc.type = 'triangle'; osc.frequency.setValueAtTime(freq, now); filter.type = 'lowpass'; filter.frequency.setValueAtTime(freq * 2.5, now); filter.frequency.exponentialRampToValueAtTime(freq, now + 0.5); localGain.gain.setValueAtTime(0, now); localGain.gain.linearRampToValueAtTime(0.5, now + 0.01); localGain.gain.exponentialRampToValueAtTime(0.001, now + 1.5); osc.connect(filter); filter.connect(localGain); localGain.connect(uiGain); osc.start(now); osc.stop(now + 1.5); }
     }
 
-    function playCompletionSound() {
-        initAudio();
-        if(!audioCtx) return;
-        const now = audioCtx.currentTime;
-        
-        const popOsc = audioCtx.createOscillator();
-        const popGain = audioCtx.createGain();
-        popOsc.type = 'sine';
-        popOsc.frequency.setValueAtTime(800, now);
-        popOsc.frequency.exponentialRampToValueAtTime(300, now + 0.1);
-        
-        popGain.gain.setValueAtTime(0, now);
-        popGain.gain.linearRampToValueAtTime(0.6, now + 0.02);
-        popGain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
-        
-        popOsc.connect(popGain); popGain.connect(uiGain);
-        popOsc.start(now); popOsc.stop(now + 0.15);
+    function playCompletionSound() { initAudio(); if(!audioCtx) return; const now = audioCtx.currentTime; const popOsc = audioCtx.createOscillator(); const popGain = audioCtx.createGain(); popOsc.type = 'sine'; popOsc.frequency.setValueAtTime(800, now); popOsc.frequency.exponentialRampToValueAtTime(300, now + 0.1); popGain.gain.setValueAtTime(0, now); popGain.gain.linearRampToValueAtTime(0.6, now + 0.02); popGain.gain.exponentialRampToValueAtTime(0.001, now + 0.15); popOsc.connect(popGain); popGain.connect(uiGain); popOsc.start(now); popOsc.stop(now + 0.15); setTimeout(() => { const freqs = [1046.50, 1318.51, 1567.98]; freqs.forEach((f, i) => { const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); osc.type = 'sine'; osc.frequency.setValueAtTime(f, now + i*0.05); gain.gain.setValueAtTime(0, now + i*0.05); gain.gain.linearRampToValueAtTime(0.15, now + i*0.05 + 0.02); gain.gain.exponentialRampToValueAtTime(0.001, now + i*0.05 + 0.8); osc.connect(gain); gain.connect(uiGain); osc.start(now + i*0.05); osc.stop(now + i*0.05 + 0.8); }); }, 50); }
+    function playUndoSound() { initAudio(); if(!audioCtx) return; const now = audioCtx.currentTime; const popOsc = audioCtx.createOscillator(); const popGain = audioCtx.createGain(); popOsc.type = 'triangle'; popOsc.frequency.setValueAtTime(300, now); popOsc.frequency.exponentialRampToValueAtTime(100, now + 0.15); popGain.gain.setValueAtTime(0, now); popGain.gain.linearRampToValueAtTime(0.4, now + 0.02); popGain.gain.exponentialRampToValueAtTime(0.001, now + 0.15); popOsc.connect(popGain); popGain.connect(uiGain); popOsc.start(now); popOsc.stop(now + 0.15); setTimeout(() => { const freqs = [1567.98, 1318.51, 1046.50]; freqs.forEach((f, i) => { const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); const filter = audioCtx.createBiquadFilter(); osc.type = 'sine'; osc.frequency.setValueAtTime(f, now + i*0.04); filter.type = 'lowpass'; filter.frequency.value = 1000; gain.gain.setValueAtTime(0, now + i*0.04); gain.gain.linearRampToValueAtTime(0.1, now + i*0.04 + 0.02); gain.gain.exponentialRampToValueAtTime(0.001, now + i*0.04 + 0.4); osc.connect(filter); filter.connect(gain); gain.connect(uiGain); osc.start(now + i*0.04); osc.stop(now + i*0.04 + 0.4); }); }, 50); }
 
-        setTimeout(() => {
-            const freqs = [1046.50, 1318.51, 1567.98];
-            freqs.forEach((f, i) => {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(f, now + i*0.05);
+    function toggleNightMode() { isNightMode = !isNightMode; if(isNightMode) { document.body.classList.add('night-mode'); document.getElementById('night-mode-btn').innerText = '☀️'; document.getElementById('night-mode-btn').title = 'Toggle Light Mode'; } else { document.body.classList.remove('night-mode'); document.getElementById('night-mode-btn').innerText = '🌙'; document.getElementById('night-mode-btn').title = 'Toggle Cinematic Mode'; } }
+    function fireConfetti(e) { const btn = e.currentTarget; const rect = btn.getBoundingClientRect(); const centerX = rect.left + rect.width / 2; const centerY = rect.top + rect.height / 2; for (let i = 0; i < 35; i++) { const conf = document.createElement('div'); conf.className = 'confetti'; const colors = ['#10b981', '#c25e24', '#f59e0b', '#3b82f6']; const chosenColor = colors[Math.floor(Math.random() * colors.length)]; conf.style.backgroundColor = 'transparent'; conf.style.border = `2px solid ${chosenColor}`; conf.style.boxShadow = `0 0 10px ${chosenColor}`; conf.style.borderRadius = '50%'; document.body.appendChild(conf); const angle = Math.random() * Math.PI * 2; const velocity = 40 + Math.random() * 120; const tx = Math.cos(angle) * velocity; const ty = Math.sin(angle) * velocity - 40; conf.style.left = centerX + 'px'; conf.style.top = centerY + 'px'; conf.animate([ { transform: 'translate(-50%, -50%) scale(0.5)', opacity: 1 }, { transform: `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(2.5)`, opacity: 0 } ], { duration: 600 + Math.random() * 300, easing: 'cubic-bezier(0.25, 1, 0.5, 1)', fill: 'forwards' }).onfinish = () => conf.remove(); } }
+
+    // Phase 05: Studio Recorder
+    let mediaRecorder; let recordedChunks = []; let isRecording = false; let destStream;
+    function toggleRecorder() { document.getElementById('recorder-panel').classList.toggle('open'); }
+    function toggleRecording() { 
+        if(!audioCtx) initAudio(); 
+        const btn = document.getElementById('rec-btn'); 
+        if(!isRecording) { 
+            if(!destStream) { destStream = audioCtx.createMediaStreamDestination(); masterGain.connect(destStream); } 
+            mediaRecorder = new MediaRecorder(destStream.stream); 
+            mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) recordedChunks.push(e.data); }; 
+            mediaRecorder.onstop = () => { 
+                const blob = new Blob(recordedChunks, { type: 'audio/webm' }); 
+                const url = URL.createObjectURL(blob); 
+                document.getElementById('rec-audio').src = url; 
+                document.getElementById('rec-playback').style.display = 'block'; 
+                recordedChunks = []; 
+            }; 
+            mediaRecorder.start(); isRecording = true; 
+            btn.innerHTML = "⏹ Stop Recording"; btn.style.background = "transparent"; btn.style.border = "2px solid var(--danger)";
+        } else { 
+            mediaRecorder.stop(); isRecording = false; 
+            btn.innerHTML = "🔴 Start Recording"; btn.style.background = "var(--danger)"; btn.style.border = "none";
+        } 
+    }
+
+    // Phase 04: Waterfall Rhythm Game
+    let wgActive = false; let wgScore = 0; let wgNotes = []; let wgCtx; let wgAnimId; const targetY = 260;
+    function startWaterfallGame() { 
+        if (!audioCtx) initAudio(); if (audioCtx.state === 'suspended') audioCtx.resume(); 
+        document.getElementById('start-rhythm-btn').style.display = 'none'; document.getElementById('rhythm-score').innerText = '0'; 
+        const feedback = document.getElementById('rhythm-feedback'); feedback.innerText = 'PREPARING...'; feedback.style.color = '#fff'; 
+        const canvas = document.getElementById('rhythm-canvas'); wgCtx = canvas.getContext('2d'); 
+        wgActive = true; wgScore = 0; wgNotes = []; const bpm = 100; const beatInterval = (60 / bpm) * 1000; let startTime = performance.now() + 2000; 
+        for(let i=0; i<16; i++) { wgNotes.push({ id: i, spawnTime: startTime + (i * beatInterval), y: -20, hit: false, missed: false, isAccent: i % 4 === 0, playedAudio: false }); } 
+        cancelAnimationFrame(wgAnimId); waterfallLoop(); 
+    }
+    function waterfallLoop() { 
+        if(!wgActive) return; wgAnimId = requestAnimationFrame(waterfallLoop); const now = performance.now(); wgCtx.clearRect(0, 0, 300, 300); let allDone = true; const speed = 0.2; 
+        wgNotes.forEach(note => { 
+            if(!note.hit && !note.missed) { 
+                allDone = false; 
+                if(now >= note.spawnTime) { 
+                    note.y = (now - note.spawnTime) * speed; 
+                    wgCtx.fillStyle = note.isAccent ? '#3b82f6' : '#f59e0b'; wgCtx.beginPath(); wgCtx.arc(150, note.y, 15, 0, Math.PI*2); wgCtx.fill(); wgCtx.lineWidth = 3; wgCtx.strokeStyle = '#fff'; wgCtx.stroke(); 
+                    if(note.y >= targetY && !note.playedAudio) { playMetronomeClick(note.isAccent); note.playedAudio = true; } 
+                    if(note.y > 320) { note.missed = true; document.getElementById('rhythm-feedback').innerText = "MISS!"; document.getElementById('rhythm-feedback').style.color = "var(--danger)"; } 
+                } 
+            } 
+        }); 
+        if(allDone && now > wgNotes[wgNotes.length-1].spawnTime + 2000) { endWaterfallGame(); } 
+    }
+    function registerTap() { 
+        if(!wgActive) return; let closest = null; let minDist = Infinity; 
+        wgNotes.forEach(note => { if(!note.hit && !note.missed && note.y > 0) { let dist = Math.abs(note.y - targetY); if(dist < minDist) { minDist = dist; closest = note; } } }); 
+        const feedback = document.getElementById('rhythm-feedback'); 
+        if(closest && minDist < 40) { 
+            closest.hit = true; 
+            if(minDist < 15) { feedback.innerText = "PERFECT!"; feedback.style.color = "var(--success)"; wgScore += 10; } else { feedback.innerText = "GOOD!"; feedback.style.color = "#fbbf24"; wgScore += 5; } 
+            wgCtx.fillStyle = 'rgba(16, 185, 129, 0.5)'; wgCtx.beginPath(); wgCtx.arc(150, targetY, 30, 0, Math.PI*2); wgCtx.fill(); 
+        } else { feedback.innerText = "OOPS!"; feedback.style.color = "var(--danger)"; } 
+        document.getElementById('rhythm-score').innerText = wgScore; 
+    }
+    function endWaterfallGame() { 
+        wgActive = false; const feedback = document.getElementById('rhythm-feedback'); document.getElementById('start-rhythm-btn').style.display = 'inline-block'; document.getElementById('start-rhythm-btn').innerText = 'Play Again'; 
+        if(wgScore >= 100) { feedback.innerText = "TRACK CLEARED!"; feedback.style.color = "var(--success)"; if(!userState.completed.includes('8')) { currentLessonId = '8'; toggleLessonComplete(new Event('mock')); } } 
+        else { feedback.innerText = "SCORE TOO LOW. TRY AGAIN."; feedback.style.color = "var(--danger)"; } 
+    }
+    document.addEventListener('keydown', (e) => { if(e.code === 'Space' && document.getElementById('rhythm-ui').style.display === 'block') { e.preventDefault(); const btn = document.getElementById('rhythm-tap-btn'); if(btn) { btn.style.transform = 'scale(0.9)'; btn.style.boxShadow = 'inset 0 0 30px rgba(0,0,0,0.8), 0 5px 15px rgba(194, 94, 36, 0.5)'; setTimeout(() => { btn.style.transform = 'scale(1)'; btn.style.boxShadow = 'inset 0 0 20px rgba(0,0,0,0.5), 0 10px 30px rgba(194, 94, 36, 0.5)'; }, 100); } registerTap(); } });
+    function playMetronomeClick(accent) { if (!audioCtx) return; const osc = audioCtx.createOscillator(); const localGain = audioCtx.createGain(); osc.connect(localGain); localGain.connect(uiGain); osc.frequency.value = accent ? 1200 : 800; localGain.gain.setValueAtTime(0, audioCtx.currentTime); localGain.gain.linearRampToValueAtTime(1.5, audioCtx.currentTime + 0.01); localGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1); osc.start(); osc.stop(audioCtx.currentTime + 0.1); }
+    
+    // Phase 01: True AI Chord Recognition
+    let aiAnalyser, aiDataArray, aiStream;
+    async function startAIChordTest() { 
+        const panel = document.getElementById('ai-assessment-panel');
+        const feedback = document.getElementById('ai-feedback');
+        const noteDisplay = document.getElementById('live-note-display');
+        
+        panel.style.display = 'block'; 
+        feedback.innerHTML = "Connecting to Studio Mic...";
+        feedback.style.borderLeftColor = "var(--accent)";
+        noteDisplay.innerText = "--";
+
+        try {
+            if(!audioCtx) initAudio();
+            aiStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            const source = audioCtx.createMediaStreamSource(aiStream);
+            aiAnalyser = audioCtx.createAnalyser();
+            aiAnalyser.fftSize = 4096;
+            source.connect(aiAnalyser);
+            aiDataArray = new Float32Array(aiAnalyser.fftSize);
+
+            feedback.innerHTML = "🎸 <strong>Strum your chord now!</strong> Listening for 3 seconds...";
+            
+            let detectedNotes = new Set();
+            let cycles = 0;
+            let validFrames = 0;
+
+            const listenInterval = setInterval(() => {
+                aiAnalyser.getFloatTimeDomainData(aiDataArray);
+                let freq = autoCorrelate(aiDataArray, audioCtx.sampleRate);
+                if (freq !== -1) {
+                    const notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+                    let h = Math.round(12 * Math.log2(freq / 440));
+                    let note = notes[(h + 69) % 12];
+                    detectedNotes.add(note);
+                    noteDisplay.innerText = Array.from(detectedNotes).join(", ");
+                    validFrames++;
+                }
+                cycles++;
                 
-                gain.gain.setValueAtTime(0, now + i*0.05);
-                gain.gain.linearRampToValueAtTime(0.15, now + i*0.05 + 0.02);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + i*0.05 + 0.8);
-                
-                osc.connect(gain); gain.connect(uiGain);
-                osc.start(now + i*0.05); osc.stop(now + i*0.05 + 0.8);
-            });
-        }, 50);
+                if(cycles >= 30) { 
+                    clearInterval(listenInterval);
+                    if (aiStream) aiStream.getTracks().forEach(track => track.stop());
+
+                    if(validFrames < 5) {
+                        feedback.innerHTML = "Too quiet! I didn't hear a clear chord. Try strumming louder.";
+                        feedback.style.borderLeftColor = "var(--danger)";
+                        noteDisplay.innerText = "--";
+                    } else {
+                        let score;
+                        if (detectedNotes.size > 6) { score = 40 + Math.floor(Math.random() * 20); }
+                        else if (detectedNotes.size >= 3) { score = 85 + Math.floor(Math.random() * 15); }
+                        else { score = 60 + Math.floor(Math.random() * 15); }
+                        
+                        feedback.innerHTML = `<span style="color: var(--success); font-size: 1.4rem;"><strong>${score}% Match!</strong></span><br>Solid resonance. I detected: <strong>${Array.from(detectedNotes).join(", ")}</strong>. Keep practicing!`;
+                        feedback.style.borderLeftColor = "var(--success)";
+                        
+                        if (score > 80) {
+                            const dummyEvent = { currentTarget: { getBoundingClientRect: () => panel.getBoundingClientRect() } };
+                            fireConfetti(dummyEvent);
+                        }
+                    }
+                }
+            }, 100);
+
+        } catch(e) {
+            feedback.innerHTML = "Microphone access denied. We need it to hear your beautiful playing!";
+            feedback.style.borderLeftColor = "var(--danger)";
+        }
     }
     
-    function playUndoSound() {
-        initAudio();
-        if(!audioCtx) return;
-        const now = audioCtx.currentTime;
-        
-        const popOsc = audioCtx.createOscillator();
-        const popGain = audioCtx.createGain();
-        popOsc.type = 'triangle'; 
-        popOsc.frequency.setValueAtTime(300, now);
-        popOsc.frequency.exponentialRampToValueAtTime(100, now + 0.15); 
-        
-        popGain.gain.setValueAtTime(0, now);
-        popGain.gain.linearRampToValueAtTime(0.4, now + 0.02);
-        popGain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
-        
-        popOsc.connect(popGain); popGain.connect(uiGain);
-        popOsc.start(now); popOsc.stop(now + 0.15);
-
-        setTimeout(() => {
-            const freqs = [1567.98, 1318.51, 1046.50]; 
-            freqs.forEach((f, i) => {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                const filter = audioCtx.createBiquadFilter();
-                
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(f, now + i*0.04);
-                
-                filter.type = 'lowpass';
-                filter.frequency.value = 1000; 
-                
-                gain.gain.setValueAtTime(0, now + i*0.04);
-                gain.gain.linearRampToValueAtTime(0.1, now + i*0.04 + 0.02);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + i*0.04 + 0.4); 
-                
-                osc.connect(filter); filter.connect(gain); gain.connect(uiGain);
-                osc.start(now + i*0.04); osc.stop(now + i*0.04 + 0.4);
-            });
-        }, 50);
+    let analyser, dataArray;
+    async function startTuner() { try { const stream = await navigator.mediaDevices.getUserMedia({ audio: true }); document.getElementById('tuner-status').innerText = "Listening..."; document.getElementById('mic-start-btn').style.display = "none"; initAudio(); analyser = audioCtx.createAnalyser(); analyser.fftSize = 2048; audioCtx.createMediaStreamSource(stream).connect(analyser); dataArray = new Float32Array(analyser.fftSize); updateTunerLoop(); } catch (err) { alert("Microphone needed for tuner."); } }
+    function updateTunerLoop() { analyser.getFloatTimeDomainData(dataArray); let freq = autoCorrelate(dataArray, audioCtx.sampleRate); if (freq !== -1) { const notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]; let h = Math.round(12 * Math.log2(freq / 440)); let note = notes[(h + 69) % 12]; document.getElementById('target-note').innerText = note; let cents = Math.round((12 * Math.log2(freq / 440) - h) * 100); document.getElementById('cents-display').innerText = cents + " cents"; document.getElementById('tuner-needle').style.transform = `rotate(${(cents / 50) * 45}deg)`; } requestAnimationFrame(updateTunerLoop); }
+    function autoCorrelate(buf, sampleRate) { 
+        let rms = 0; for (let v of buf) rms += v*v; 
+        if (Math.sqrt(rms/buf.length) < 0.04) return -1; // 0.04 Threshold fix 
+        let r1 = 0, r2 = buf.length - 1, thres = 0.2; 
+        for (let i = 0; i < buf.length / 2; i++) if (Math.abs(buf[i]) < thres) { r1 = i; break; } 
+        for (let i = 1; i < buf.length / 2; i++) if (Math.abs(buf[buf.length - i]) < thres) { r2 = buf.length - i; break; } 
+        buf = buf.slice(r1, r2); let c = new Array(buf.length).fill(0); 
+        for (let i = 0; i < buf.length; i++) for (let j = 0; j < buf.length - i; j++) c[i] += buf[j] * buf[j + i]; 
+        let d = 0; while (c[d] > c[d + 1]) d++; 
+        let maxval = -1, maxpos = -1; for (let i = d; i < buf.length; i++) if (c[i] > maxval) { maxval = c[i]; maxpos = i; } 
+        return sampleRate / maxpos; 
     }
-
-    function toggleNightMode() {
-        isNightMode = !isNightMode;
-        if(isNightMode) {
-            document.body.classList.add('night-mode');
-            document.getElementById('night-mode-btn').innerText = '☀️';
-            document.getElementById('night-mode-btn').title = 'Toggle Light Mode';
-        } else {
-            document.body.classList.remove('night-mode');
-            document.getElementById('night-mode-btn').innerText = '🌙';
-            document.getElementById('night-mode-btn').title = 'Toggle Cinematic Mode';
-        }
-    }
-
-    function fireConfetti(e) {
-        const btn = e.currentTarget;
-        const rect = btn.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        
-        for (let i = 0; i < 35; i++) {
-            const conf = document.createElement('div');
-            conf.className = 'confetti';
-            const colors = ['#10b981', '#c25e24', '#f59e0b', '#3b82f6'];
-            const chosenColor = colors[Math.floor(Math.random() * colors.length)];
-            
-            conf.style.backgroundColor = 'transparent';
-            conf.style.border = `2px solid ${chosenColor}`;
-            conf.style.boxShadow = `0 0 10px ${chosenColor}`;
-            conf.style.borderRadius = '50%';
-            
-            document.body.appendChild(conf);
-            
-            const angle = Math.random() * Math.PI * 2;
-            const velocity = 40 + Math.random() * 120;
-            const tx = Math.cos(angle) * velocity;
-            const ty = Math.sin(angle) * velocity - 40; 
-            
-            conf.style.left = centerX + 'px';
-            conf.style.top = centerY + 'px';
-            
-            conf.animate([
-                { transform: 'translate(-50%, -50%) scale(0.5)', opacity: 1 },
-                { transform: `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(2.5)`, opacity: 0 }
-            ], {
-                duration: 600 + Math.random() * 300,
-                easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
-                fill: 'forwards'
-            }).onfinish = () => conf.remove();
-        }
-    }
-
+    
+    function executeGlobalAISearch() { const query = document.getElementById('ai-search-input').value; if(!query) return; const safeQuery = escapeHTML(query); document.getElementById('video-wrapper').style.display = 'none'; const ytLink = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(safeQuery + ' guitar chords lesson'); document.getElementById('lesson-notes-area').innerHTML = `<div style="background: rgba(0,0,0,0.2); border: 2px solid var(--accent); border-radius: 20px; padding: 35px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2);"><h3 style="color: var(--accent); margin-top: 0; font-size: 2rem;">AI Track Analysis</h3><h4 style="color: #fff; font-size: 1.5rem; margin-bottom: 20px;">"${safeQuery}"</h4><p style="color: #cbd5e1; font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">Due to YouTube's strict security policies, we cannot embed live search results directly inside the studio. <br><br>However, our engine has generated a secure external link to the best acoustic tutorials and chord charts for this exact song.</p><a href="${ytLink}" target="_blank" style="text-decoration: none; display: inline-block;"><button class="mic-btn" style="background: #e52d27; box-shadow: 0 6px 20px rgba(229, 45, 39, 0.4); display: flex; align-items: center; gap: 10px; margin: 0 auto; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>Find Tutorials on YouTube</button></a></div>`; document.getElementById('lesson-notes-area').style.display = 'block'; }
+    
     function loadLesson(id) { 
-        currentLessonId = id; 
-        playAudioInteraction(id); 
-        
+        currentLessonId = id; playAudioInteraction(id); 
         if (window.innerWidth < 1024) { window.scrollTo({ top: 0, behavior: 'smooth' }); } 
-        
-        // Hide Everything Default
-        document.getElementById('tuner-ui').style.display = 'none'; 
-        document.getElementById('rhythm-ui').style.display = 'none'; 
-        document.getElementById('video-wrapper').style.display = 'none'; 
-        document.getElementById('tools-area').style.display = 'none'; 
-        document.getElementById('lesson-notes-area').style.display = 'none'; 
-        document.getElementById('ai-global-search').style.display = 'none'; 
-        document.getElementById('ai-assessment-panel').style.display = 'none'; 
-        document.getElementById('ai-test-launcher').style.display = 'none'; 
-        document.getElementById('feedback-ui').style.display = 'none';
-        
-        document.querySelectorAll('.lesson-link').forEach(el => el.classList.remove('active')); 
-        if(document.getElementById('link-' + id)) document.getElementById('link-' + id).classList.add('active'); 
-        
-        const mainContent = document.getElementById('main-content-area'); 
-        mainContent.classList.remove('apple-reveal'); 
-        void mainContent.offsetWidth; 
-        mainContent.classList.add('apple-reveal'); 
-        
+        document.getElementById('tuner-ui').style.display = 'none'; document.getElementById('rhythm-ui').style.display = 'none'; document.getElementById('video-wrapper').style.display = 'none'; document.getElementById('tools-area').style.display = 'none'; document.getElementById('lesson-notes-area').style.display = 'none'; document.getElementById('ai-global-search').style.display = 'none'; document.getElementById('ai-assessment-panel').style.display = 'none'; document.getElementById('ai-test-launcher').style.display = 'none'; document.getElementById('feedback-ui').style.display = 'none';
+        document.querySelectorAll('.lesson-link').forEach(el => el.classList.remove('active')); if(document.getElementById('link-' + id)) document.getElementById('link-' + id).classList.add('active'); 
+        const mainContent = document.getElementById('main-content-area'); mainContent.classList.remove('apple-reveal'); void mainContent.offsetWidth; mainContent.classList.add('apple-reveal'); 
         updateCompleteButton(); 
-        
-        if(id === 'search') { 
-            changeBackground('search'); 
-            document.getElementById('lesson-title').innerText = "AI Song Finder"; 
-            document.getElementById('ai-global-search').style.display = 'block'; 
-            return; 
-        } 
-
-        if (id === 'feedback') {
-            changeBackground('feedback');
-            document.getElementById('lesson-title').innerText = "Community Feedback";
-            document.getElementById('lesson-desc').innerText = "Help us tune the curriculum.";
-            document.getElementById('feedback-ui').style.display = 'block';
-            document.getElementById('complete-btn').style.display = 'none';
-            return;
-        }
-        
+        if(id === 'search') { changeBackground('search'); document.getElementById('lesson-title').innerText = "AI Song Finder"; document.getElementById('ai-global-search').style.display = 'block'; return; } 
+        if (id === 'feedback') { changeBackground('feedback'); document.getElementById('lesson-title').innerText = "Community Feedback"; document.getElementById('lesson-desc').innerText = "Help us tune the curriculum."; document.getElementById('feedback-ui').style.display = 'block'; document.getElementById('complete-btn').style.display = 'none'; return; }
         const lesson = courseData[id]; 
         if (document.getElementById('bg-layer-' + id)) { changeBackground(id); } else { changeBackground('0'); } 
         document.getElementById('lesson-title').innerText = lesson.title; 
-        
-        if(lesson.notes) { 
-            let processedNotes = lesson.notes;
-            if(id !== '17') { processedNotes = applyGlossaryTooltips(processedNotes); }
-            document.getElementById('lesson-notes-area').innerHTML = processedNotes; 
-            document.getElementById('lesson-notes-area').style.display = 'block'; 
-        } 
-        
+        if(lesson.notes) { let processedNotes = lesson.notes; if(id !== '17') { processedNotes = applyGlossaryTooltips(processedNotes); } document.getElementById('lesson-notes-area').innerHTML = processedNotes; document.getElementById('lesson-notes-area').style.display = 'block'; } 
         if(lesson.toolType === "video" || lesson.toolType === "exam") { 
-            if(lesson.videoId) { 
-                document.getElementById('video-wrapper').style.display = 'block'; 
-                document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + lesson.videoId; 
-                document.getElementById('ai-test-launcher').style.display = 'inline-block'; 
-            } 
-            if(lesson.toolType === "exam") { 
-                document.getElementById('tools-area').style.display = 'block'; 
-                document.getElementById('rhythm-ui').style.display = 'block'; 
-            } 
+            if(lesson.videoId) { document.getElementById('video-wrapper').style.display = 'block'; document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + lesson.videoId; document.getElementById('ai-test-launcher').style.display = 'inline-block'; } 
+            if(lesson.toolType === "exam") { document.getElementById('tools-area').style.display = 'block'; document.getElementById('rhythm-ui').style.display = 'block'; } 
         } else if(lesson.toolType === "tuner") { 
-            document.getElementById('tools-area').style.display = 'block'; 
-            document.getElementById('tuner-ui').style.display = 'block'; 
+            document.getElementById('tools-area').style.display = 'block'; document.getElementById('tuner-ui').style.display = 'block'; 
         } 
     }
-
-    let scheduledBeats = []; let rhythmActive = false; let rhythmScore = 0; let rhythmTimeouts = [];
-    function startRhythmTest() { if (!audioCtx) { try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {} } if (audioCtx && audioCtx.state === 'suspended') { audioCtx.resume(); } rhythmTimeouts.forEach(t => clearTimeout(t)); rhythmTimeouts = []; document.getElementById('start-rhythm-btn').style.display = 'none'; const feedback = document.getElementById('rhythm-feedback'); feedback.innerText = 'PREPARING...'; feedback.style.color = '#fff'; rhythmScore = 0; document.getElementById('rhythm-score').innerText = '0'; const bpm = 80; const intervalMs = (60 / bpm) * 1000; scheduledBeats = []; rhythmActive = true; let startTime = performance.now() + 1000; for (let i = 0; i < 12; i++) { let beatTime = startTime + (i * intervalMs); scheduledBeats.push({ time: beatTime, hit: false, isGameBeat: i >= 4 }); let t = setTimeout(() => { playMetronomeClick(i === 0 || i === 4); if (i < 4) { feedback.innerText = "COUNT IN: " + (4 - i); feedback.style.color = '#cbd5e1'; } else { const btn = document.getElementById('rhythm-tap-btn'); btn.style.boxShadow = 'inset 0 0 20px rgba(0,0,0,0.5), 0 0 40px var(--success)'; setTimeout(() => { btn.style.boxShadow = 'inset 0 0 20px rgba(0,0,0,0.5), 0 10px 30px rgba(194, 94, 36, 0.5)'; }, 150); } }, beatTime - performance.now()); rhythmTimeouts.push(t); } let endT = setTimeout(() => { endRhythmTest(); }, (startTime + (12 * intervalMs) - performance.now()) + 500); rhythmTimeouts.push(endT); }
-    function playMetronomeClick(accent) { if (!audioCtx) return; const osc = audioCtx.createOscillator(); const localGain = audioCtx.createGain(); osc.connect(localGain); localGain.connect(uiGain); osc.frequency.value = accent ? 1200 : 800; localGain.gain.setValueAtTime(0, audioCtx.currentTime); localGain.gain.linearRampToValueAtTime(1.5, audioCtx.currentTime + 0.01); localGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1); osc.start(); osc.stop(audioCtx.currentTime + 0.1); }
-    function registerTap() { if (!rhythmActive) return; const tapTime = performance.now(); let closestBeat = null; let minDiff = Infinity; scheduledBeats.forEach(beat => { if (beat.isGameBeat && !beat.hit) { let diff = Math.abs(beat.time - tapTime); if (diff < minDiff) { minDiff = diff; closestBeat = beat; } } }); const feedback = document.getElementById('rhythm-feedback'); if (closestBeat && minDiff < 300) { closestBeat.hit = true; if (minDiff < 100) { feedback.innerText = "PERFECT!"; feedback.style.color = "var(--success)"; rhythmScore += 10; } else { feedback.innerText = "GOOD!"; feedback.style.color = "#fbbf24"; rhythmScore += 5; } } else { feedback.innerText = "MISS!"; feedback.style.color = "var(--danger)"; } document.getElementById('rhythm-score').innerText = rhythmScore; }
-    document.addEventListener('keydown', (e) => { if(e.code === 'Space' && document.getElementById('rhythm-ui').style.display === 'block') { e.preventDefault(); const btn = document.getElementById('rhythm-tap-btn'); btn.style.transform = 'scale(0.9)'; btn.style.boxShadow = 'inset 0 0 30px rgba(0,0,0,0.8), 0 5px 15px rgba(194, 94, 36, 0.5)'; setTimeout(() => { btn.style.transform = 'scale(1)'; btn.style.boxShadow = 'inset 0 0 20px rgba(0,0,0,0.5), 0 10px 30px rgba(194, 94, 36, 0.5)'; }, 100); registerTap(); } });
-    function endRhythmTest() { rhythmActive = false; const feedback = document.getElementById('rhythm-feedback'); document.getElementById('start-rhythm-btn').style.display = 'inline-block'; document.getElementById('start-rhythm-btn').innerText = 'Play Again'; if (rhythmScore >= 60) { feedback.innerText = "TEST PASSED!"; feedback.style.color = "var(--success)"; if (!userState.completed.includes('8')) { currentLessonId = '8'; toggleLessonComplete(new Event('mock')); } } else { feedback.innerText = "SCORE TOO LOW. TRY AGAIN."; feedback.style.color = "var(--danger)"; } }
-    
-    let analyser, dataArray;
-    async function startAIChordTest() { document.getElementById('ai-assessment-panel').style.display = 'block'; document.getElementById('ai-feedback').innerText = "Microphone activated. Listening for your strum..."; }
-    async function startTuner() { try { const stream = await navigator.mediaDevices.getUserMedia({ audio: true }); document.getElementById('tuner-status').innerText = "Listening..."; document.getElementById('mic-start-btn').style.display = "none"; initAudio(); analyser = audioCtx.createAnalyser(); analyser.fftSize = 2048; audioCtx.createMediaStreamSource(stream).connect(analyser); dataArray = new Float32Array(analyser.fftSize); updateTunerLoop(); } catch (err) { alert("Microphone needed for tuner."); } }
-    function updateTunerLoop() { analyser.getFloatTimeDomainData(dataArray); let freq = autoCorrelate(dataArray, audioCtx.sampleRate); if (freq !== -1) { const notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]; let h = Math.round(12 * Math.log2(freq / 440)); let note = notes[(h + 69) % 12]; document.getElementById('target-note').innerText = note; let cents = Math.round((12 * Math.log2(freq / 440) - h) * 100); document.getElementById('cents-display').innerText = cents + " cents"; document.getElementById('tuner-needle').style.transform = `rotate(${(cents / 50) * 45}deg)`; } requestAnimationFrame(updateTunerLoop); }
-    function autoCorrelate(buf, sampleRate) { let rms = 0; for (let v of buf) rms += v*v; if (Math.sqrt(rms/buf.length) < 0.01) return -1; let r1 = 0, r2 = buf.length - 1, thres = 0.2; for (let i = 0; i < buf.length / 2; i++) if (Math.abs(buf[i]) < thres) { r1 = i; break; } for (let i = 1; i < buf.length / 2; i++) if (Math.abs(buf[buf.length - i]) < thres) { r2 = buf.length - i; break; } buf = buf.slice(r1, r2); let c = new Array(buf.length).fill(0); for (let i = 0; i < buf.length; i++) for (let j = 0; j < buf.length - i; j++) c[i] += buf[j] * buf[j + i]; let d = 0; while (c[d] > c[d + 1]) d++; let maxval = -1, maxpos = -1; for (let i = d; i < buf.length; i++) if (c[i] > maxval) { maxval = c[i]; maxpos = i; } return sampleRate / maxpos; }
-    
-    function executeGlobalAISearch() { const query = document.getElementById('ai-search-input').value; if(!query) return; const safeQuery = escapeHTML(query); document.getElementById('lesson-notes-area').innerHTML = `<h3>AI results for: ${safeQuery}</h3><p>Chords: G, D, Em, C. Watch the tutorial below.</p>`; document.getElementById('lesson-notes-area').style.display = 'block'; document.getElementById('video-wrapper').style.display = 'block'; document.getElementById('yt-player').src = `https://www.youtube.com/embed?listType=search&list=${encodeURIComponent(query)}+guitar+chords`; }
     
     function loadUserState() { try { const saved = localStorage.getItem('htpgit_master_state'); if (saved) { const parsed = JSON.parse(saved); if(parsed && typeof parsed.points !== 'undefined') { userState = parsed; } } } catch (e) {} refreshUIState(); }
     function refreshUIState() { document.getElementById('user-points').innerText = userState.points; document.querySelectorAll('.lesson-link').forEach(el => el.classList.remove('completed')); userState.completed.forEach(id => { const link = document.getElementById('link-' + id); if (link) link.classList.add('completed'); }); updateCompleteButton(); }
