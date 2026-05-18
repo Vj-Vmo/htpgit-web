@@ -7,11 +7,13 @@
     <title>HTPGit | Global Cinematic Edition</title>
     
     <link id="dynamic-manifest" rel="manifest">
+    
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
+        /* --- GLOBAL & VARIABLES --- */
         * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
-        :root { --panel-bg: rgba(255, 255, 255, 0.75); --panel-border: rgba(255, 255, 255, 0.6); --text-dark: #1c1410; --text-muted: #4a423d; --accent: #c25e24; --accent-hover: #9a4b1d; --success: #10b981; --danger: #ef4444; --shadow-glass: 0 20px 40px rgba(0, 0, 0, 0.15); --shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.25); --border-light: rgba(0,0,0,0.1); --bg-color: #0a0807; --app-bg-gradient: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.85) 100%); }
+        :root { --panel-bg: rgba(255, 255, 255, 0.9); --panel-border: rgba(0, 0, 0, 0.1); --text-dark: #000000; --text-muted: #333333; --accent: #c25e24; --accent-hover: #9a4b1d; --success: #10b981; --danger: #ef4444; --shadow-glass: 0 20px 40px rgba(0, 0, 0, 0.15); --shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.25); --border-light: rgba(0,0,0,0.1); --bg-color: #0a0807; --app-bg-gradient: radial-gradient(circle at center, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.95) 100%); }
         body.night-mode { --panel-bg: rgba(15, 23, 42, 0.75); --panel-border: rgba(255, 255, 255, 0.1); --text-dark: #f8fafc; --text-muted: #cbd5e1; --border-light: rgba(255,255,255,0.1); --shadow-glass: 0 20px 40px rgba(0, 0, 0, 0.5); --shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.7); --app-bg-gradient: radial-gradient(circle at top right, #0f172a 0%, #020617 100%); }
         body.night-mode .feature-card, body.night-mode .product-card { background: rgba(30, 41, 59, 0.7); border-color: rgba(255,255,255,0.1); color: #fff;}
         body.night-mode .feature-card h4 { color: #fff; }
@@ -20,6 +22,7 @@
         body.night-mode .lesson-link { border-color: rgba(255,255,255,0.05); }
         body.night-mode .lesson-link:hover { background: rgba(255,255,255,0.1); color: #fff; }
         body.night-mode .lesson-link.active { background: rgba(30, 41, 59, 0.9); color: var(--accent); }
+
         body { font-family: 'Nunito', sans-serif; margin: 0; color: var(--text-dark); min-height: 100vh; overflow-x: hidden; background-color: var(--bg-color); transition: color 0.5s ease; top: 0 !important; }
         #welcome-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(10, 8, 7, 0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
         .welcome-modal { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.15); padding: 50px; border-radius: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); text-align: center; max-width: 450px; width: 90%; color: #fff; transform: translateY(20px); animation: modalRise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
@@ -28,43 +31,54 @@
         .welcome-modal p { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 30px; line-height: 1.6;}
         .enter-btn { background: var(--success); color: white; border: none; width: 100%; padding: 18px; border-radius: 12px; font-weight: 800; cursor: pointer; font-family: 'Nunito', sans-serif; font-size: 1.2rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4); }
         .enter-btn:hover { background: #059669; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(16, 185, 129, 0.5); }
+        
         #bg-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; background-color: #0a0807; transition: 0.5s ease; }
         .bg-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 0.8s ease-in-out; filter: contrast(1.1) saturate(1.1); will-change: opacity; }
         .bg-layer.active { opacity: 1; z-index: -1; }
         #bg-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; background: var(--app-bg-gradient); pointer-events: none; transition: background 0.8s ease; }
         body.night-mode .bg-layer { opacity: 0.15 !important; filter: grayscale(1); }
+
         h1, h2, h3 { font-family: 'Lora', serif; }
         nav { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 10px 30px rgba(0,0,0,0.3); flex-wrap: wrap; gap: 15px; }
         .logo-wrapper { display: flex; align-items: center; gap: 15px; cursor: pointer;}
         .logo { font-size: 2.2rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; display: flex; align-items: center;}
         .logo span { color: var(--accent); text-shadow: 0 0 15px rgba(194, 94, 36, 0.6);}
         .logo-subtext { font-family: 'Nunito', sans-serif; font-size: 0.95rem; color: #94a3b8; font-weight: 700; letter-spacing: 1px; margin-left: 20px; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 20px; text-transform: uppercase;}
+        
         .eq-visualizer { display: flex; align-items: flex-end; gap: 3px; height: 24px; margin-left: 15px;}
         .eq-bar { width: 4px; background: var(--accent); border-radius: 4px; animation: eq-bounce 1s infinite ease-in-out alternate; box-shadow: 0 0 8px var(--accent);}
         .eq-bar:nth-child(1) { height: 60%; animation-delay: 0.1s; } .eq-bar:nth-child(2) { height: 100%; animation-delay: 0.3s; } .eq-bar:nth-child(3) { height: 40%; animation-delay: 0.0s; } .eq-bar:nth-child(4) { height: 80%; animation-delay: 0.4s; }
         @keyframes eq-bounce { 0% { height: 20%; } 100% { height: 100%; } }
+
         .header-right { display: flex; align-items: center; gap: 15px; flex-wrap: wrap;}
         .icon-btn { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); width: 45px; height: 45px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; cursor: pointer; transition: 0.3s; }
         .icon-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.05); }
+        
         #install-app-btn { background: var(--accent); border-color: var(--accent); animation: pulse-hotspot 2s infinite; }
+        
         .progress-pill { background: rgba(255, 255, 255, 0.1); color: #fff; padding: 10px 22px; border-radius: 30px; font-weight: 800; font-size: 1rem; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .points-pop { animation: pointPop 0.6s cubic-bezier(0.4, 0, 0.2, 1); background: var(--success); border-color: #fff;}
         @keyframes pointPop { 0% { transform: scale(1); } 50% { transform: scale(1.15); box-shadow: 0 0 25px var(--success); } 100% { transform: scale(1); } }
+
         .dashboard-container { display: grid; grid-template-columns: 1fr; gap: 35px; padding: 25px; max-width: 1450px; margin: 0 auto; }
         @media (min-width: 1024px) { .dashboard-container { grid-template-columns: 1fr 380px; padding: 40px; } .side-column { position: sticky; top: 120px; height: calc(100vh - 150px); overflow-y: auto; padding-right: 15px; } }
         .main-column { display: flex; flex-direction: column; gap: 30px; }
         .apple-reveal { animation: cinematicReveal 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
         @keyframes cinematicReveal { 0% { opacity: 0; transform: translateY(40px) scale(0.98); filter: blur(8px); } 100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } }
+
         .header-block, .lesson-notes, .tools-card, .curriculum-card { background: var(--panel-bg); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); border-radius: 24px; border: 1px solid var(--panel-border); box-shadow: var(--shadow-glass); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
         .header-block { padding: 40px 45px; } .header-block:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
         .header-block h2 { margin: 0 0 12px 0; font-size: 2.6rem; font-weight: 700; letter-spacing: -0.5px;} .header-block p { margin: 0; color: var(--text-muted); line-height: 1.7; font-size: 1.15rem; font-weight: 600;}
+
         .action-buttons { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
         .mic-btn { background: var(--accent); color: white; border: none; padding: 16px 32px; border-radius: 12px; font-weight: 800; cursor: pointer; font-family: 'Nunito', sans-serif; font-size: 1.1rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 6px 20px rgba(194, 94, 36, 0.35);}
         .mic-btn:hover { background: var(--accent-hover); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(194, 94, 36, 0.45);}
         .complete-btn { background: var(--success); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35); position: relative; overflow: hidden; } .complete-btn:hover { background: #059669; box-shadow: 0 12px 30px rgba(16, 185, 129, 0.45); }
         .complete-btn.completed-state { background: rgba(255,255,255,0.15); color: var(--text-dark); box-shadow: none; border: 1px solid rgba(0,0,0,0.1); } body.night-mode .complete-btn.completed-state { color: #fff; background: rgba(255,255,255,0.05); }
+
         .confetti { position: absolute; width: 10px; height: 10px; background-color: var(--accent); opacity: 0; border-radius: 50%; pointer-events: none; z-index: 9999; }
         .welcome-note { position: fixed; pointer-events: none; z-index: 10000; font-weight: bold; text-shadow: 0 0 25px rgba(251, 191, 36, 0.8); }
+
         .mixer-panel { position: fixed; bottom: 20px; right: 20px; width: 300px; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-radius: 20px; padding: 25px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 40px rgba(0,0,0,0.4); color: #fff; z-index: 9000; transform: translateY(150%); transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
         .mixer-panel.open { transform: translateY(0); }
         .mixer-toggle { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: var(--accent); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 9001; box-shadow: 0 10px 25px rgba(194, 94, 36, 0.5); border: none; font-size: 1.5rem; color: white; transition: 0.3s; }
@@ -72,7 +86,8 @@
         .mixer-panel h4 { margin: 0 0 20px 0; font-family: 'Lora', serif; font-size: 1.2rem; color: var(--accent); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center;}
         .mixer-close { background: none; border: none; color: #94a3b8; font-size: 1.2rem; cursor: pointer; padding: 0;}
         .slider-group { margin-bottom: 15px; } .slider-group label { display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 700; color: #cbd5e1; margin-bottom: 8px;} .slider-group input[type=range] { width: 100%; accent-color: var(--accent); cursor: pointer; }
-        
+
+        /* Tools and Anatomy */
         .ai-search-container { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(20px); color: white; padding: 40px; border-radius: 24px; display: none; margin-bottom: 10px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1);}
         .ai-search-bar { width: 100%; padding: 20px; border-radius: 12px; border: none; font-size: 1.15rem; outline: none; margin-bottom: 20px; color: #000; font-family: 'Nunito', sans-serif; box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);}
         .ai-search-btn { background: var(--accent); color: white; border: none; padding: 16px 32px; border-radius: 12px; font-weight: 800; cursor: pointer; font-family: 'Nunito', sans-serif; transition: 0.3s; font-size: 1.1rem;}
@@ -154,7 +169,7 @@
         .visitor-stats { text-align: center; margin-top: 50px; font-family: 'Nunito', sans-serif; color: var(--text-muted); font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; } .odometer { display: inline-block; background: rgba(0,0,0,0.8); color: #fff; padding: 8px 15px; border-radius: 8px; font-family: monospace; font-size: 1.5rem; letter-spacing: 4px; box-shadow: inset 0 3px 10px rgba(0,0,0,1); border: 2px solid #334155; margin-top: 10px; margin-left: 10px; } body.night-mode .odometer { border-color: rgba(255,255,255,0.1); }
     </style>
 </head>
-<body class="night-mode">
+<body>
 
 <div id="welcome-overlay">
     <div class="welcome-modal">
@@ -203,9 +218,19 @@
     </div>
     
     <div class="header-right">
-        <button class="icon-btn" id="install-app-btn" title="Install Studio App" style="display:none; background: var(--accent); border-color: var(--accent); animation: pulse-hotspot 2s infinite;">⬇️</button>
-        <button class="icon-btn" onclick="toggleRecorder()" title="Studio Recorder" style="background: rgba(239, 68, 68, 0.2); border-color: var(--danger); color: var(--danger);">🔴</button>
-        <button class="icon-btn" onclick="toggleNightMode()" id="night-mode-btn" title="Toggle Light Mode">☀️</button>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+            <button class="icon-btn" onclick="toggleRecorder()" title="Studio Recorder" style="background: rgba(239, 68, 68, 0.2); border-color: var(--danger); color: var(--danger);">🔴</button>
+            <span style="font-size: 0.7rem; font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 1px;">Recorder</span>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+            <button class="icon-btn" onclick="toggleNightMode()" id="night-mode-btn" title="Toggle Cinematic Mode">🌙</button>
+            <span style="font-size: 0.7rem; font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 1px;">Theme</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+            <button class="icon-btn" id="install-app-btn" title="Install Studio App" style="display:none; background: var(--accent); border-color: var(--accent); animation: pulse-hotspot 2s infinite;">⬇️</button>
+        </div>
         <div class="progress-pill" id="points-display-pill">Points: <span id="user-points">0</span></div>
     </div>
 </nav>
@@ -351,7 +376,7 @@
 </div>
 
 <script>
-    let currentLessonId = '0'; let userState = { points: 0, completed: [] }; let isNightMode = true; let selectedRating = '';
+    let currentLessonId = '0'; let userState = { points: 0, completed: [] }; let isNightMode = false; let selectedRating = '';
     let audioCtx, masterGain, guitarGain, uiGain, compressor, aiAnalyser, aiDataArray, aiStream, analyser, dataArray;
     let lastPluck = {}; 
 
@@ -474,7 +499,19 @@
     function playCompletionSound() { initAudio(); if(!audioCtx) return; const now = audioCtx.currentTime; const popOsc = audioCtx.createOscillator(); const popGain = audioCtx.createGain(); popOsc.type = 'sine'; popOsc.frequency.setValueAtTime(800, now); popOsc.frequency.exponentialRampToValueAtTime(300, now + 0.1); popGain.gain.setValueAtTime(0, now); popGain.gain.linearRampToValueAtTime(0.6, now + 0.02); popGain.gain.exponentialRampToValueAtTime(0.001, now + 0.15); popOsc.connect(popGain); popGain.connect(uiGain); popOsc.start(now); popOsc.stop(now + 0.15); setTimeout(() => { const freqs = [1046.50, 1318.51, 1567.98]; freqs.forEach((f, i) => { const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); osc.type = 'sine'; osc.frequency.setValueAtTime(f, now + i*0.05); gain.gain.setValueAtTime(0, now + i*0.05); gain.gain.linearRampToValueAtTime(0.15, now + i*0.05 + 0.02); gain.gain.exponentialRampToValueAtTime(0.001, now + i*0.05 + 0.8); osc.connect(gain); gain.connect(uiGain); osc.start(now + i*0.05); osc.stop(now + i*0.05 + 0.8); }); }, 50); }
     function playUndoSound() { initAudio(); if(!audioCtx) return; const now = audioCtx.currentTime; const popOsc = audioCtx.createOscillator(); const popGain = audioCtx.createGain(); popOsc.type = 'triangle'; popOsc.frequency.setValueAtTime(300, now); popOsc.frequency.exponentialRampToValueAtTime(100, now + 0.15); popGain.gain.setValueAtTime(0, now); popGain.gain.linearRampToValueAtTime(0.4, now + 0.02); popGain.gain.exponentialRampToValueAtTime(0.001, now + 0.15); popOsc.connect(popGain); popGain.connect(uiGain); popOsc.start(now); popOsc.stop(now + 0.15); setTimeout(() => { const freqs = [1567.98, 1318.51, 1046.50]; freqs.forEach((f, i) => { const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); const filter = audioCtx.createBiquadFilter(); osc.type = 'sine'; osc.frequency.setValueAtTime(f, now + i*0.04); filter.type = 'lowpass'; filter.frequency.value = 1000; gain.gain.setValueAtTime(0, now + i*0.04); gain.gain.linearRampToValueAtTime(0.1, now + i*0.04 + 0.02); gain.gain.exponentialRampToValueAtTime(0.001, now + i*0.04 + 0.4); osc.connect(filter); filter.connect(gain); gain.connect(uiGain); osc.start(now + i*0.04); osc.stop(now + i*0.04 + 0.4); }); }, 50); }
 
-    function toggleNightMode() { isNightMode = !isNightMode; if(isNightMode) { document.body.classList.add('night-mode'); document.getElementById('night-mode-btn').innerText = '☀️'; document.getElementById('night-mode-btn').title = 'Toggle Light Mode'; } else { document.body.classList.remove('night-mode'); document.getElementById('night-mode-btn').innerText = '🌙'; document.getElementById('night-mode-btn').title = 'Toggle Cinematic Mode'; } }
+    function toggleNightMode() { 
+        isNightMode = !isNightMode; 
+        if(isNightMode) { 
+            document.body.classList.add('night-mode'); 
+            document.getElementById('night-mode-btn').innerText = '☀️'; 
+            document.getElementById('night-mode-btn').title = 'Toggle Light Mode'; 
+        } else { 
+            document.body.classList.remove('night-mode'); 
+            document.getElementById('night-mode-btn').innerText = '🌙'; 
+            document.getElementById('night-mode-btn').title = 'Toggle Cinematic Mode'; 
+        } 
+    }
+    
     function fireConfetti(e) { const btn = e.currentTarget; const rect = btn.getBoundingClientRect(); const centerX = rect.left + rect.width / 2; const centerY = rect.top + rect.height / 2; for (let i = 0; i < 35; i++) { const conf = document.createElement('div'); conf.className = 'confetti'; const colors = ['#10b981', '#c25e24', '#f59e0b', '#3b82f6']; const chosenColor = colors[Math.floor(Math.random() * colors.length)]; conf.style.backgroundColor = 'transparent'; conf.style.border = `2px solid ${chosenColor}`; conf.style.boxShadow = `0 0 10px ${chosenColor}`; conf.style.borderRadius = '50%'; document.body.appendChild(conf); const angle = Math.random() * Math.PI * 2; const velocity = 40 + Math.random() * 120; const tx = Math.cos(angle) * velocity; const ty = Math.sin(angle) * velocity - 40; conf.style.left = centerX + 'px'; conf.style.top = centerY + 'px'; conf.animate([ { transform: 'translate(-50%, -50%) scale(0.5)', opacity: 1 }, { transform: `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(2.5)`, opacity: 0 } ], { duration: 600 + Math.random() * 300, easing: 'cubic-bezier(0.25, 1, 0.5, 1)', fill: 'forwards' }).onfinish = () => conf.remove(); } }
 
     // Phase 05: Studio Recorder
